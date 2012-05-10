@@ -168,7 +168,9 @@ ul.entries {
   list-style: none;
 }
 
-
+pre {
+  overflow: auto;
+}
 
 .code {
   opacity: 0.5;
