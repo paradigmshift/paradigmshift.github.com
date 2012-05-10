@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=utf-8 />
+  <title>  Setting up Jekyll |  Mozart Reina </title>
+  <link rel="stylesheet" href="/css/styles.css" type="text/css" />
+  <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+</head>
+<body>
+  
+  <header id="top">
+    <h1> Math, Lisp, and general hackery </h1>
+  </header>
+
+  <nav role="navigation">
+    <ul id="menu">
+      <li><a href=#>Menu</a>
+        <ul>
+          <li><a href="/">Home</a>
+          <li><a href="/entries/">Entries</a></li>
+          <li><a href="/about/">About</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+ 
+  <div id="main">
+      <section id="content">
+  <h2> Setting up Jekyll </h2>
+  <section class="text">
+    <p>For a while now I've been thinking of using <strong><a href="https://github.com/mojombo/jekyll/wiki">Jekyll</a></strong> for my online work. Previously I'd only ever used <strong><a href="https://www.djangoproject.com/">Django</a></strong> but it seemed like a bit of overkill for what I wanted to do here.</p>
+
+<p>There are numerous tutorials out there for starting out with Jekyll, and for those that already have a running blog and just want to migrate, <strong><a href="http://paulstamatiou.com/how-to-wordpress-to-jekyll">this</a></strong> is an  excellent guide (based on a Wordpress - Jekyll migration).</p>
+
+<p>So what is Jekyll? Jekyll is a static website generator... in layman's terms, it will create a website out of, and according to, your text files. This article, for example, is written in a specific syntax/language called <strong><a href="http://daringfireball.net/projects/markdown/">Markdown</a></strong>. Markdown runs the text given to it and modifies it according to its syntax. Markdown is integrated into Jekyll, so Jekyll takes this text file, runs markdown, then takes the result and further modifies it to create a standards-compliant html file. This means that you don't have to worry about writing raw HTML for every blog post or web page that you create and can just focus on writing the content.</p>
+
+<p>So what are the benefits of using Jekyll instead of using a full-blown CMS for your blogging, personal websites, etc?</p>
+
+<ol>
+<li><p>No database involved - all files are in html format. This keeps things simple and accessible, you can search for articles with <strong><code>grep</code></strong> for example.</p></li>
+<li><p>Github integration - there are numerous tutorials out there that cover using Jekyll and Githug pages to host your blog. All you have to do is push your content to Github to update your site.</p></li>
+<li><p>Files are in text format - one of the biggest advantages to this is that you can write your new pages/entries with your favorite text editor instead of going through a web interface. I, for example, am using emacs to do all my writing.</p></li>
+<li><p>Static html - any half-decent webserver can serve 1000s of request / SECOND of static html files. If your website generates high traffic this becomes critical, websites that are generated on the fly on the other hand, can take up to 0.5 seconds to serve a single request. This is why a lot of blogs that are using PHP, Python, or any other language to create the requested pages on demand can all of a sudden have huge down times when they become popular; thousands or even just hundreds  of users requesting pages at the same time.</p></li>
+</ol>
+
+
+<p>So what are the basic requirements?</p>
+
+<ul>
+<li>the <a href="http://www.ruby-lang.org/en/">Ruby</a> programming language</li>
+<li><a href="https://github.com/rtomayko/rdiscount">rdiscount</a> - ruby implementation of markdown</li>
+<li><a href="http://pygments.org/">pygment</a> - cody syntax highlighting (optional)</li>
+</ul>
+
+
+<p><strong>Jekyll</strong> and <strong>rdiscount</strong> can both be installed using ruby gems.</p>
+
+<p><section class="shell"></p>
+
+<pre><code>$ gem install jekyll
+$ gem install rdiscount
+</code></pre>
+
+<p></section></p>
+
+<p>Jekyll expects a certain directory structure, which in its simplest incarnation is:</p>
+
+<p><section class="shell"></p>
+
+<pre><code>drwxr-xr-x   _includes
+drwxr-xr-x   _layouts
+drwxr-xr-x   _posts 
+-rw-r--r--   _config.yml
+</code></pre>
+
+<p></section></p>
+
+<p>The <em>_config.yml</em> file can actually be slightly complex, for now just put this in it:</p>
+
+<p><section class="code"></p>
+
+<pre><code>auto: true
+markdown: rdiscount
+base_url: /
+</code></pre>
+
+<p></section></p>
+
+<p>Here we're just telling Jekyll to use <strong>rdiscount</strong> as it's markdown implementation, that the base url is <strong><code>/</code></strong> (you will change this once you deploy the site, this is just for development), and that everytime you make a change to any of the files, the Jekyll server will rebuild the site automatically.</p>
+
+<p>To start, create a basic <em>default</em> template page, which will for the basis for future pages, and put it in the <em>_layouts</em> folder. Mine for example is:</p>
+
+<p><section class="code"></p>
+
+<div class="highlight"><pre><code class="html">    <span class="cp">&lt;!DOCTYPE html&gt;</span>
+    <span class="nt">&lt;html&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+      <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">utf-8</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;title&gt;</span> {% if page.title %} {{ page.title }} | {% endif %} Mozart Reina <span class="nt">&lt;/title&gt;</span>
+      <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/css/styles.css&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/css/syntax.css&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+    
+      <span class="nt">&lt;header</span> <span class="na">id=</span><span class="s">&quot;top&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1&gt;</span> Math, Lisp, and general hackery <span class="nt">&lt;/h1&gt;</span>
+      <span class="nt">&lt;/header&gt;</span>
+
+      <span class="nt">&lt;nav</span> <span class="na">role=</span><span class="s">&quot;navigation&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;ul&gt;</span>
+          <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/&quot;</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+          <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/entries/&quot;</span><span class="nt">&gt;</span>Entries<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+          <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/about/&quot;</span><span class="nt">&gt;</span>About<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="nt">&lt;/ul&gt;</span>
+      <span class="nt">&lt;/nav&gt;</span>
+    
+      <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;main&quot;</span><span class="nt">&gt;</span>
+        {{ content }}
+      <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;footer&gt;</span>
+        <span class="nt">&lt;p&gt;</span>@copy; Mozart Reina 2012 | All Rights Reserved. <span class="nt">&lt;/p&gt;</span>
+      <span class="nt">&lt;/footer&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+    <span class="nt">&lt;/html&gt;</span>
+</code></pre>
+</div>
+
+
+<p></section></p>
+
+<p>You'll notice the non-html tags <strong><code>{% if page.title %} {{ page.title }} | {% endif %}</code></strong>, this is part of the <strong><a href="http://liquidmarkup.org/">Liquid</a></strong> templating lanuage that Jekyll incorporates. It's a way of introducing code into your html templates and pages. In this case it's just telling Jekyll that if there is a page title to print it out, followed by a vertical bar.</p>
+
+<p>But how does Jekyll recognize the page title?</p>
+
+<p>Create an <em>index.html</em> file in the root directory and put this in:</p>
+
+<p><section class="code"></p>
+
+<div class="highlight"><pre><code class="html">---
+layout: default
+title: Hey!
+---
+Hey there!
+</code></pre>
+</div>
+
+
+<p></section></p>
+
+<p>The triple dash <code>---</code> should be at the beginning of the file, no newlines before or after. Everything between the dashes are <strong><a href="https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter">YAML front matter</a></strong>, basically information that Jekyll processes. In this particular example, we're telling Jekyll to use the default layout (the one you just wrote in the _layouts folder) and that the title is "Hey!". When Jekyll reads this, it will create an html file from your default layout and insert "Hey!" wherever there is a <strong><code>{{ page.title }}</code></strong> tag.</p>
+
+<p>Everything after the triple dashes are content, so in the index file about to be created, Jekyll will place "Hey there!" in the section where we put  <strong><code>{{content }}</code></strong>  in the layout file.</p>
+
+<p>Now run the Jekyll server and point your browser to <strong><a href="http://localhost:4000">http://localhost:4000</a></strong>:</p>
+
+<p><section class="shell"></p>
+
+<pre><code>$ jekyll --server
+</code></pre>
+
+<p></section></p>
+
+<p>You should see a page based on your default template with the content you specified in your <em>index.html</em> file.</p>
+
+    <h6>07 May 2012</h6>
+  </section>
+</section>
+
+
+  </div>
+  <footer>
+    <p>@copy; Mozart Reina 2012 | All Rights Reserved. </p>
+  </footer>
+</body>
+</html>
