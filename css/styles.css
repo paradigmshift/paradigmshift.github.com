@@ -147,6 +147,10 @@ a:hover {
   color: white;
 }
 
+#content h3 {
+  border-left: 5px solid #610808;
+  padding-left: 1em;
+}
 .text {
   font-family: sans-serif;
   font-size: 1em;
