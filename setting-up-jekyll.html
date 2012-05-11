@@ -158,7 +158,7 @@ Hey there!
 
 <p>The triple dash <code>---</code> should be at the beginning of the file, no newlines before or after. Everything between the dashes are <strong><a href="https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter">YAML front matter</a></strong>, basically information that Jekyll processes. In this particular example, we're telling Jekyll to use the default layout (the one you just wrote in the _layouts folder) and that the title is "Hey!". When Jekyll reads this, it will create an html file from your default layout and insert "Hey!" wherever there is a <strong><code>{{ page.title }}</code></strong> tag.</p>
 
-<p>Everything after the triple dashes are content, so in the index file about to be created, Jekyll will place "Hey there!" in the section where we put  <strong><code>{{content }}</code></strong>  in the layout file.</p>
+<p>Everything after the triple dashes are content, so in the index file about to be created, Jekyll will place "Hey there!" in the section where we put  <strong><code>{{ content }}</code></strong>  in the layout file.</p>
 
 <h3>Serving the Site Locally...</h3>
 
