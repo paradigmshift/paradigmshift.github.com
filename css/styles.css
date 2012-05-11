@@ -163,6 +163,10 @@ a:hover {
   color: #4C4646;
 }
 
+.text ul {
+  list-style-position: inside;
+}
+
 header#top {
   width: 960px;
   margin-left: 2em;
