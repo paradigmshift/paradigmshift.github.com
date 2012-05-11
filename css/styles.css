@@ -151,10 +151,15 @@ a:hover {
   border-left: 5px solid #610808;
   padding-left: 1em;
 }
+
 .text {
   font-family: sans-serif;
   font-size: 1em;
   color: #4C4646;
+}
+
+.text ul li {
+  list-style: none;
 }
 
 header#top {
@@ -190,8 +195,25 @@ pre {
   min-width: 300px;
   font-size: 0.8em;
 }
+
+.emphasis1 {
+  color: #AF7817;
+}
+
+.emphasis2 {
+  color: #800517;
+}
+
 blockquote {
   font-style: italic;
+}
+
+img.profile {
+  width: 15em;
+  border-radius: 5px;
+  border: 2px solid black;
+  float: left;
+  margin: 0 1em 15em 1em;
 }
  
 footer {
