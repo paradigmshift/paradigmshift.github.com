@@ -152,6 +152,11 @@ a:hover {
   padding-left: 1em;
 }
 
+#content h4 {
+  border-left: 5px solid #AF7817;
+  margin-left: 1em;
+}
+
 .text {
   font-family: sans-serif;
   font-size: 1em;
@@ -200,10 +205,6 @@ pre {
   color: #AF7817;
 }
 
-.emphasis2 {
-  color: #800517;
-}
-
 blockquote {
   font-style: italic;
 }
@@ -213,7 +214,7 @@ img.profile {
   border-radius: 5px;
   border: 2px solid black;
   float: left;
-  margin: 0 1em 15em 1em;
+  margin: 0 1em 24em 1em;
 }
  
 footer {
