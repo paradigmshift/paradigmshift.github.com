@@ -123,10 +123,19 @@ a:hover {
 }
 
 header#top {
-  width: 960px;
-  margin-left: 2em;
+
+  opacity: 0.8;
   padding: 0 10px;
+  padding-left: 2.5em;
+  margin-bottom: 0;
   overflow: hidden;
+  background: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(1, rgba(0,0,0,1.0)), /* Top */
+    color-stop(0, rgba(0,0,0,0.0)) /* Bottom */
+  );
 }
 
 ul.entries {
