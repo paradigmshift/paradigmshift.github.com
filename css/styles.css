@@ -188,3 +188,10 @@ footer {
 }
 
 code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit;}
+
+.jxgbox {
+  width:20em;
+  height:20em;
+  margin-left:auto;
+  margin-right:auto;
+}
