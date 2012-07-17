@@ -1,0 +1,78 @@
+<?xml version='1.0'?> 
+
+                 <rss version='2.0'> 
+
+                 <channel>  
+
+                 <title>Math, Lisp, and general hackery</title>  
+
+                 <description>On-going documentation of my studies and projects</description>  
+
+                 <link>http://mozartreina.com</link>  
+
+                 <item> 
+
+               <title>   SLDB, or the Slime Debugger |  Mozart Reina  </title> 
+
+               <description></description> 
+
+               <link> http://mozartreina.com/sldb-or-debugger.html </link> 
+
+               </item> 
+<item> 
+
+               <title>   Setting up Jekyll |  Mozart Reina  </title> 
+
+               <description></description> 
+
+               <link> http://mozartreina.com/setting-up-jekyll.html </link> 
+
+               </item> 
+<item> 
+
+               <title>   Rolling my own RC4 Implementation |  Mozart Reina  </title> 
+
+               <description></description> 
+
+               <link> http://mozartreina.com/rolling-my-own-rc4-implementation.html </link> 
+
+               </item> 
+<item> 
+
+               <title>   Mathematical Induction (aka Proof by Induction) |  Mozart Reina  </title> 
+
+               <description></description> 
+
+               <link> http://mozartreina.com/proofs.html </link> 
+
+               </item> 
+<item> 
+
+               <title>   Mozart Reina  </title> 
+
+               <description></description> 
+
+               <link> http://mozartreina.com/index.html </link> 
+
+               </item> 
+<item> 
+
+               <title>   Functions |  Mozart Reina  </title> 
+
+               <description></description> 
+
+               <link> http://mozartreina.com/functions.html </link> 
+
+               </item> 
+<item> 
+
+               <title>   Derivatives of Functions |  Mozart Reina  </title> 
+
+               <description></description> 
+
+               <link> http://mozartreina.com/derivatives-functions.html </link> 
+
+               </item> 
+
+                 </channel>
+                 </rss>
