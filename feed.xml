@@ -12,9 +12,18 @@
 
                  <item> 
 
+               <title>   Soma-RSS, a Lisp-powered RSS feed creator |  Mozart Reina  </title> 
+
+               <description> As I mentioned previously in <a href="http://mo </description> 
+
+               <link> http://mozartreina.com/soma-rss-lisp-powered-rss-feed-creator.html </link> 
+
+               </item> 
+<item> 
+
                <title>   SLDB, or the Slime Debugger |  Mozart Reina  </title> 
 
-               <description></description> 
+               <description> I've been using the <a href="http://common-lisp </description> 
 
                <link> http://mozartreina.com/sldb-or-debugger.html </link> 
 
@@ -23,7 +32,7 @@
 
                <title>   Setting up Jekyll |  Mozart Reina  </title> 
 
-               <description></description> 
+               <description> For a while now I've been thinking of using <st </description> 
 
                <link> http://mozartreina.com/setting-up-jekyll.html </link> 
 
@@ -32,7 +41,7 @@
 
                <title>   Rolling my own RC4 Implementation |  Mozart Reina  </title> 
 
-               <description></description> 
+               <description> RC4, or the "Rivest Cipher", named after its cr </description> 
 
                <link> http://mozartreina.com/rolling-my-own-rc4-implementation.html </link> 
 
@@ -41,7 +50,7 @@
 
                <title>   Mathematical Induction (aka Proof by Induction) |  Mozart Reina  </title> 
 
-               <description></description> 
+               <description> Mathematical proofs are statements, either writ </description> 
 
                <link> http://mozartreina.com/proofs.html </link> 
 
@@ -50,7 +59,7 @@
 
                <title>   Mozart Reina  </title> 
 
-               <description></description> 
+               <description> As I mentioned previously in <a href="http://mo </description> 
 
                <link> http://mozartreina.com/index.html </link> 
 
@@ -59,7 +68,7 @@
 
                <title>   Functions |  Mozart Reina  </title> 
 
-               <description></description> 
+               <description> Functins are nothing more than equations where  </description> 
 
                <link> http://mozartreina.com/functions.html </link> 
 
@@ -68,7 +77,7 @@
 
                <title>   Derivatives of Functions |  Mozart Reina  </title> 
 
-               <description></description> 
+               <description> A derivative of a function, in plainspeak, is t </description> 
 
                <link> http://mozartreina.com/derivatives-functions.html </link> 
 
