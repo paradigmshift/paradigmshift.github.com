@@ -90,6 +90,25 @@
 
 <p><section class="code"></p>
 
+<div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">aggregate</span> <span class="p">(</span><span class="nv">dir</span> <span class="nv">path</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">entries</span> <span class="p">(</span><span class="nb">directory</span> <span class="p">(</span><span class="nb">concatenate</span> <span class="ss">&#39;string</span> <span class="nv">dir</span> <span class="s">&quot;/*.html&quot;</span><span class="p">)))</span>
+            <span class="p">(</span><span class="nv">parsed-data</span> <span class="o">&#39;</span><span class="p">()))</span>
+        <span class="p">(</span><span class="nb">mapcar</span> <span class="p">(</span><span class="k">lambda</span><span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+                  <span class="p">(</span><span class="nb">with-open-file</span> <span class="p">(</span><span class="nc">stream</span> <span class="nv">x</span>
+                                          <span class="ss">:direction</span> <span class="ss">:input</span><span class="p">)</span>
+                    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">data</span> <span class="p">(</span><span class="nb">make-string</span> <span class="p">(</span><span class="nb">file-length</span> <span class="nc">stream</span><span class="p">))))</span>
+                      <span class="p">(</span><span class="nb">read-sequence</span> <span class="nv">data</span> <span class="nc">stream</span><span class="p">)</span>
+                      <span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nv">item-gen</span> <span class="p">(</span><span class="nv">parse-html</span> <span class="nv">data</span> <span class="s">&quot;&lt;title&gt;&quot;</span> <span class="s">&quot;&lt;/title&gt;&quot;</span><span class="p">)</span>
+                                      <span class="p">(</span><span class="nb">pathname-name</span> <span class="nv">x</span><span class="p">)</span>
+                                      <span class="p">(</span><span class="nv">parse-html</span> <span class="nv">data</span> <span class="s">&quot;&lt;p&gt;&quot;</span> <span class="s">&quot;&lt;/p&gt;&quot;</span><span class="p">)</span>
+                                      <span class="nv">path</span><span class="p">)</span>
+                            <span class="nv">parsed-data</span><span class="p">))))</span>
+                <span class="nv">entries</span><span class="p">)</span>
+        <span class="nv">parsed-data</span><span class="p">))</span>
+</code></pre>
+</div>
+
+
 <p></section></p>
 
 <p>This actually started out as a much smaller function but then grew to be some sort of aggregator of the different bits of information returned by other, smaller, functions. It opens the directory passed as its first argument, lists all the <code>.html</code> files located inside, then opens them and passes them to several functions for data extraction. The output is a list of RSS entries in XML format that has to be inserted into the main XML feed file.</p>
