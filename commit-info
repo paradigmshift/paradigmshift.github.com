@@ -1,7 +1,7 @@
 -*- mode: org -*-
 #+STARTUP: showeverything
 * CHANGES
-** testing rss fix for links in description
+** fixed rss icon formatting, removed rss text
 
 * TODO
 - [ ] add black->transparency support in header for firefox, opera, and ie
