@@ -127,19 +127,34 @@
 
 <p>The other function responsible for taking the output of the <code>parse-html</code> function is called <code>item-gen</code>. It generates an XML representation of each post. This is then passed to the first function that was written, <code>create-entry</code>, which will take all the entries and creates the complete RSS feed structure.</p>
 
+<p>Function <code>remove-quote</code>, which is called by <code>aggregate</code>, serves to remove any double quotation marks and <code>.html</code> tag marks (<code>&gt;</code> and <code>&lt;</code>). This is because they cause problems in the internal structure of the XML feed file if included.</p>
+
 <p>This is then written to disk and named <code>feed.xml</code>.</p>
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">parse-html</span> <span class="p">(</span><span class="nv">str</span> <span class="nv">beg</span> <span class="nv">end</span><span class="p">)</span>
+<div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">remove-quote</span> <span class="p">(</span><span class="nv">str</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">q</span> <span class="p">(</span><span class="nb">search</span> <span class="s">&quot;\&quot;&quot;</span> <span class="nv">str</span><span class="p">))</span>
+            <span class="p">(</span><span class="nv">tag-beg</span> <span class="p">(</span><span class="nb">search</span> <span class="s">&quot;\&lt;&quot;</span> <span class="nv">str</span><span class="p">))</span>
+            <span class="p">(</span><span class="nv">tag-end</span> <span class="p">(</span><span class="nb">search</span> <span class="s">&quot;\&gt;&quot;</span> <span class="nv">str</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nb">cond</span> <span class="p">(</span><span class="nv">q</span> <span class="p">(</span><span class="k">progn</span> <span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nb">char</span> <span class="nv">str</span> <span class="nv">q</span><span class="p">)</span> <span class="sc">#\space</span><span class="p">)</span>
+                        <span class="p">(</span><span class="nv">remove-quote</span> <span class="nv">str</span><span class="p">)))</span>
+              <span class="p">(</span><span class="nv">tag-beg</span> <span class="p">(</span><span class="k">progn</span> <span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nb">char</span> <span class="nv">str</span> <span class="nv">tag-beg</span><span class="p">)</span> <span class="sc">#\space</span><span class="p">)</span>
+                              <span class="p">(</span><span class="nv">remove-quote</span> <span class="nv">str</span><span class="p">)))</span>
+              <span class="p">(</span><span class="nv">tag-end</span> <span class="p">(</span><span class="k">progn</span> <span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nb">char</span> <span class="nv">str</span> <span class="nv">tag-end</span><span class="p">)</span> <span class="sc">#\space</span><span class="p">)</span>
+                              <span class="p">(</span><span class="nv">remove-quote</span> <span class="nv">str</span><span class="p">)))</span>
+              <span class="p">(</span><span class="no">t</span> <span class="nv">str</span><span class="p">))))</span>
+
+    <span class="p">(</span><span class="nb">defun</span> <span class="nv">parse-html</span> <span class="p">(</span><span class="nv">str</span> <span class="nv">beg</span> <span class="nv">end</span><span class="p">)</span>
       <span class="p">(</span><span class="nb">subseq</span> <span class="nv">str</span> <span class="p">(</span><span class="nb">search</span> <span class="nv">beg</span> <span class="nv">str</span><span class="p">)</span> <span class="p">(</span><span class="nb">search</span> <span class="nv">end</span> <span class="nv">str</span><span class="p">)))</span>
 
     <span class="p">(</span><span class="nb">defun</span> <span class="nv">item-gen</span> <span class="p">(</span><span class="nv">title</span> <span class="nv">address</span> <span class="nv">dscrp</span> <span class="nv">path</span><span class="p">)</span>
-      <span class="p">(</span><span class="nb">format</span> <span class="no">nil</span> <span class="s">&quot;&lt;item&gt;</span>
-<span class="s">                   &lt;title&gt; ~a &lt;/title&gt; </span>
-<span class="s">                   &lt;description&gt; ~a &lt;/description&gt; </span>
-<span class="s">                   &lt;link&gt; ~a/~a.html &lt;/link&gt; </span>
-<span class="s">                   &lt;/item&gt;&quot;</span> <span class="p">(</span><span class="nb">subseq</span> <span class="nv">title</span> <span class="mi">7</span><span class="p">)</span> <span class="p">(</span><span class="nb">subseq</span> <span class="nv">dscrp</span> <span class="mi">3</span> <span class="mi">50</span><span class="p">)</span> <span class="nv">path</span> <span class="nv">address</span><span class="p">))</span>
+      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">dscrp</span> <span class="p">(</span><span class="nv">remove-quote</span> <span class="nv">dscrp</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nb">format</span> <span class="no">nil</span> <span class="s">&quot;&lt;item&gt;</span>
+<span class="s">                   &lt;title&gt; ~a &lt;/title&gt;</span>
+<span class="s">                   &lt;description&gt; ~a &lt;/description&gt;</span>
+<span class="s">                   &lt;link&gt; ~a/~a.html &lt;/link&gt;</span>
+<span class="s">                   &lt;/item&gt;&quot;</span> <span class="p">(</span><span class="nb">subseq</span> <span class="nv">title</span> <span class="mi">7</span><span class="p">)</span> <span class="p">(</span><span class="nb">subseq</span> <span class="nv">dscrp</span> <span class="mi">3</span> <span class="mi">50</span><span class="p">)</span> <span class="nv">path</span> <span class="nv">address</span><span class="p">)))</span>
 
     <span class="p">(</span><span class="nb">defun</span> <span class="nv">create-file</span> <span class="p">(</span><span class="nv">data</span><span class="p">)</span>
       <span class="p">(</span><span class="nb">with-open-file</span> <span class="p">(</span><span class="nc">stream</span> <span class="s">&quot;feed.xml&quot;</span>
