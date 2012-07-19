@@ -1,7 +1,7 @@
 -*- mode: org -*-
 #+STARTUP: showeverything
 * CHANGES
-** soma-rss entry error fixed
+** fixed rss icon formatting, removed rss text
 
 * TODO
 - [ ] add black->transparency support in header for firefox, opera, and ie

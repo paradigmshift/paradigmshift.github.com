@@ -23,6 +23,20 @@ a:hover {
   -moz-transition: 250ms ease-out;
   -webkit-transition: 250ms ease-out;
 }
+
+#rss {
+  position:absolute;
+  right: 3em;
+  top: 1em;
+  text-align: center;
+  opacity: 0.8;
+}
+
+#rss img{
+  padding:0;
+  margin:0;
+  width: 3.5em;
+}
  
 #main {
   width: 810px;
