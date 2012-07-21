@@ -1,7 +1,7 @@
 -*- mode: org -*-
 #+STARTUP: showeverything
 * CHANGES
-** added `remove-quote` code and explanation
+** lisp systems entry
 
 * TODO
 - [ ] add black->transparency support in header for firefox, opera, and ie
