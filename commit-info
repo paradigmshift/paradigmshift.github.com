@@ -1,7 +1,7 @@
 -*- mode: org -*-
 #+STARTUP: showeverything
 * CHANGES
-** functional pipelines entry added
+** functional pipelines entry modified, basic example added
 
 * TODO
 - [ ] add black->transparency support in header for firefox, opera, and ie
