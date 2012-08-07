@@ -1,7 +1,7 @@
 -*- mode: org -*-
 #+STARTUP: showeverything
 * CHANGES
-** lisp unit test entry
+** functional pipelines entry added
 
 * TODO
 - [ ] add black->transparency support in header for firefox, opera, and ie
