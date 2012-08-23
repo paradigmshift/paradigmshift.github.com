@@ -4,54 +4,6 @@
                  <title>Math, Lisp, and general hackery</title> 
                  <description>On-going documentation of my studies and projects</description> 
                  <link>http://mozartreina.com</link> 
-                 <item>
-               <title>   Unit Testing in Common Lisp |  Mozart Reina  </title>
-               <description> According to the  a href= http://en.wikipedia.o </description>
-               <link> http://mozartreina.com/unit-tests-lisp.html </link>
-               </item><item>
-               <title>   Soma-RSS, a Lisp-powered RSS feed creator |  Mozart Reina  </title>
-               <description> As I mentioned previously in  a href= http://mo </description>
-               <link> http://mozartreina.com/soma-rss-lisp-powered-rss-feed-creator.html </link>
-               </item><item>
-               <title>   SLDB, or the Slime Debugger |  Mozart Reina  </title>
-               <description> I've been using the  a href= http://common-lisp </description>
-               <link> http://mozartreina.com/sldb-or-debugger.html </link>
-               </item><item>
-               <title>   Setting up Lisp Systems |  Mozart Reina  </title>
-               <description> The common definition of a Lisp System is actua </description>
-               <link> http://mozartreina.com/setting-up-lisp-systems.html </link>
-               </item><item>
-               <title>   Setting up Jekyll |  Mozart Reina  </title>
-               <description> For a while now I've been thinking of using  st </description>
-               <link> http://mozartreina.com/setting-up-jekyll.html </link>
-               </item><item>
-               <title>   Rolling my own RC4 Implementation |  Mozart Reina  </title>
-               <description> RC4, or the  Rivest Cipher , named after its cr </description>
-               <link> http://mozartreina.com/rolling-my-own-rc4-implementation.html </link>
-               </item><item>
-               <title>   Mathematical Induction (aka Proof by Induction) |  Mozart Reina  </title>
-               <description> Mathematical proofs are statements, either writ </description>
-               <link> http://mozartreina.com/proofs.html </link>
-               </item><item>
-               <title>   Mozart Reina  </title>
-               <description> We'll be using a few technical math terms, so l </description>
-               <link> http://mozartreina.com/index.html </link>
-               </item><item>
-               <title>   Functions |  Mozart Reina  </title>
-               <description> Functions are nothing more than equations where </description>
-               <link> http://mozartreina.com/functions.html </link>
-               </item><item>
-               <title>   Functional Pipelines |  Mozart Reina  </title>
-               <description> I came across this term when working through  a </description>
-               <link> http://mozartreina.com/functional-pipeline.html </link>
-               </item><item>
-               <title>   Extrema and Inflection Points |  Mozart Reina  </title>
-               <description> We'll be using a few technical math terms, so l </description>
-               <link> http://mozartreina.com/extrema-inflection-points.html </link>
-               </item><item>
-               <title>   Derivatives of Functions |  Mozart Reina  </title>
-               <description> A derivative of a function, in plainspeak, is t </description>
-               <link> http://mozartreina.com/derivatives-functions.html </link>
-               </item>
+                 
                  </channel>
                  </rss>
