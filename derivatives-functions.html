@@ -96,7 +96,7 @@
 
 <p>So what is the point of calculating the rate of change between two points? What are real-world examples where this is relevant?</p>
 
-<p>One application is in the calculation of moving bodies. Say an object (maybe a car?) is travelling around a corner and suddenly starts to skid, with the slope of the point where the car starts to skid, you can predict where the car will end up (it will travel in a <a href="http://en.wikipedia.org/wiki/Tangent">tangent</a> to the curve).</p>
+<p>One application is in the calculation of moving bodies. Say an object (maybe a car?) is traveling around a corner and suddenly starts to skid, with the slope of the point where the car starts to skid, you can predict where the car will end up (it will travel in a <a href="http://en.wikipedia.org/wiki/Tangent">tangent</a> to the curve).</p>
 
 <p><em>car skidding at point <code>\((0,0)\)</code>, predicted line of travel in red</em></p>
 
@@ -111,7 +111,7 @@
 </script>
 
 
-<p>Other uses of <em>Differentiation</em> (another term for calculating the derivative) include finding the mininum and maximum surface areas for given volumes (minimum amount of metal to create a cylinder of a certain volume, etc.) and determining the acceleration and velocity of a certain object from a given position (<a href="http://www.jtaylor1142001.net/calcjat/Solutions/Diffapp1/DA1_1/avdiff.html">Velocity and Acceleration from the position equation</a>).</p>
+<p>Other uses of <em>Differentiation</em> (another term for calculating the derivative) include finding the minimum and maximum surface areas for given volumes (minimum amount of metal to create a cylinder of a certain volume, etc.) and determining the acceleration and velocity of a certain object from a given position (<a href="http://www.jtaylor1142001.net/calcjat/Solutions/Diffapp1/DA1_1/avdiff.html">Velocity and Acceleration from the position equation</a>).</p>
 
 <h3>Notation and Formula</h3>
 
@@ -129,7 +129,7 @@
 <code>\[
 f'(x) = \frac {f(x + e) - f(x)} e
 \]</code>
-This is actually exactly the same as the slope formula presented above. <code>\(f(x + e)\)</code> is nothing more than <code>\(y_2\)</code>, where <code>\(e\)</code> is the difference between <code>\(y_1\)</code> and <code>\(y_2\)</code> therefore <code>\(y_1 + e = y_2\)</code> (when the variable <code>\(x\)</code> is plugged into the function, <code>\(y\)</code> comes out the other end). The bottom part of the equation has been simplified, in it's full form it would read <code>\(\frac {f(x + e) - f(x)} {(x + e) - x}\)</code>. Cancelling the positive and negative <code>\(x\)</code> leaves just <code>\(e\)</code>.</p>
+This is actually exactly the same as the slope formula presented above. <code>\(f(x + e)\)</code> is nothing more than <code>\(y_2\)</code>, where <code>\(e\)</code> is the difference between <code>\(y_1\)</code> and <code>\(y_2\)</code> therefore <code>\(y_1 + e = y_2\)</code> (when the variable <code>\(x\)</code> is plugged into the function, <code>\(y\)</code> comes out the other end). The bottom part of the equation has been simplified, in it's full form it would read <code>\(\frac {f(x + e) - f(x)} {(x + e) - x}\)</code>. Canceling the positive and negative <code>\(x\)</code> leaves just <code>\(e\)</code>.</p>
 
 <h4>Example</h4>
 
@@ -144,7 +144,7 @@ f'(x) = 2x + e \\
 
 <p>Uh oh... now what? How do we handle <code>\(e\)</code>? <code>\(e\)</code> as you may recall is the difference between one point and the next, but since we're trying to determine the derivative of the <em>function</em> and not two points, how do we solve for <code>\(e\)</code>? This is where we introduce the concept of <strong>limits</strong>.</p>
 
-<p>Limits are an integral part of Calculus, but there are several types of limits. We will be applying the <em>limit of a function</em>, a short explanation and example of this can be found in the <a href="http://en.wikipedia.org/wiki/Limit_(mathematics">wikipedia entry on limits</a>). To give a really brief example, say that you have a function <code>\(f(x)\)</code>, a number, <code>\(C\)</code> and the expression <code>\(f(x) = L\)</code>. As the variable <code>\(x\)</code> gets closer to <code>\(C\)</code>, the output of <code>\(f(x)\)</code> also gets closer to <code>\(f(x) = L\)</code>. When <code>\(x = C\)</code>, then <code>\(f(x) = L\)</code> becomes true, as <code>\(x\)</code> moves farther and farther away from <code>\(C\)</code>, the evaulation of <code>\(f(x)\)</code> also moves farther and farther away from <code>\(f(x) = L\)</code>.</p>
+<p>Limits are an integral part of Calculus, but there are several types of limits. We will be applying the <em>limit of a function</em>, a short explanation and example of this can be found in the <a href="http://en.wikipedia.org/wiki/Limit_(mathematics">wikipedia entry on limits</a>). To give a really brief example, say that you have a function <code>\(f(x)\)</code>, a number, <code>\(C\)</code> and the expression <code>\(f(x) = L\)</code>. As the variable <code>\(x\)</code> gets closer to <code>\(C\)</code>, the output of <code>\(f(x)\)</code> also gets closer to <code>\(f(x) = L\)</code>. When <code>\(x = C\)</code>, then <code>\(f(x) = L\)</code> becomes true, as <code>\(x\)</code> moves farther and farther away from <code>\(C\)</code>, the evaluation of <code>\(f(x)\)</code> also moves farther and farther away from <code>\(f(x) = L\)</code>.</p>
 
 <p>A short example is in order to demonstrate this idea. Say <code>\(L = 5\)</code> and <code>\(C = 10\)</code> and <code>\(f(x) = \frac x 2\)</code>.</p>
 

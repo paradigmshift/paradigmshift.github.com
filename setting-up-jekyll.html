@@ -78,7 +78,7 @@
 
 <ol>
 <li><p>No database involved - all files are in html format. This keeps things simple and accessible, you can search for articles with <strong><code>grep</code></strong> for example.</p></li>
-<li><p>Github integration - there are numerous tutorials out there that cover using Jekyll and Githug pages to host your blog. All you have to do is push your content to Github to update your site.</p></li>
+<li><p>Github integration - there are numerous tutorials out there that cover using Jekyll and Github pages to host your blog. All you have to do is push your content to Github to update your site.</p></li>
 <li><p>Files are in text format - one of the biggest advantages to this is that you can write your new pages/entries with your favorite text editor instead of going through a web interface. I, for example, am using emacs to do all my writing.</p></li>
 <li><p>Static html - any half-decent webserver can serve 1000s of request / SECOND of static html files. If your website generates high traffic this becomes critical, websites that are generated on the fly on the other hand, can take up to 0.5 seconds to serve a single request. This is why a lot of blogs that are using PHP, Python, or any other language to create the requested pages on demand can all of a sudden have huge down times when they become popular; thousands or even just hundreds  of users requesting pages at the same time.</p></li>
 </ol>
@@ -92,7 +92,7 @@
 <ul>
 <li>the <a href="http://www.ruby-lang.org/en/">Ruby</a> programming language</li>
 <li><a href="https://github.com/rtomayko/rdiscount">rdiscount</a> - ruby implementation of markdown</li>
-<li><a href="http://pygments.org/">pygment</a> - cody syntax highlighting (optional)</li>
+<li><a href="http://pygments.org/">pygment</a> - code syntax highlighting (optional)</li>
 </ul>
 
 
@@ -174,7 +174,7 @@ base_url: /
 
 <p></section></p>
 
-<p>You'll notice the non-html tags <strong><code>{% if page.title %} {{ page.title }} | {% endif %}</code></strong>, this is part of the <strong><a href="http://liquidmarkup.org/">Liquid</a></strong> templating lanuage that Jekyll incorporates. It's a way of introducing code into your html templates and pages. In this case it's just telling Jekyll that if there is a page title to print it out, followed by a vertical bar.</p>
+<p>You'll notice the non-html tags <strong><code>{% if page.title %} {{ page.title }} | {% endif %}</code></strong>, this is part of the <strong><a href="http://liquidmarkup.org/">Liquid</a></strong> templating language that Jekyll incorporates. It's a way of introducing code into your html templates and pages. In this case it's just telling Jekyll that if there is a page title to print it out, followed by a vertical bar.</p>
 
 <p>But how does Jekyll recognize the page title?</p>
 

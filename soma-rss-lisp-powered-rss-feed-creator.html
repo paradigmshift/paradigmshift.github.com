@@ -133,7 +133,7 @@
 
 <p>The functions that work on the information from the <code>.html</code> files that are accessed are a crude parser (and when I say crude I mean <strong><em>crude</em></strong>) and another function that takes the parsed data and injects it into the individual XML entry structure.</p>
 
-<p>The parse function (called <code>parse-html</code>) is used to exract the title from the <code>.html</code> file (if the file has no title tag then the program is screwed) and whatever is written between the first <code>&lt;p&gt; &lt;/p&gt;</code> tags it encounters, this is used as the description for the entry.</p>
+<p>The parse function (called <code>parse-html</code>) is used to extract the title from the <code>.html</code> file (if the file has no title tag then the program is screwed) and whatever is written between the first <code>&lt;p&gt; &lt;/p&gt;</code> tags it encounters, this is used as the description for the entry.</p>
 
 <p>The function itself, as I said, is very raw and  unimaginative. It takes the index location of two strings passed to it (here the <code>&lt;title&gt;</code> and <code>&lt;p&gt;</code> tags) then returns whatever is between the two strings using the <code>subseq</code> built-in function.</p>
 
