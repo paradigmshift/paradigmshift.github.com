@@ -170,7 +170,7 @@ pre {
 }
 
 .shell {
-  /* opacity: 0.5; */
+  opacity: 0.7;
   color: white;
   background: black;
   border-radius: 5px;
@@ -188,6 +188,14 @@ pre {
 
 .emphasis1 {
   color: #AF7817;
+}
+
+.slime-prompt {
+  color: #FFA500;
+}
+
+.slime-output {
+  color: #C11B17;
 }
 
 blockquote {

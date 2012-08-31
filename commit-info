@@ -1,7 +1,8 @@
 -*- mode: org -*-
 #+STARTUP: showeverything
 * CHANGES
-** corrected spelling in all entries
+** added color to repl output in macro entry
 
 * TODO
 - [ ] add black->transparency support in header for firefox, opera, and ie
+- [ ] add color tags to other entries with slime repl elements

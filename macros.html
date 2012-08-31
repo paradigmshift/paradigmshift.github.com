@@ -75,15 +75,12 @@
 
 <p>This is a short example of the potential use of Macros. In Lisp we use the the <a href="http://en.wikipedia.org/wiki/Polish_notation">Polish or prefix notation</a> for code evaluation, this includes mathematical operations.</p>
 
-<p><section class="shell"></p>
-
-<pre><code>CL-USER&gt; (+ 3 2)
-5
-CL-USER&gt; (+ 4 9)
-13
-</code></pre>
-
-<p></section></p>
+<p><section class="shell">
+<span class="slime-prompt">CL-USER></span> (+ 3 2)
+<section class="slime-output"><code>5</code></section>
+<span class="slime-prompt">CL-USER></span> (+ 4 9)
+<section class="slime-output"><code>13</code></section>
+</section></p>
 
 <p>But what if we wanted to use <em>infix notation</em> (infix notation is the standard way we write equations; "1 + 2", "8 * 7", and so forth)? How would we go about making Lisp do that?</p>
 
@@ -104,30 +101,29 @@ CL-USER&gt; (+ 4 9)
 
 <p>Let's see this in action.</p>
 
-<p><section class="shell"></p>
-
-<pre><code>CL-USER&gt; (INFIX-MATH 1 + 2)
-3
-CL-USER&gt; (INFIX-MATH 1 * 2)
-2
-CL-USER&gt; (INFIX-MATH 1 s 3)
-NIL
-</code></pre>
-
-<p></section></p>
+<p><section class="shell">
+<span class="slime-prompt">CL-USER></span> (INFIX-MATH 1 + 2)
+<section class="slime-output"><code>3</code></section>
+<span class="slime-prompt">CL-USER></span> (INFIX-MATH 1 * 2)
+<section class="slime-output"><code>2</code></section>
+<span class="slime-prompt">CL-USER></span> (INFIX-MATH 1 s 3)
+<section class="slime-output"><code>NIL</code></section>
+</section></p>
 
 <p>As you can see the expressions were entered using infix notation, and Lisp evaluated them correctly. The last example showed what would happen if the operator was not valid.</p>
 
 <p>Now let's take a look at how our macro is being transformed once it is evaluated. We can use the built-in function <code>macroexpand</code> for this purpose.</p>
 
-<p><section class="shell"></p>
+<p><section class="shell">
+<span class="slime-prompt">CL-USER></span><code>(macroexpand `(INFIX-MATH 1 * 2))</code>
+<section class="slime-output"></p>
 
-<pre><code>CL-USER&gt; (macroexpand `(INFIX-MATH 1 * 2))
-(* 1 2)
+<pre><code>(* 1 2)
 T
 </code></pre>
 
-<p></section></p>
+<p></section>
+</section></p>
 
 <p>Take a look at the return value, what did the interpreter do? It basically took the arguments and rearranged them into prefix notation before evaluating them. This is what we told it to do every time it encountered <code>infix-math</code>.</p>
 
@@ -172,20 +168,25 @@ T
 
 <p>Sample Usage:</p>
 
-<p><section class="shell"></p>
+<p><section class="shell">
+<span class="slime-prompt">CL-USER></span><code>(split '(2 3)</code></p>
 
-<pre><code>CL-USER&gt; (split '(2 3) 
-                (format t "the list is splittable, the first element is ~a, and the rest are ~a" head tail)
+<pre><code>                (format t "the list is splittable, the first element is ~a, and the rest are ~a" 
+                        head tail)
                 (format t "the list is not splittable"))
-the list is splittable, the first element is 2, and the rest are (3)
-
-CL-USER&gt; (split '()
-                (format t "the list is splittable, the first element is ~a, and the rest are ~a" head tail)
-                (format t "the list is not splittable"))
-the list is not splittable
 </code></pre>
 
-<p></section></p>
+<p><span class="slime-output"><code>the list is splittable, the first element is 2, and the rest are (3)</code></span></p>
+
+<p><span class="slime-prompt">CL-USER></span><code>(split '()</code></p>
+
+<pre><code>                (format t "the list is splittable, the first element is ~a, and the rest are ~a" 
+                        head tail)
+                (format t "the list is not splittable"))
+</code></pre>
+
+<p><span class="slime-output"><code>the list is not splittable</code></span>
+</section></p>
 
 <p>As you can see, when passed a valid list, our <code>split</code> macro evaluates the first expression and variables <code>head</code> and <code>tail</code> are tied to the <code>car</code> and <code>cdr</code> of the list. When it is passed an empty list, the macro evaluates the second expression.</p>
 
@@ -197,23 +198,26 @@ the list is not splittable
            (split '(2 3)
                   (print x)
                   nil))
-(2 3)
 </code></pre>
 
-<p></section></p>
+<p><section class="slime-output"><code>(2 3)</code></section>
+</section></p>
 
 <p>Uh Oh! We defined a local variable <code>\(x\)</code> and assigned it the value of 100, so why is our function printing <code>(2 3)</code> when we tell it to print <code>\(x\)</code>?</p>
 
 <p>Let's try a macroexpansion to see what the problem is.</p>
 
-<p><section class="shell"></p>
+<p><section class="shell">
+<span class="slime-prompt">CL-USER></span><code>(let ((x 100))</code></p>
 
-<pre><code>CL-USER&gt; (let ((x 100))
-           (macroexpand `(split '(2 3)
+<pre><code>           (macroexpand `(split '(2 3)
                   (print x)
                   nil)))
+</code></pre>
 
-(LET ((X '(2 3)))
+<p><section class="slime-output"></p>
+
+<pre><code>(LET ((X '(2 3)))
   (IF X
       (LET ((HEAD (CAR X)) (TAIL (CDR X)))
         (PRINT X))
@@ -221,7 +225,8 @@ the list is not splittable
 T
 </code></pre>
 
-<p></section></p>
+<p></section>
+</section></p>
 
 <p>If you remember our definition of <code>split</code>, we assigned the value of <code>lst</code> the variable <code>\(x\)</code> , overwriting the <code>\(x\)</code> variable of the outer <code>let</code> function. This is known as <strong>variable capture</strong>.</p>
 
@@ -233,13 +238,10 @@ T
 
 <p><a href="http://www.bookshelf.jp/texi/onlisp/onlisp_10.html#SEC73"><code>(gensym)</code></a> returns a unique symbol everytime it's called. Let's see it in action.</p>
 
-<p><section class="shell"></p>
-
-<pre><code>CL-USER&gt; (gensym)
-#:G897
-</code></pre>
-
-<p></section></p>
+<p><section class="shell">
+<span class="slime-prompt">CL-USER></span><code>(gensym)</code>
+<section class="slime-output"><code>#:G897</code></section>
+</section></p>
 
 <p>We can use this to avoid the variable capture that happened in our previous example.</p>
 
@@ -282,17 +284,16 @@ T
 
 <p>Now to see if we have resolved the variable capture issue.</p>
 
-<p><section class="shell"></p>
+<p><section class="shell">
+<span class="slime-prompt">CL-USER></span><code>(let ((x 100))</code></p>
 
-<pre><code>CL-USER&gt; (let ((x 100))
-           (split '(2 3)
+<pre><code>           (split '(2 3)
                   (print x)
                   nil))
-
-100 
 </code></pre>
 
-<p></section></p>
+<p><section class="slime-output"><code>100</code></section>
+</section></p>
 
 <p><code>\(x\)</code> is now free to be used in the outer functions.</p>
 
@@ -319,13 +320,10 @@ T
 
 <p></section></p>
 
-<p><section class="shell"></p>
-
-<pre><code>CL-USER&gt; (add-elements '(1 2 3 4))
-10
-</code></pre>
-
-<p></section></p>
+<p><section class="shell">
+<span class="slime-prompt">CL-USER></span><code>(add-elements '(1 2 3 4))</code>
+<section class="slime-output"><code>10</code></section>
+</section></p>
 
 <p>However we could also just do this:</p>
 
@@ -339,13 +337,10 @@ T
 
 <p></section></p>
 
-<p><section class="shell"></p>
-
-<pre><code>CL-USER&gt; (add-elements-functional '(1 2 3 4))
-10
-</code></pre>
-
-<p></section></p>
+<p><section class="shell">
+<span class="slime-prompt">CL-USER></span><code>(add-elements-functional '(1 2 3 4))</code>
+<section class="slime-output"> <code>10</code></section>
+</section></p>
 
 <p>Besides being shorter and more concise, we didn't have to rely on any custom-defined macro. This makes it easier to maintain, especially if there are other members in the team or if the code will be passed on to another programmer in the future.</p>
 
@@ -371,13 +366,17 @@ T
 
 <pre><code>(if-var (progn (print "evaluated")
                         t))
+</code></pre>
 
-"evaluated" 
+<p><section class="slime-output"></p>
+
+<pre><code>"evaluated" 
 "evaluated" 
 T
 </code></pre>
 
-<p></section></p>
+<p></section>
+</section></p>
 
 <p>The argument was evaluated twice (we can see that because the string "evaluated", which is part of the argument, was printed twice)! Why did this happen?</p>
 
@@ -422,12 +421,16 @@ T
 
 <pre><code>(if-var (progn (print "evaluated")
                         t))
+</code></pre>
 
-"evaluated" 
+<p><section class="slime-output"></p>
+
+<pre><code>"evaluated" 
 T
 </code></pre>
 
-<p></section></p>
+<p></section>
+</section></p>
 
 <p>So here we can see that it only evaluated once! This is because <code>,var</code> only makes one appearance in the code, it's value is immediately stored in a local variable which is used the rest of the time.</p>
 
