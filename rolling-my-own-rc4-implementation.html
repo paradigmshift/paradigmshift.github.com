@@ -249,18 +249,22 @@ j := 0\\
 <p><em>passphrase: 123, text: 456</em>
 <section class="shell"></p>
 
-<pre><code>CL-USER&gt; (code-decode "123" "456")
-6Ë2
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>code-decode <span class="s2">&quot;123&quot;</span> <span class="s2">&quot;456&quot;</span><span class="o">)</span>
+<span class="go">6Ë2</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 
 <p><em>passphrase: 123, text: 890</em>
 <section class="shell"></p>
 
-<pre><code>CL-USER&gt; (code-decode "123" "890")
-:Ç4
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>code-decode <span class="s2">&quot;123&quot;</span> <span class="s2">&quot;890&quot;</span><span class="o">)</span>
+<span class="go">:Ç4</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 
@@ -271,18 +275,22 @@ j := 0\\
 <p><em>passphrase: 123, ciphertext: 6Ë2</em>
 <section class="shell"></p>
 
-<pre><code>CL-USER&gt; (code-decode "123" "6Ë2")
-456
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>code-decode <span class="s2">&quot;123&quot;</span> <span class="s2">&quot;6Ë2&quot;</span><span class="o">)</span>
+<span class="go">456</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 
 <p><em>passphrase: 123, ciphertext: :Ç4</em>
 <section class="shell"></p>
 
-<pre><code>CL-USER&gt; (code-decode "123" ":Ç4")
-890
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>code-decode <span class="s2">&quot;123&quot;</span> <span class="s2">&quot;:Ç4&quot;</span><span class="o">)</span>
+<span class="go">890</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 

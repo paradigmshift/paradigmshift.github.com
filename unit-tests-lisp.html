@@ -83,14 +83,16 @@
 
 <p><section class="shell"></p>
 
-<pre><code>CL-USER&gt; (ql:quickload "lisp-unit")
-To load "lisp-unit":
-  Load 1 ASDF system:
-    lisp-unit
-; Loading "lisp-unit"
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>ql:quickload <span class="s2">&quot;lisp-unit&quot;</span><span class="o">)</span>
+<span class="go">    To load &quot;lisp-unit&quot;:</span>
+<span class="go">      Load 1 ASDF system:</span>
+<span class="go">        lisp-unit</span>
+<span class="go">    ; Loading &quot;lisp-unit&quot;</span>
 
-("lisp-unit")
+<span class="go">    (&quot;lisp-unit&quot;)</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 
@@ -103,15 +105,17 @@ To load "lisp-unit":
 
 <p><section class="shell"></p>
 
-<pre><code>CL-USER&gt; (defun by-5 (x)
-           (* x 5))
-BY-5
-CL-USER&gt; (define-test by-5
-           (assert-equal 10 (by-5 2))
-           (assert-equal 20 (by-5 4)))
-BY-5
-CL-USER&gt; 
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>defun by-5 <span class="o">(</span>x<span class="o">)</span>
+<span class="go">           (* x 5))</span>
+<span class="go">BY-5</span>
+<span class="gp">CL@USER$</span> <span class="o">(</span>define-test by-5
+<span class="go">           (assert-equal 10 (by-5 2))</span>
+<span class="go">           (assert-equal 20 (by-5 4)))</span>
+<span class="go">BY-5</span>
+<span class="gp">CL@USER$</span> 
 </code></pre>
+</div>
+
 
 <p></section>
 <em>here we've defined a custom function <code>by-5</code> that takes any number and multiplies it by 5, and defined a test, also called <code>by-5</code> which will try to ensure that if we pass 2 and 5 to the function <code>by-5</code>, it will return 10 and 20</em></p>
@@ -123,10 +127,12 @@ CL-USER&gt;
 
 <p><section class="shell"></p>
 
-<pre><code>CL-USER&gt; (run-tests)
-BY-5: 2 assertions passed, 0 failed.
-; No value
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>run-tests<span class="o">)</span>
+<span class="go">BY-5: 2 assertions passed, 0 failed.</span>
+<span class="go">; No value</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 
@@ -134,17 +140,19 @@ BY-5: 2 assertions passed, 0 failed.
 
 <p><section class="shell"></p>
 
-<pre><code>CL-USER&gt; (define-test by-5
-           (assert-equal 10 (by-5 2))
-           (assert-equal 20 (by-5 4))
-           (assert-equal 30 (by-5 10)))
-BY-5
-CL-USER&gt; (run-tests)
-BY-5: (BY-5 10) failed: 
-Expected 30 but saw 50
-BY-5: 2 assertions passed, 1 failed.
-; No value
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>define-test by-5
+<span class="go">           (assert-equal 10 (by-5 2))</span>
+<span class="go">           (assert-equal 20 (by-5 4))</span>
+<span class="go">           (assert-equal 30 (by-5 10)))</span>
+<span class="go">BY-5</span>
+<span class="gp">CL@USER$</span> <span class="o">(</span>run-tests<span class="o">)</span>
+<span class="go">BY-5: (BY-5 10) failed: </span>
+<span class="go">Expected 30 but saw 50</span>
+<span class="go">BY-5: 2 assertions passed, 1 failed.</span>
+<span class="go">; No value</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 
@@ -185,13 +193,15 @@ where value is the expected value that the function is supposed to return, and f
 
 <p><section class="shell"></p>
 
-<pre><code>CL-USER&gt; (lisp-unit:assert-true (&gt; 7 3))
-T
-CL-USER&gt; (lisp-unit:assert-true (&gt; 7 10))
-(&gt; 7 10) failed: 
-Expected T but saw NIL
-NIL
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>lisp-unit:assert-true <span class="o">(</span>&gt; 7 3<span class="o">))</span>
+<span class="go">T</span>
+<span class="gp">CL@USER$</span> <span class="o">(</span>lisp-unit:assert-true <span class="o">(</span>&gt; 7 10<span class="o">))</span>
+<span class="go">(&gt; 7 10) failed: </span>
+<span class="go">Expected T but saw NIL</span>
+<span class="go">NIL</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 
@@ -201,19 +211,19 @@ NIL
 
 <p>Lisp-Unit tests are easily integrated into the package ecosystem. If you have a package that is defined thus:</p>
 
-<p><section class="code"></p>
+<p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nb">defpackage</span> <span class="ss">:my-package</span>
-               <span class="p">(</span><span class="ss">:use</span> <span class="ss">:cl</span><span class="p">)</span>
-               <span class="p">(</span><span class="ss">:export</span> <span class="ss">#:my-func-1</span>
-                        <span class="ss">#:my-func-2</span><span class="p">))</span>
-    <span class="err">#</span><span class="nv">&lt;PACKAGE</span> <span class="s">&quot;MY-PACKAGE&quot;</span><span class="nb">&gt;</span>
-    <span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nb">in-package</span> <span class="ss">:my-package</span><span class="p">)</span>
-    <span class="err">#</span><span class="nv">&lt;PACKAGE</span> <span class="s">&quot;MY-PACKAGE&quot;</span><span class="nb">&gt;</span>
-    <span class="nv">MY-PACKAGE&gt;</span> <span class="p">(</span><span class="nb">defun</span> <span class="nv">my-func-1</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
-                  <span class="o">.....</span>
-                <span class="p">(</span><span class="nb">defun</span> <span class="nv">my-func-2</span> <span class="p">(</span><span class="nv">y</span><span class="p">)</span>
-                  <span class="o">.....</span>
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>defpackage :my-package
+<span class="go">           (:use :cl)</span>
+<span class="go">           (:export #:my-func-1</span>
+<span class="go">                    #:my-func-2))</span>
+<span class="gp">#</span>&lt;PACKAGE <span class="s2">&quot;MY-PACKAGE&quot;</span>&gt;
+<span class="gp">CL@USER$</span> <span class="o">(</span>in-package :my-package<span class="o">)</span>
+<span class="gp">#</span>&lt;PACKAGE <span class="s2">&quot;MY-PACKAGE&quot;</span>&gt;
+<span class="go">MY-PACKAGE&gt; (defun my-func-1 (x)</span>
+<span class="go">              .....</span>
+<span class="go">            (defun my-func-2 (y)</span>
+<span class="go">              .....</span>
 </code></pre>
 </div>
 
@@ -222,20 +232,20 @@ NIL
 
 <p>Then you can define the testing package in this manner:</p>
 
-<p><section class="code"></p>
+<p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nb">defpackage</span> <span class="ss">:my-package-tests</span>
-               <span class="p">(</span><span class="ss">:use</span> <span class="ss">:cl</span> <span class="ss">:lisp-unit</span> <span class="ss">:my-package</span><span class="p">))</span>
-    <span class="err">#</span><span class="nv">&lt;PACKAGE</span> <span class="s">&quot;MY-PACKAGE-TESTS&quot;</span><span class="nb">&gt;</span>
-    <span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nb">in-package</span> <span class="ss">:my-package-tests</span><span class="p">)</span>
-    <span class="err">#</span><span class="nv">&lt;PACKAGE</span> <span class="s">&quot;MY-PACKAGE-TESTS&quot;</span><span class="nb">&gt;</span>
-    <span class="nv">MY-PACKAGE-TESTS&gt;</span> <span class="p">(</span><span class="nv">define-test</span> <span class="nv">my-test</span>
-                        <span class="p">(</span><span class="nb">dotimes</span> <span class="p">(</span><span class="nv">i</span> <span class="mi">10</span><span class="p">)</span>
-                          <span class="p">(</span><span class="nv">assert-equal</span> <span class="nv">i</span> <span class="p">(</span><span class="nv">my-func-1</span> <span class="nv">i</span><span class="p">))))</span>
-    <span class="nv">MY-TEST</span>
-    <span class="nv">MY-PACKAGE-TESTS&gt;</span> <span class="p">(</span><span class="nv">run-tests</span><span class="p">)</span>
-    <span class="nv">MY-TEST:</span> <span class="mi">10</span> <span class="nv">assertions</span> <span class="nv">passed,</span> <span class="mi">0</span> <span class="nv">failed.</span>
-    <span class="c1">; No value</span>
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>defpackage :my-package-tests
+<span class="go">           (:use :cl :lisp-unit :my-package))</span>
+<span class="gp">#</span>&lt;PACKAGE <span class="s2">&quot;MY-PACKAGE-TESTS&quot;</span>&gt;
+<span class="gp">CL@USER$</span> <span class="o">(</span>in-package :my-package-tests<span class="o">)</span>
+<span class="gp">#</span>&lt;PACKAGE <span class="s2">&quot;MY-PACKAGE-TESTS&quot;</span>&gt;
+<span class="go">MY-PACKAGE-TESTS&gt; (define-test my-test</span>
+<span class="go">                    (dotimes (i 10)</span>
+<span class="go">                      (assert-equal i (my-func-1 i))))</span>
+<span class="go">MY-TEST</span>
+<span class="go">MY-PACKAGE-TESTS&gt; (run-tests)</span>
+<span class="go">MY-TEST: 10 assertions passed, 0 failed.</span>
+<span class="go">; No value</span>
 </code></pre>
 </div>
 

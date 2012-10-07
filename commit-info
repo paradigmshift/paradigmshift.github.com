@@ -1,8 +1,9 @@
 -*- mode: org -*-
 #+STARTUP: showeverything
 * CHANGES
-** added color to repl output in macro entry
+** added lazy evaluation entry
+** changed repl section highlighting
 
 * TODO
 - [ ] add black->transparency support in header for firefox, opera, and ie
-- [ ] add color tags to other entries with slime repl elements
+- [X] add color tags to other entries with slime repl elements

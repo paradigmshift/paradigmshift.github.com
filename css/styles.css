@@ -169,6 +169,7 @@ pre {
   font-size: 0.8em;
 }
 
+
 .shell {
   opacity: 0.7;
   color: white;
@@ -179,7 +180,7 @@ pre {
   font-size: 0.8em;
 }
 
-.highlight {
+.highlight-this {
   color: #01DF01;
   margin: 0;
   padding: 0;

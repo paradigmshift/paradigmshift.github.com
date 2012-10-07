@@ -110,11 +110,13 @@ Backtrace:
 
 <p><section class="shell"></p>
 
-<pre><code>CL-USER&gt; (defun test (a b)
-           (+ a b))
-TEST
-CL-USER&gt; (test 1 a)
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>defun <span class="nb">test</span> <span class="o">(</span>a b<span class="o">)</span>
+<span class="go">          (+ a b))</span>
+<span class="go">TEST</span>
+<span class="gp">CL@USER$</span> <span class="o">(</span><span class="nb">test </span>1 a<span class="o">)</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 
@@ -122,13 +124,15 @@ CL-USER&gt; (test 1 a)
 
 <p><section class="shell"></p>
 
-<pre><code>(+ "hello" "there")
-....
-....
-....
-The value "hello" is not of type NUMBER.
-   [Condition of type TYPE-ERROR]
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>+ <span class="s2">&quot;hello&quot;</span> <span class="s2">&quot;there&quot;</span><span class="o">)</span>
+<span class="go">....</span>
+<span class="go">....</span>
+<span class="go">....</span>
+<span class="go">The value &quot;hello&quot; is not of type NUMBER.</span>
+<span class="go">   [Condition of type TYPE-ERROR]</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 
@@ -176,8 +180,10 @@ The value "hello" is not of type NUMBER.
 
 <p><section class="shell"></p>
 
-<pre><code>CL-USER&gt; (test '(1 2 3 4 5 6)))
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span><span class="nb">test</span> <span class="err">&#39;</span><span class="o">(</span>1 2 3 4 5 6<span class="o">)))</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 
@@ -225,12 +231,14 @@ Backtrace:
 
 <p><section class="shell"></p>
 
-<pre><code>CL-USER&gt; (defclass foo () (a  b c))
-#&lt;STANDARD-CLASS FOO&gt;
-CL-USER&gt; (make-instance *)
-#&lt;FOO {100426DEE3}&gt;
-CL-USER&gt; 
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>defclass foo <span class="o">()</span> <span class="o">(</span>a  b c<span class="o">))</span>
+<span class="gp">#</span>&lt;STANDARD-CLASS FOO&gt;
+<span class="gp">CL@USER$</span> <span class="o">(</span>make-instance *<span class="o">)</span>
+<span class="gp">#</span>&lt;FOO <span class="o">{</span>100426DEE3<span class="o">}</span>&gt;
+<span class="gp">CL@USER$</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 
@@ -278,9 +286,11 @@ All Slots:
 
 <p><section class="shell"></p>
 
-<pre><code>CL-USER&gt; (slot-value * 'a)
-45
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>slot-value * <span class="err">&#39;</span>a<span class="o">)</span>
+<span class="go">45</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 

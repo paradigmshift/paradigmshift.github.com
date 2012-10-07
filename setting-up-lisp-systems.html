@@ -97,16 +97,18 @@
 
 <p><section class="shell"></p>
 
-<pre><code>CL-USER&gt; (ql:quickload "quickproject")
-To load "quickproject":
-  Load 1 ASDF system:
-    quickproject
-; Loading "quickproject"
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>ql:quickload <span class="s2">&quot;quickproject&quot;</span><span class="o">)</span>
+<span class="go">To load &quot;quickproject&quot;:</span>
+<span class="go">  Load 1 ASDF system:</span>
+<span class="go">    quickproject</span>
+<span class="go">; Loading &quot;quickproject&quot;</span>
 
-("quickproject")
-CL-USER&gt; (quickproject:make-project "/home/mo/dev/lisp/my-tools/")
-"my-tools"
+<span class="go">(&quot;quickproject&quot;)</span>
+<span class="gp">CL@USER$</span>&lt;<span class="o">(</span>quickproject:make-project <span class="s2">&quot;/home/mo/dev/lisp/my-tools/&quot;</span><span class="o">)</span>
+<span class="go">&quot;my-tools&quot;</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 
@@ -114,11 +116,13 @@ CL-USER&gt; (quickproject:make-project "/home/mo/dev/lisp/my-tools/")
 
 <p><section class="shell"></p>
 
-<pre><code>|-README.txt
-|-my-tools.asd
-|-package.lisp
-|-my-tools.lisp
+<div class="highlight"><pre><code class="console"><span class="go">|-README.txt</span>
+<span class="go">|-my-tools.asd</span>
+<span class="go">|-package.lisp</span>
+<span class="go">|-my-tools.lisp</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 
@@ -126,14 +130,16 @@ CL-USER&gt; (quickproject:make-project "/home/mo/dev/lisp/my-tools/")
 
 <p><section class="shell"></p>
 
-<pre><code>CL-USER&gt; (ql:quickload "my-tools")
-To load "my-tools":
-  Load 1 ASDF system:
-    my-tools
-; Loading "my-tools"
-[package my-tools]
-("my-tools")
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span><span class="o">(</span>ql:quickload <span class="s2">&quot;my-tools&quot;</span><span class="o">)</span>
+<span class="go">To load &quot;my-tools&quot;:</span>
+<span class="go">  Load 1 ASDF system:</span>
+<span class="go">    my-tools</span>
+<span class="go">; Loading &quot;my-tools&quot;</span>
+<span class="go">[package my-tools]</span>
+<span class="go">(&quot;my-tools&quot;)</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 
@@ -240,14 +246,16 @@ To load "my-tools":
 
 <p><section class="shell"></p>
 
-<pre><code>CL-USER&gt; (ql:quickload "my-tools")
-To load "my-tools":
-  Load 1 ASDF system:
-    my-tools
-; Loading "my-tools"
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>ql:quickload <span class="s2">&quot;my-tools&quot;</span><span class="o">)</span>
+<span class="go">To load &quot;my-tools&quot;:</span>
+<span class="go">  Load 1 ASDF system:</span>
+<span class="go">    my-tools</span>
+<span class="go">; Loading &quot;my-tools&quot;</span>
 
-("my-tools")
+<span class="go">(&quot;my-tools&quot;)</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 
@@ -255,13 +263,15 @@ To load "my-tools":
 
 <p><section class="shell"></p>
 
-<pre><code>CL-USER&gt; (my-tools::permute '(1 2 3 4))
-((4 1 2 3) (1 4 2 3) (1 2 4 3) (1 2 3 4) (4 1 3 2) (1 4 3 2) (1 3 4 2)
- (1 3 2 4) (4 3 1 2) (3 4 1 2) (3 1 4 2) (3 1 2 4) (4 2 1 3) (2 4 1 3)
- (2 1 4 3) (2 1 3 4) (4 2 3 1) (2 4 3 1) (2 3 4 1) (2 3 1 4) (4 3 2 1)
- (3 4 2 1) (3 2 4 1) (3 2 1 4))
-CL-USER&gt; 
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>my-tools::permute <span class="err">&#39;</span><span class="o">(</span>1 2 3 4<span class="o">))</span>
+<span class="go">((4 1 2 3) (1 4 2 3) (1 2 4 3) (1 2 3 4) (4 1 3 2) (1 4 3 2) (1 3 4 2)</span>
+<span class="go"> (1 3 2 4) (4 3 1 2) (3 4 1 2) (3 1 4 2) (3 1 2 4) (4 2 1 3) (2 4 1 3)</span>
+<span class="go"> (2 1 4 3) (2 1 3 4) (4 2 3 1) (2 4 3 1) (2 3 4 1) (2 3 1 4) (4 3 2 1)</span>
+<span class="go"> (3 4 2 1) (3 2 4 1) (3 2 1 4))</span>
+<span class="gp">CL@USER$</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 
@@ -273,20 +283,21 @@ CL-USER&gt;
 
 <p><section class="shell"></p>
 
-<pre><code>CL-USER&gt; (permute '(1 2 3 4))
-
-; in: PERMUTE '(1 2 3 4)
-;     (PERMUTE '(1 2 3 4))
-; 
-; caught STYLE-WARNING:
-;   undefined function: PERMUTE
-; 
-; compilation unit finished
-;   Undefined function:
-;     PERMUTE
-;   caught 1 STYLE-WARNING condition
-; Evaluation aborted on #&lt;UNDEFINED-FUNCTION PERMUTE {1004BCECE3}&gt;.
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>permute <span class="err">&#39;</span><span class="o">(</span>1 2 3 4<span class="o">))</span>
+<span class="go">; in: PERMUTE &#39;(1 2 3 4)</span>
+<span class="go">;     (PERMUTE &#39;(1 2 3 4))</span>
+<span class="go">; </span>
+<span class="go">; caught STYLE-WARNING:</span>
+<span class="go">;   undefined function: PERMUTE</span>
+<span class="go">; </span>
+<span class="go">; compilation unit finished</span>
+<span class="go">;   Undefined function:</span>
+<span class="go">;     PERMUTE</span>
+<span class="go">;   caught 1 STYLE-WARNING condition</span>
+<span class="go">; Evaluation aborted on #&lt;UNDEFINED-FUNCTION PERMUTE {1004BCECE3}&gt;.</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 
@@ -309,19 +320,21 @@ CL-USER&gt;
 
 <p><section class="shell"></p>
 
-<pre><code>CL-USER&gt; (ql:quickload "my-tools")
-To load "my-tools":
-  Load 1 ASDF system:
-    my-tools
-; Loading "my-tools"
-[package my-tools]
-("my-tools")
-CL-USER&gt; (my-tools:permute '(1 2 3 4))
-((4 1 2 3) (1 4 2 3) (1 2 4 3) (1 2 3 4) (4 1 3 2) (1 4 3 2) (1 3 4 2)
- (1 3 2 4) (4 3 1 2) (3 4 1 2) (3 1 4 2) (3 1 2 4) (4 2 1 3) (2 4 1 3)
- (2 1 4 3) (2 1 3 4) (4 2 3 1) (2 4 3 1) (2 3 4 1) (2 3 1 4) (4 3 2 1)
- (3 4 2 1) (3 2 4 1) (3 2 1 4))
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span><span class="o">(</span>ql:quickload <span class="s2">&quot;my-tools&quot;</span><span class="o">)</span>
+<span class="go">To load &quot;my-tools&quot;:</span>
+<span class="go">  Load 1 ASDF system:</span>
+<span class="go">    my-tools</span>
+<span class="go">; Loading &quot;my-tools&quot;</span>
+<span class="go">[package my-tools]</span>
+<span class="go">(&quot;my-tools&quot;)</span>
+<span class="gp">CL@USER$</span><span class="o">(</span>my-tools:permute <span class="err">&#39;</span><span class="o">(</span>1 2 3 4<span class="o">))</span>
+<span class="go">((4 1 2 3) (1 4 2 3) (1 2 4 3) (1 2 3 4) (4 1 3 2) (1 4 3 2) (1 3 4 2)</span>
+<span class="go"> (1 3 2 4) (4 3 1 2) (3 4 1 2) (3 1 4 2) (3 1 2 4) (4 2 1 3) (2 4 1 3)</span>
+<span class="go"> (2 1 4 3) (2 1 3 4) (4 2 3 1) (2 4 3 1) (2 3 4 1) (2 3 1 4) (4 3 2 1)</span>
+<span class="go"> (3 4 2 1) (3 2 4 1) (3 2 1 4))</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 
@@ -366,14 +379,16 @@ CL-USER&gt; (my-tools:permute '(1 2 3 4))
 
 <p><section class="shell"></p>
 
-<pre><code>CL-USER&gt; (quickproject:make-project "~/dev/lisp/my-cms/"
-                                    :depends-on '(aserve))
-"my-cms"
-CL-USER&gt; 
-CL-USER&gt; (net.aserve:start :port 8000)
-#&lt;NET.ASERVE:WSERVER port 8000 {1002C5F453}&gt;
-CL-USER&gt; 
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>quickproject:make-project <span class="s2">&quot;~/dev/lisp/my-cms/&quot;</span>
+<span class="go">                      :depends-on &#39;(aserve))</span>
+<span class="go">&quot;my-cms&quot;</span>
+<span class="gp">CL@USER$</span>
+<span class="gp">CL@USER$</span> <span class="o">(</span>net.aserve:start :port 8000<span class="o">)</span>
+<span class="gp">#</span>&lt;NET.ASERVE:WSERVER port 8000 <span class="o">{</span>1002C5F453<span class="o">}</span>&gt;
+<span class="gp">CL@USER$</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 

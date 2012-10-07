@@ -198,18 +198,21 @@
 
 <p><section class="shell"></p>
 
-<pre><code>* *posix-argv*
-
-("sbcl")
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> *posix-argv*
+<span class="go">(&quot;sbcl&quot;)</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 
 <p>Now to create the executable, at the <code>REPL</code> enter:
 <section class="shell"></p>
 
-<pre><code>* (sb-ext:save-lisp-and-die "soma.lisp" :toplevel #'run-from-shell :executable t)
+<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>sb-ext:save-lisp-and-die <span class="s2">&quot;soma.lisp&quot;</span> :toplevel <span class="c">#&#39;run-from-shell :executable t)</span>
 </code></pre>
+</div>
+
 
 <p></section></p>
 
