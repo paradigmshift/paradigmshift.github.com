@@ -1,9 +1,8 @@
 -*- mode: org -*-
 #+STARTUP: showeverything
 * CHANGES
-** added lazy evaluation entry
-** changed repl section highlighting
+** added links to lazy evaluation entry
 
 * TODO
 - [ ] add black->transparency support in header for firefox, opera, and ie
-- [X] add color tags to other entries with slime repl elements
+
