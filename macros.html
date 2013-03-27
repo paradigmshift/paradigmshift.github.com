@@ -81,8 +81,7 @@
 <span class="go">5</span>
 <span class="gp">CL@USER$</span> <span class="o">(</span>+ 4 9<span class="o">)</span>
 <span class="go">13</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -96,8 +95,7 @@
 <div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="nb">defmacro</span> <span class="nv">infix-math</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">op</span> <span class="nv">y</span><span class="p">)</span>
       <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">member</span> <span class="nv">op</span> <span class="o">&#39;</span><span class="p">(</span><span class="nb">+</span> <span class="nb">*</span> <span class="nb">-</span> <span class="nb">/</span><span class="p">))</span>
           <span class="o">`</span><span class="p">(</span><span class="o">,</span><span class="nv">op</span> <span class="o">,</span><span class="nv">x</span> <span class="o">,</span><span class="nv">y</span><span class="p">)))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -114,8 +112,7 @@
 <span class="go">2</span>
 <span class="gp">CL@USER$</span> <span class="o">(</span>INFIX-MATH 1 s 3<span class="o">)</span>
 <span class="go">NIL</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -129,8 +126,7 @@
 <div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>macroexpand <span class="sb">`</span><span class="o">(</span>INFIX-MATH 1 * 2<span class="o">))</span>    
 <span class="go">(* 1 2)</span>
 <span class="go">T</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -168,8 +164,7 @@
                <span class="p">(</span><span class="nv">tail</span> <span class="p">(</span><span class="nb">cdr</span> <span class="nv">x</span><span class="p">)))</span>
            <span class="o">,</span><span class="nv">yes</span><span class="p">)</span>
        <span class="o">,</span><span class="nv">no</span><span class="p">)))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -191,8 +186,7 @@
 <span class="go">             head tail)</span>
 <span class="go">           (format t &quot;the list is not splittable&quot;))</span>
 <span class="go">the list is not splittable</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -208,8 +202,7 @@
 <span class="go">                  (print x)</span>
 <span class="go">                  nil))</span>
 <span class="go">(2 3)</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -230,8 +223,7 @@
 <span class="go">        (PRINT X))</span>
 <span class="go">      NIL))</span>
 <span class="go">T</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -250,8 +242,7 @@
 
 <div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>gensym<span class="o">)</span>
 <span class="gp">#</span>:G897
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -268,8 +259,7 @@
                      <span class="p">(</span><span class="nv">tail</span> <span class="p">(</span><span class="nb">cdr</span> <span class="o">,</span><span class="nv">x</span><span class="p">)))</span>
                  <span class="o">,</span><span class="nv">yes</span><span class="p">)</span>
              <span class="o">,</span><span class="nv">no</span><span class="p">))))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -289,8 +279,7 @@
                    <span class="p">(</span><span class="nv">tail</span> <span class="p">(</span><span class="nb">car</span> <span class="o">&#39;</span><span class="err">#</span><span class="nv">g134</span><span class="p">)))</span>
                <span class="o">....</span>
                <span class="o">....</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -304,8 +293,7 @@
 <span class="go">             (print x)</span>
 <span class="go">              nil))</span>
 <span class="go">100</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -329,8 +317,7 @@
                            <span class="no">nil</span><span class="p">)))</span>
           <span class="p">(</span><span class="nv">f</span> <span class="nv">lst</span><span class="p">))</span>
         <span class="nv">x</span><span class="p">))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -339,8 +326,7 @@
 
 <div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>add-elements <span class="err">&#39;</span><span class="o">(</span>1 2 3 4<span class="o">))</span>
 <span class="go">10</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -351,8 +337,7 @@
 
 <div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">add-elements-functional</span> <span class="p">(</span><span class="nv">lst</span><span class="p">)</span>
       <span class="p">(</span><span class="nb">reduce</span> <span class="nf">#&#39;</span><span class="nb">+</span> <span class="nv">lst</span><span class="p">))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -361,8 +346,7 @@
 
 <div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>add-elements-functional <span class="err">&#39;</span><span class="o">(</span>1 2 3 4<span class="o">))</span>
 <span class="go">10</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -379,8 +363,7 @@
       <span class="o">`</span><span class="p">(</span><span class="k">if</span> <span class="o">,</span><span class="nv">var</span>
            <span class="o">,</span><span class="nv">var</span>
          <span class="no">nil</span><span class="p">))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -394,8 +377,7 @@
 <span class="go">&quot;evaluated&quot; </span>
 <span class="go">&quot;evaluated&quot; </span>
 <span class="go">T</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -431,8 +413,7 @@
          <span class="p">(</span><span class="k">if</span> <span class="nv">x</span>
              <span class="nv">x</span>
            <span class="no">nil</span><span class="p">)))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -445,8 +426,7 @@
 <span class="go">                        t))</span>
 <span class="go">&quot;evaluated&quot; </span>
 <span class="go">T</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>

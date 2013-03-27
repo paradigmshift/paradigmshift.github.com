@@ -75,8 +75,7 @@
 
 <div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">example</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
       <span class="p">(</span><span class="nb">+</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -89,8 +88,7 @@
 <span class="go">              for x = 1 then (setf x (incf x))</span>
 <span class="go">              collect (example x (1+ x)))</span>
 <span class="go">(3 5 7 9)</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -103,8 +101,7 @@
 
 <div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">lazy-example</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
       <span class="p">(</span><span class="nv">lazy</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -120,8 +117,7 @@
 <span class="go"> #&lt;CLOSURE (LAMBDA # :IN LAZY-EXAMPLE) {10049BED5B}&gt;</span>
 <span class="go"> #&lt;CLOSURE (LAMBDA # :IN LAZY-EXAMPLE) {10049BEDBB}&gt;</span>
 <span class="go"> #&lt;CLOSURE (LAMBDA # :IN LAZY-EXAMPLE) {10049BEE1B}&gt;)</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -134,8 +130,7 @@
 
 <div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>force <span class="o">(</span>lazy-example 1 2<span class="o">))</span>
 <span class="go">3</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -149,8 +144,7 @@
 <span class="go">              for x = 1 then (setf x (incf x))</span>
 <span class="go">              collect (lazy-example x (1+ x))))</span>
 <span class="go">(3 5 7 9)</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -176,8 +170,7 @@
 <span class="go">             (exp2))</span>
 
 <span class="go">&quot;exp1 is evaluated&quot; </span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -190,8 +183,7 @@
 
 <span class="go">&quot;exp1 is evaluated&quot; </span>
 <span class="go">&quot;exp2 is evaluated&quot; </span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -215,8 +207,7 @@
 <span class="gp">CL@USER$</span> <span class="o">(</span>or <span class="o">(</span>exp1<span class="o">)</span> <span class="o">(</span>exp2<span class="o">))</span>
 
 <span class="go">&quot;exp1 is evaluated&quot; </span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -240,8 +231,7 @@
 <span class="go">;     EXP3</span>
 <span class="go">;   caught 1 STYLE-WARNING condition</span>
 <span class="go">; Evaluation aborted on #&lt;UNDEFINED-FUNCTION EXP3 {1004F1C1A3}&gt;.</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -259,8 +249,7 @@
 <span class="gp">CL@USER$</span> <span class="o">(</span>or <span class="o">(</span>exp1<span class="o">)</span> <span class="o">(</span>exp2<span class="o">)</span> <span class="o">(</span>exp3<span class="o">)</span> <span class="o">(</span>exp4<span class="o">))</span>
 
 <span class="go">&quot;exp1 is evaluated&quot; </span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -282,8 +271,7 @@
 <span class="go">;     EXP3</span>
 <span class="go">;   caught 1 STYLE-WARNING condition</span>
 <span class="go">; Evaluation aborted on #&lt;UNDEFINED-FUNCTION EXP3 {100537C653}&gt;.</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -304,8 +292,7 @@
 <span class="go">  95.01% CPU</span>
 <span class="go">  1,190,735,261 processor cycles</span>
 <span class="go">  124,387,952 bytes consed</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -322,8 +309,7 @@
          <span class="p">(</span><span class="nv">results</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span> <span class="nv">d</span><span class="p">)))</span>
     <span class="p">(</span><span class="nb">print</span> <span class="s">&quot;Choose one to permute (a, b, c, or d):&quot;</span><span class="p">)</span>
     <span class="p">(</span><span class="nb">format</span> <span class="no">t</span> <span class="s">&quot;~a&quot;</span> <span class="p">(</span><span class="nb">nth</span> <span class="p">(</span><span class="nb">read</span><span class="p">)</span> <span class="nv">results</span><span class="p">))))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -346,8 +332,7 @@
          <span class="p">(</span><span class="nv">results</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span> <span class="nv">d</span><span class="p">)))</span>
     <span class="p">(</span><span class="nb">print</span> <span class="s">&quot;Choose one to permute (a, b, c, or d):&quot;</span><span class="p">)</span>
     <span class="p">(</span><span class="nb">time</span> <span class="p">(</span><span class="nv">force</span> <span class="p">(</span><span class="nb">nth</span> <span class="p">(</span><span class="nb">read</span><span class="p">)</span> <span class="nv">results</span><span class="p">)))))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -365,8 +350,7 @@
 <span class="go">  18.34% CPU</span>
 <span class="go">  3,120,591,136 processor cycles</span>
 <span class="go">  124,460,000 bytes consed</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -397,8 +381,7 @@
            <span class="p">(</span><span class="nb">setf</span> <span class="o">,</span><span class="nv">value</span> <span class="p">(</span><span class="k">progn</span> <span class="o">,@</span><span class="nv">body</span><span class="p">))</span>
            <span class="p">(</span><span class="nb">setf</span> <span class="o">,</span><span class="nv">forced</span> <span class="no">t</span><span class="p">))</span>
          <span class="o">,</span><span class="nv">value</span><span class="p">))))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -416,8 +399,7 @@
 <span class="gp">#</span>&lt;CLOSURE <span class="o">(</span>LAMBDA <span class="o">()</span> :IN ADD<span class="o">)</span> <span class="o">{</span>1003F30A4B<span class="o">}</span>&gt;
 <span class="gp">CL@USER$</span> <span class="o">(</span>funcall <span class="o">(</span>add 1 2<span class="o">))</span>
 <span class="go">3</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -437,8 +419,7 @@
 <span class="go">(2 . #&lt;CLOSURE (LAMBDA # :IN F) {1002FE572B}&gt;)</span>
 <span class="gp">CL@USER$</span> <span class="o">(</span>funcall <span class="o">(</span>cdr <span class="o">(</span>funcall <span class="o">(</span>cdr *numbers*<span class="o">))))</span>
 <span class="go">(3 . #&lt;CLOSURE (LAMBDA # :IN F) {10030FCCCB}&gt;)</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>

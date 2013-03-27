@@ -96,8 +96,7 @@
 <span class="s">                     &lt;/channel&gt;</span>
 <span class="s">                     &lt;/rss&gt;&quot;</span> <span class="nv">items</span><span class="p">)))</span>
         <span class="nv">out</span><span class="p">))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -123,8 +122,7 @@
                             <span class="nv">parsed-data</span><span class="p">))))</span>
                 <span class="nv">entries</span><span class="p">)</span>
         <span class="nv">parsed-data</span><span class="p">))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -173,8 +171,7 @@
                               <span class="ss">:direction</span> <span class="ss">:output</span>
                               <span class="ss">:if-exists</span> <span class="ss">:supersede</span><span class="p">)</span>
         <span class="p">(</span><span class="nb">format</span> <span class="nc">stream</span> <span class="s">&quot;~a&quot;</span> <span class="nv">data</span><span class="p">)))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -188,8 +185,7 @@
 
 <div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">run-from-shell</span> <span class="p">()</span>
       <span class="p">(</span><span class="nv">create-file</span> <span class="p">(</span><span class="nv">create-entry</span> <span class="p">(</span><span class="nv">aggregate</span> <span class="p">(</span><span class="nb">nth</span> <span class="mi">1</span> <span class="vg">*posix-argv*</span><span class="p">)</span> <span class="p">(</span><span class="nb">nth</span> <span class="mi">2</span> <span class="vg">*posix-argv*</span><span class="p">)))))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -200,8 +196,7 @@
 
 <div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> *posix-argv*
 <span class="go">(&quot;sbcl&quot;)</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -210,8 +205,7 @@
 <section class="shell"></p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>sb-ext:save-lisp-and-die <span class="s2">&quot;soma.lisp&quot;</span> :toplevel <span class="c">#&#39;run-from-shell :executable t)</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>

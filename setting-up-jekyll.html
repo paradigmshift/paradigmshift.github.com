@@ -67,7 +67,6 @@
   <section class="text">
     <h3>The What and Why</h3>
 
-
 <p>For a while now I've been thinking of using <strong><a href="https://github.com/mojombo/jekyll/wiki">Jekyll</a></strong> for my online work. Previously I'd only ever used <strong><a href="https://www.djangoproject.com/">Django</a></strong> but it seemed like a bit of overkill for what I wanted to do here.</p>
 
 <p>There are numerous tutorials out there for starting out with Jekyll, and for those that already have a running blog and just want to migrate, <strong><a href="http://paulstamatiou.com/how-to-wordpress-to-jekyll">this</a></strong> is an  excellent guide (based on a Wordpress - Jekyll migration).</p>
@@ -86,7 +85,6 @@
 
 <h3>The Back-end</h3>
 
-
 <p>So what are the basic requirements?</p>
 
 <ul>
@@ -102,8 +100,7 @@
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> gem install jekyll
 <span class="gp">$</span> gem install rdiscount
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -116,8 +113,7 @@
 <span class="go">drwxr-xr-x   _layouts</span>
 <span class="go">drwxr-xr-x   _posts </span>
 <span class="go">-rw-r--r--   _config.yml</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -136,7 +132,6 @@ base_url: /
 <p>Here we're just telling Jekyll to use <strong>rdiscount</strong> as it's markdown implementation, that the base url is <strong><code>/</code></strong> (you will change this once you deploy the site, this is just for development), and that everytime you make a change to any of the files, the Jekyll server will rebuild the site automatically.</p>
 
 <h3>Creating the Site</h3>
-
 
 <p>To start, create a basic <em>default</em> template page, which will for the basis for future pages, and put it in the <strong><code>_layouts</code></strong> folder. Mine for example is:</p>
 
@@ -172,8 +167,7 @@ base_url: /
       <span class="nt">&lt;/footer&gt;</span>
     <span class="nt">&lt;/body&gt;</span>
     <span class="nt">&lt;/html&gt;</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -191,8 +185,7 @@ layout: default
 title: Hey!
 ---
 Hey there!
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -203,22 +196,19 @@ Hey there!
 
 <h3>Serving the Site Locally...</h3>
 
-
 <p>Now run the Jekyll server and point your browser to <strong><a href="http://localhost:4000">http://localhost:4000</a></strong>:</p>
 
 <p><section class="shell"></p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> jekyll --server
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
 
 <p>You should see a page based on your default template with the content you specified in your <em>index.html</em> file.</p>
 
-<h3> ... and Serving the Site to the World!</h3>
-
+<h3>... and Serving the Site to the World!</h3>
 
 <p>The simplest way of serving your Jekyll-powered site (or Jekyll-built site?) is to just copy the contents of the <strong><code>_site</code></strong> folder into the root directory of your webserver (on Linux/Unix boxes this is usually <strong><code>/var/www/</code></strong>). The contents of the <strong><code>_site</code></strong> folder are created everytime you run Jekyll in your project directory.</p>
 
@@ -229,8 +219,7 @@ Hey there!
 <span class="go">Configuration from /home/mo/dev/jekyll/mozartreina/_config.yml</span>
 <span class="go">Auto-regenerating enabled: /home/mo/dev/jekyll/mozartreina -&gt; /home/mo/dev/jekyll/mozartreina/_site</span>
 <span class="go">[2012-05-10 18:14:07] regeneration: 16 files changed</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>

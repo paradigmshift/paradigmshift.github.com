@@ -1,7 +1,7 @@
 -*- mode: org -*-
 #+STARTUP: showeverything
 * CHANGES
-** added entry on binary search
+** added entry on lattice paths
 
 * TODO
 - [ ] add black->transparency support in header for firefox, opera, and ie

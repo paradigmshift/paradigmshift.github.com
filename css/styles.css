@@ -225,3 +225,13 @@ code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inher
   margin-left:auto;
   margin-right:auto;
 }
+
+img.centerimage {
+  display: block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.centertext {
+  text-align:center;
+}

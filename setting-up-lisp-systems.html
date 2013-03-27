@@ -85,8 +85,7 @@
 <section class="code"></p>
 
 <div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="ss">:tree</span> <span class="p">(</span><span class="ss">:home</span> <span class="s">&quot;~/dev/lisp/&quot;</span><span class="p">))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -106,8 +105,7 @@
 <span class="go">(&quot;quickproject&quot;)</span>
 <span class="gp">CL@USER$</span>&lt;<span class="o">(</span>quickproject:make-project <span class="s2">&quot;/home/mo/dev/lisp/my-tools/&quot;</span><span class="o">)</span>
 <span class="go">&quot;my-tools&quot;</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -120,8 +118,7 @@
 <span class="go">|-my-tools.asd</span>
 <span class="go">|-package.lisp</span>
 <span class="go">|-my-tools.lisp</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -137,8 +134,7 @@
 <span class="go">; Loading &quot;my-tools&quot;</span>
 <span class="go">[package my-tools]</span>
 <span class="go">(&quot;my-tools&quot;)</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -183,8 +179,7 @@
                   <span class="nv">container</span><span class="p">)</span>
           <span class="p">(</span><span class="nb">setf</span> <span class="nv">lst</span> <span class="p">(</span><span class="nb">cdr</span> <span class="nv">lst</span><span class="p">)))</span>
         <span class="nv">container</span><span class="p">))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -201,8 +196,7 @@
 
     <span class="p">(</span><span class="nb">defpackage</span> <span class="ss">#:my-tools</span>
       <span class="p">(</span><span class="ss">:use</span> <span class="ss">#:cl</span><span class="p">))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -219,8 +213,7 @@
       <span class="ss">:serial</span> <span class="no">t</span>
       <span class="ss">:components</span> <span class="p">((</span><span class="ss">:file</span> <span class="s">&quot;package&quot;</span><span class="p">)</span>
                    <span class="p">(</span><span class="ss">:file</span> <span class="s">&quot;my-tools&quot;</span><span class="p">)))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -236,8 +229,7 @@
       <span class="ss">:depends-on</span> <span class="p">(</span><span class="ss">#:drakma</span><span class="p">)</span>
       <span class="ss">:components</span> <span class="p">((</span><span class="ss">:file</span> <span class="s">&quot;package&quot;</span><span class="p">)</span>
                    <span class="p">(</span><span class="ss">:file</span> <span class="s">&quot;my-tools&quot;</span><span class="p">)))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -253,8 +245,7 @@
 <span class="go">; Loading &quot;my-tools&quot;</span>
 
 <span class="go">(&quot;my-tools&quot;)</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -269,8 +260,7 @@
 <span class="go"> (2 1 4 3) (2 1 3 4) (4 2 3 1) (2 4 3 1) (2 3 4 1) (2 3 1 4) (4 3 2 1)</span>
 <span class="go"> (3 4 2 1) (3 2 4 1) (3 2 1 4))</span>
 <span class="gp">CL@USER$</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -295,8 +285,7 @@
 <span class="go">;     PERMUTE</span>
 <span class="go">;   caught 1 STYLE-WARNING condition</span>
 <span class="go">; Evaluation aborted on #&lt;UNDEFINED-FUNCTION PERMUTE {1004BCECE3}&gt;.</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -310,8 +299,7 @@
     <span class="p">(</span><span class="nb">defpackage</span> <span class="ss">#:my-tools</span>
       <span class="p">(</span><span class="ss">:use</span> <span class="ss">#:cl</span><span class="p">)</span>
       <span class="p">(</span><span class="ss">:export</span> <span class="ss">#:permute</span><span class="p">))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -332,8 +320,7 @@
 <span class="go"> (1 3 2 4) (4 3 1 2) (3 4 1 2) (3 1 4 2) (3 1 2 4) (4 2 1 3) (2 4 1 3)</span>
 <span class="go"> (2 1 4 3) (2 1 3 4) (4 2 3 1) (2 4 3 1) (2 3 4 1) (2 3 1 4) (4 3 2 1)</span>
 <span class="go"> (3 4 2 1) (3 2 4 1) (3 2 1 4))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -363,8 +350,7 @@
                    <span class="p">(</span><span class="ss">:file</span> <span class="s">&quot;init&quot;</span><span class="p">)</span>
                    <span class="p">(</span><span class="ss">:file</span> <span class="s">&quot;package&quot;</span><span class="p">)</span>
                    <span class="p">(</span><span class="ss">:file</span> <span class="s">&quot;my-tools&quot;</span><span class="p">)))</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
@@ -386,8 +372,7 @@
 <span class="gp">CL@USER$</span> <span class="o">(</span>net.aserve:start :port 8000<span class="o">)</span>
 <span class="gp">#</span>&lt;NET.ASERVE:WSERVER port 8000 <span class="o">{</span>1002C5F453<span class="o">}</span>&gt;
 <span class="gp">CL@USER$</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p></section></p>
