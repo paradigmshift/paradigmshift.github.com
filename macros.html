@@ -133,18 +133,12 @@
 
 <p>Take a look at the return value, what did the interpreter do? It basically took the arguments and rearranged them into prefix notation before evaluating them. This is what we told it to do every time it encountered <code>infix-math</code>.</p>
 
-<p><section class="code"></p>
-
-<pre><code>(defmacro infix-math (x op y)
-  (if (member op '(+ * - /))
-</code></pre>
-
-<p><section class="highlight-this"></p>
-
-<pre><code>  `(,op ,x ,y)))
-</code></pre>
-
-<p></section>
+<p><section class="code">
+    (defmacro infix-math (x op y)
+      (if (member op '(+ * - /))
+<section class="highlight-this">    <br/>
+      `(,op ,x ,y)))
+</section>
 </section></p>
 
 <p>The arguments are entered in the order of <em>x</em> <em>operator</em> <em>y</em>, and reorders them into <em>operator</em> <em>x</em> <em>y</em>.</p>
@@ -386,23 +380,14 @@
 
 <p>If you look back on the macro that was just defined, you can see that <code>,var</code> appears twice in the code.</p>
 
-<p><section class="code"></p>
-
-<pre><code>(defmacro if-var (var)
-</code></pre>
-
-<p><section class="highlight-this"></p>
-
-<pre><code>  `(if ,var
-       ,var 
-</code></pre>
-
-<p></section></p>
-
-<pre><code>     nil))
-</code></pre>
-
-<p></section></p>
+<p><section class="code">
+    (defmacro if-var (var)
+<section class="highlight-this">
+      `(if ,var
+           ,var
+</section>
+         nil))
+</section></p>
 
 <p>To avoid this, we have to write the code in a way that it only evaluates once.</p>
 

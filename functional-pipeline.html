@@ -229,111 +229,81 @@
 <p>Let's generate a random example to give some visual imagery to what we're talking about.</p>
 
 <p><section class="shell">
-<section class="highlight-this"></p>
-
-<pre><code>(0 #((0 2) (1 2) (1 1) (1 1))
-</code></pre>
-
-<p></section></p>
-
-<pre><code> (((0 2)
-   (0 #((0 1) (1 2) (0 1) (1 1))
-    ((NIL
-      (1 #((0 1) (1 2) (0 1) (1 1))
-       (((1 0)
-         (1 #((1 1) (1 1) (0 1) (1 1))
-          ((NIL (0 #((1 1) (1 1) (0 1) (1 1)) NIL)))))))))))
-  ((0 3)
-   (0 #((0 1) (1 2) (1 1) (0 1))
-    ((NIL
-      (1 #((0 1) (1 2) (1 1) (0 1))
-       (((1 3)
-         (1 #((0 1) (1 1) (1 1) (1 1))
-          ((NIL (0 #((0 1) (1 1) (1 1) (1 1)) NIL)))))
-        ((1 0)
-         (1 #((1 1) (1 1) (1 1) (0 1))
-          ((NIL (0 #((1 1) (1 1) (1 1) (0 1)) NIL)))))))))))))
-</code></pre>
-
-<p></section></p>
+<section class="highlight-this">
+    (0 #((0 2) (1 2) (1 1) (1 1))
+</section>
+     (((0 2)
+       (0 #((0 1) (1 2) (0 1) (1 1))
+        ((NIL
+          (1 #((0 1) (1 2) (0 1) (1 1))
+           (((1 0)
+             (1 #((1 1) (1 1) (0 1) (1 1))
+              ((NIL (0 #((1 1) (1 1) (0 1) (1 1)) NIL)))))))))))
+      ((0 3)
+       (0 #((0 1) (1 2) (1 1) (0 1))
+        ((NIL
+          (1 #((0 1) (1 2) (1 1) (0 1))
+           (((1 3)
+             (1 #((0 1) (1 1) (1 1) (1 1))
+              ((NIL (0 #((0 1) (1 1) (1 1) (1 1)) NIL)))))
+            ((1 0)
+             (1 #((1 1) (1 1) (1 1) (0 1))
+              ((NIL (0 #((1 1) (1 1) (1 1) (0 1)) NIL)))))))))))))
+</section></p>
 
 <p>This is the result of calling the <code>game-tree</code> function.</p>
 
 <p>The highlighted section designates the player whose turn it is, <code>0</code> is for player <code>A</code> and <code>1</code> is for player <code>B</code>; at the moment it is player <code>A</code>'s turn. The next bit is the present board: here it's saying that player <code>A</code> occupies one square of the board with 2 dice, while player <code>B</code> has 3 squares with 2, 1, and 1 die respectively.</p>
 
-<p><section class="shell"></p>
-
-<pre><code>(0 #((0 2) (1 2) (1 1) (1 1))
-</code></pre>
-
-<p><section class="highlight-this"></p>
-
-<pre><code> (((0 2)
-</code></pre>
-
-<p></section></p>
-
-<pre><code>   (0 #((0 1) (1 2) (0 1) (1 1))
-    ((NIL
-      (1 #((0 1) (1 2) (0 1) (1 1))
-       (((1 0)
-         (1 #((1 1) (1 1) (0 1) (1 1))
-          ((NIL (0 #((1 1) (1 1) (0 1) (1 1)) NIL)))))))))))
-</code></pre>
-
-<p><section class="highlight-this"></p>
-
-<pre><code>  ((0 3)
-</code></pre>
-
-<p></section></p>
-
-<pre><code>   (0 #((0 1) (1 2) (1 1) (0 1))
-    ((NIL
-      (1 #((0 1) (1 2) (1 1) (0 1))
-       (((1 3)
-         (1 #((0 1) (1 1) (1 1) (1 1))
-          ((NIL (0 #((0 1) (1 1) (1 1) (1 1)) NIL)))))
-        ((1 0)
-         (1 #((1 1) (1 1) (1 1) (0 1))
-          ((NIL (0 #((1 1) (1 1) (1 1) (0 1)) NIL)))))))))))))
-</code></pre>
-
-<p></section></p>
+<p><section class="shell">
+    (0 #((0 2) (1 2) (1 1) (1 1))
+<section class="highlight-this">
+     (((0 2)
+</section>
+       (0 #((0 1) (1 2) (0 1) (1 1))
+        ((NIL
+          (1 #((0 1) (1 2) (0 1) (1 1))
+           (((1 0)
+             (1 #((1 1) (1 1) (0 1) (1 1))
+              ((NIL (0 #((1 1) (1 1) (0 1) (1 1)) NIL)))))))))))
+<section class="highlight-this">
+      ((0 3)
+</section>
+       (0 #((0 1) (1 2) (1 1) (0 1))
+        ((NIL
+          (1 #((0 1) (1 2) (1 1) (0 1))
+           (((1 3)
+             (1 #((0 1) (1 1) (1 1) (1 1))
+              ((NIL (0 #((0 1) (1 1) (1 1) (1 1)) NIL)))))
+            ((1 0)
+             (1 #((1 1) (1 1) (1 1) (0 1))
+              ((NIL (0 #((1 1) (1 1) (1 1) (0 1)) NIL)))))))))))))
+</section></p>
 
 <p>These instead are the possible moves of <code>A</code> (the first number designates the player). He can either go to the third square or the fourth square (the count starts at 0, 0 is square 1, 1 is square 2, etc.)</p>
 
-<p><section class="shell"></p>
-
-<pre><code>(0 #((0 2) (1 2) (1 1) (1 1))
-</code></pre>
-
-<p><section class="highlight-this"></p>
-
-<pre><code> (((0 2)
-   (0 #((0 1) (1 2) (0 1) (1 1))
-    ((NIL
-      (1 #((0 1) (1 2) (0 1) (1 1))
-       (((1 0)
-</code></pre>
-
-<p></section></p>
-
-<pre><code>         (1 #((1 1) (1 1) (0 1) (1 1))
-          ((NIL (0 #((1 1) (1 1) (0 1) (1 1)) NIL)))))))))))
-  ((0 3)
-   (0 #((0 1) (1 2) (1 1) (0 1))
-    ((NIL
-      (1 #((0 1) (1 2) (1 1) (0 1))
-       (((1 3)
-         (1 #((0 1) (1 1) (1 1) (1 1))
-          ((NIL (0 #((0 1) (1 1) (1 1) (1 1)) NIL)))))
-        ((1 0)
-         (1 #((1 1) (1 1) (1 1) (0 1))
-          ((NIL (0 #((1 1) (1 1) (1 1) (0 1)) NIL)))))))))))))
-</code></pre>
-
-<p></section></p>
+<p><section class="shell">
+    (0 #((0 2) (1 2) (1 1) (1 1))
+<section class="highlight-this">
+     (((0 2)
+       (0 #((0 1) (1 2) (0 1) (1 1))
+        ((NIL
+          (1 #((0 1) (1 2) (0 1) (1 1))
+           (((1 0)
+</section>
+             (1 #((1 1) (1 1) (0 1) (1 1))
+              ((NIL (0 #((1 1) (1 1) (0 1) (1 1)) NIL)))))))))))
+      ((0 3)
+       (0 #((0 1) (1 2) (1 1) (0 1))
+        ((NIL
+          (1 #((0 1) (1 2) (1 1) (0 1))
+           (((1 3)
+             (1 #((0 1) (1 1) (1 1) (1 1))
+              ((NIL (0 #((0 1) (1 1) (1 1) (1 1)) NIL)))))
+            ((1 0)
+             (1 #((1 1) (1 1) (1 1) (0 1))
+              ((NIL (0 #((1 1) (1 1) (1 1) (0 1)) NIL)))))))))))))
+</section></p>
 
 <p>If <code>A</code> goes to square 3 then the results will be as follows, It is still player <code>A</code>'s turn, and he will occupy squares 1 and 2 with 1 die each, while <code>B</code> will have squares 2 and 4 with 2 and 1 die respectively.</p>
 
@@ -358,116 +328,87 @@
 
 <p>Let's show a possible execution as an example. We'll use the same tree as in the previous example to make it easier:</p>
 
-<p><section class="shell"></p>
-
-<pre><code>(0 #((0 2) (1 2) (1 1) (1 1))
- (((0 2)
-   (0 #((0 1) (1 2) (0 1) (1 1))
-    ((NIL
-      (1 #((0 1) (1 2) (0 1) (1 1))
-       (((1 0)
-         (1 #((1 1) (1 1) (0 1) (1 1))
-          ((NIL (0 #((1 1) (1 1) (0 1) (1 1)) NIL)))))))))))
-  ((0 3)
-   (0 #((0 1) (1 2) (1 1) (0 1))
-    ((NIL
-      (1 #((0 1) (1 2) (1 1) (0 1))
-       (((1 3)
-         (1 #((0 1) (1 1) (1 1) (1 1))
-          ((NIL (0 #((0 1) (1 1) (1 1) (1 1)) NIL)))))
-        ((1 0)
-         (1 #((1 1) (1 1) (1 1) (0 1))
-          ((NIL (0 #((1 1) (1 1) (1 1) (0 1)) NIL)))))))))))))
-</code></pre>
-
-<p></section></p>
+<p><section class="shell">
+    (0 #((0 2) (1 2) (1 1) (1 1))
+     (((0 2)
+       (0 #((0 1) (1 2) (0 1) (1 1))
+        ((NIL
+          (1 #((0 1) (1 2) (0 1) (1 1))
+           (((1 0)
+             (1 #((1 1) (1 1) (0 1) (1 1))
+              ((NIL (0 #((1 1) (1 1) (0 1) (1 1)) NIL)))))))))))
+      ((0 3)
+       (0 #((0 1) (1 2) (1 1) (0 1))
+        ((NIL
+          (1 #((0 1) (1 2) (1 1) (0 1))
+           (((1 3)
+             (1 #((0 1) (1 1) (1 1) (1 1))
+              ((NIL (0 #((0 1) (1 1) (1 1) (1 1)) NIL)))))
+            ((1 0)
+             (1 #((1 1) (1 1) (1 1) (0 1))
+              ((NIL (0 #((1 1) (1 1) (1 1) (0 1)) NIL)))))))))))))
+</section></p>
 
 <p><code>handle-human</code> will display two possible moves to player <code>A</code>.</p>
 
-<p><section class="shell"></p>
-
-<pre><code>(0 2) -&gt; square one to three
-(0 3) -&gt; square one to four
-</code></pre>
-
-<p></section></p>
+<p><section class="shell">
+    (0 2) -> square one to three
+    (0 3) -> square one to four
+</section></p>
 
 <p>Let's say <code>A</code> chooses the second choice, square one to four. <code>handle-human</code> then takes the nodes belonging to that particular choice and discard the rest.</p>
 
-<p><section class="shell"></p>
-
-<pre><code>(0 #((0 2) (1 2) (1 1) (1 1))
- (((0 2)
-   (0 #((0 1) (1 2) (0 1) (1 1))
-    ((NIL
-      (1 #((0 1) (1 2) (0 1) (1 1))
-       (((1 0)
-         (1 #((1 1) (1 1) (0 1) (1 1))
-          ((NIL (0 #((1 1) (1 1) (0 1) (1 1)) NIL)))))))))))
-</code></pre>
-
-<p><section class="highlight-this"></p>
-
-<pre><code>  ((0 3)
-   (0 #((0 1) (1 2) (1 1) (0 1))
-    ((NIL
-      (1 #((0 1) (1 2) (1 1) (0 1))
-       (((1 3)
-         (1 #((0 1) (1 1) (1 1) (1 1))
-          ((NIL (0 #((0 1) (1 1) (1 1) (1 1)) NIL)))))
-        ((1 0)
-         (1 #((1 1) (1 1) (1 1) (0 1))
-          ((NIL (0 #((1 1) (1 1) (1 1) (0 1)) NIL)))))))))))))
-</code></pre>
-
-<p></section>
+<p><section class="shell">
+    (0 #((0 2) (1 2) (1 1) (1 1))
+     (((0 2)
+       (0 #((0 1) (1 2) (0 1) (1 1))
+        ((NIL
+          (1 #((0 1) (1 2) (0 1) (1 1))
+           (((1 0)
+             (1 #((1 1) (1 1) (0 1) (1 1))
+              ((NIL (0 #((1 1) (1 1) (0 1) (1 1)) NIL)))))))))))
+<section class="highlight-this">
+      ((0 3)
+       (0 #((0 1) (1 2) (1 1) (0 1))
+        ((NIL
+          (1 #((0 1) (1 2) (1 1) (0 1))
+           (((1 3)
+             (1 #((0 1) (1 1) (1 1) (1 1))
+              ((NIL (0 #((0 1) (1 1) (1 1) (1 1)) NIL)))))
+            ((1 0)
+             (1 #((1 1) (1 1) (1 1) (0 1))
+              ((NIL (0 #((1 1) (1 1) (1 1) (0 1)) NIL)))))))))))))
+</section>
 </section></p>
 
 <p>This new tree is then passed again to <code>handle-human</code> which will determine if there are possible moves from the new position. According to the tree there are none, as evidenced by the <code>NIL</code>. The turn then passes to player <code>B</code>, who has two choices: square two to three or square two to one.</p>
 
-<p><section class="shell"></p>
-
-<pre><code>  ((0 3)
-   (0 #((0 1) (1 2) (1 1) (0 1))
-    ((NIL
-      (1 #((0 1) (1 2) (1 1) (0 1))
-</code></pre>
-
-<p><section class="highlight-this"></p>
-
-<pre><code>       (((1 3)
-</code></pre>
-
-<p></section></p>
-
-<pre><code>         (1 #((0 1) (1 1) (1 1) (1 1))
-          ((NIL (0 #((0 1) (1 1) (1 1) (1 1)) NIL)))))
-</code></pre>
-
-<p><section class="highlight-this"></p>
-
-<pre><code>        ((1 0)
-</code></pre>
-
-<p></section></p>
-
-<pre><code>         (1 #((1 1) (1 1) (1 1) (0 1))
-          ((NIL (0 #((1 1) (1 1) (1 1) (0 1)) NIL)))))))))))))
-</code></pre>
+<p><section class="shell">
+      ((0 3)
+       (0 #((0 1) (1 2) (1 1) (0 1))
+        ((NIL
+          (1 #((0 1) (1 2) (1 1) (0 1))
+<section class="highlight-this">
+           (((1 3)
+</section>
+             (1 #((0 1) (1 1) (1 1) (1 1))
+              ((NIL (0 #((0 1) (1 1) (1 1) (1 1)) NIL)))))
+<section class="highlight-this">
+            ((1 0)
+</section>
+             (1 #((1 1) (1 1) (1 1) (0 1))
+              ((NIL (0 #((1 1) (1 1) (1 1) (0 1)) NIL)))))))))))))</p>
 
 <p></section></p>
 
 <p>Player <code>B</code> takes the first choice, square two to three, and <code>handle-human</code> again picks up all the child nodes belonging to that particular branch and drops the rest.</p>
 
 <p><section class="shell">
-<section class="highlight-this"></p>
-
-<pre><code>       (((1 3)
-         (1 #((0 1) (1 1) (1 1) (1 1))
-          ((NIL (0 #((0 1) (1 1) (1 1) (1 1)) NIL)))))
-</code></pre>
-
-<p></section>
+<section class="highlight-this">
+           (((1 3)
+             (1 #((0 1) (1 1) (1 1) (1 1))
+              ((NIL (0 #((0 1) (1 1) (1 1) (1 1)) NIL)))))
+</section>
 </section></p>
 
 <p>And so on until there are no possible moves and a draw or a winner is declared.</p>

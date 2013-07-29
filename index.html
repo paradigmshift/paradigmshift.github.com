@@ -64,162 +64,133 @@
   <div id="main">
       
 <section id="content">
-  <h2> Counting Lattice Paths </h2>
+  <h2> Lisp Bookshelf </h2>
   <section class="text">
-    <h3>First of all, what is a Lattice Point</h3>
+    <h3>The Lisp Bookshelf</h3>
 
-<p>Lattice points are points in a <a href="http://mathworld.wolfram.com/PointLattice.html">Point Lattice</a> where two or more gridlines intersect.</p>
+<p>So I've obviously been paying a lot of attention to this site
+lately... so much so that I'm thinking of some sort of excuse for
+explaining the absence of decent reading material.</p>
 
-<p><img class="centerimage" src="/img/LatticePoints_1000.gif"/>
-<em>there is only one lattice point here, in the center, as that is the only point where the grid lines intersect</em></p>
+<p>Jokes aside, I've recently gone through spells of intense study and
+absolute laziness. However, I have come across a gem of a website that
+has inspired this post,
+<a href="http://programming-musings.org">Programming-Musings</a> by Jose Antonio
+Ortega Ruiz (Jao).</p>
 
-<h3>So what are Lattice Paths</h3>
+<p>Jao is mainly a Scheme hacker and is the author of the well-known
+<a href="http://www.nongnu.org/geiser/">Geiser</a> project, an interactive environment
+for Scheme in Emacs. I found his website by accident through a post
+in <a href="http://news.ycombinator.com">Hacker News</a>, and read his post
+<a href="http://programming-musings.org/2007/01/31/a-scheme-bookshelf/">A Scheme Bookshelf</a>
+which detailed his road to Scheme mastery.</p>
 
-<p>Lattice Paths are paths that lead from one lattice point to the next.</p>
+<p>I've been thinking of writing a similar post on my own study path of Common
+Lisp and reading his account finally made me decide to get on with it.</p>
 
-<p><img class="centerimage" src="/img/binomialpath1.png"/>
-<section class="centertext"><em>two paths, from the leftmost corner to the rightmost, through a 1x1 lattice</em></section></p>
+<p>My first contact with Lisp came through the incredible book <em>Structure
+and Interpretation of Computer Programs</em>
+<a href="mitpress.mit.edu/sicp/">SICP</a> for short. <img class="floatleft"
+src="/img/sicp.gif"/> I got through maybe 3 or 4 chapters before being
+overwhelmed by some of the mathematics (I'm not portraying a very
+flattering picture of myself here...) but then again this <em>was</em> about
+3 years ago, I'd like to think I'd be able to hold my own by now.</p>
 
-<p><img class="centerimage" src="/img/binomialpath2.png"/>
-<section class="centertext"><em>six paths through a 2x2 lattice</em></section></p>
+<p>Anyway, despite the lack of ability that caused my abandonment of
+SICP (I'm planning to take it up again after I finish the book I'm
+currently reading), I didn't give up on learning Lisp and started
+reading another often recommended book, <em>HTDP</em> or
+<a href="http://htdp.org/">How to Design Programs</a> <img class="floatright"
+src="/img/htdp.jpg">. Although I did learn a few interesting and
+valuable methods like design-by-contract, for the most part it was
+difficult to maintain my enthusiasm and drive to finish the book, and
+I dropped it after the 4th or 5th chapter.</p>
 
-<h3>Counting the number of possible paths from a starting point to an endpoint</h3>
+<p>Enter <a href="http://www.gigamonkeys.com/book/">Practical Common Lisp</a> <img
+class="floatleft" src="/img/pcl.jpg"> by Peter Seibel. This book was
+touted as <em>the</em> book from which one could enter the magical land of
+Lisp hacking... and yet even here I only managed to get through a few
+chapters before finally abandoning it.</p>
 
-<p>So how would one, given the need or want, go about counting the number of possible paths from one point to another? After a few failed attempts at creating my own method (all of which failed horribly), I ended up using the method described <a href="httt://www.robertdickau.com/lattices.html">here by Robert Dickau</a>.</p>
+<p>At this point I was beginning to lose hope and think that I would
+never be initiated into the secret brotherhood of Lisp hackers, I had
+failed to read through not one, not two, but <strong>three</strong> of the
+recommended books for novices beginning their journey. This was quite
+discouraging and I was about to call it quits when I came across
+<a href="http://landoflisp.com/">Land of Lisp</a>. <img class="floatright"
+src="/img/lol.png" style="width:10em;"> This is the book that finally started me on the
+path to enlightenment... and is probably to blame for my current Lisp superiority
+complex.</p>
 
-<p>Here, the solution is derived by counting the number of paths it takes to get to adjacent points and adding them together.</p>
+<p>Quite a few hackers actually don't recommend this book as they say it
+doesn't teach and show idiomatic Common Lisp, I'm not experienced
+enough to argue either way but I <em>can</em> say that without this book I
+probably would still be floundering around. Whether
+or not it does teach best practices, what this book does do is engage
+the amateur Lisper and give him glimpses of the magic that is present
+in Lisp land.</p>
 
-<p><img class="centerimage" src="/img/binomialpaths4.png"/></p>
+<p>After having finished Land of Lisp, I started reading Peter Norvig's
+<a href="http://norvig.com/paip.html">Paradigms of Artificial Intelligence Programming</a>
+<img class="floatleft" src="/img/paip-cover.gif" style="width:10em">, this is where one
+can starts to truly see the beauty and power of Lisp, as well as more
+<em>idiomatic</em> code. It takes the reader through past A.I. projects done
+in the 70s and 80s and how Lisp can/was/is implemented to solve those
+problems. I do have to hit <strong>#lisp</strong> at freenode and consult with the
+<a href="http://www.lispworks.com/documentation/HyperSpec/Front/">Hyper Spec</a>
+quite often, but if the reader is independent and not dependent on
+being spoon-fed then this book will take him to the next level.</p>
 
-<p>All points from the rightmost side to the top and bottom take 1 step to reach, so they are marked with one. The next point, diagonal to the rightmost point, takes 2 steps, because each point adjacent to it (the premise is that from the start point, you can only go towards the right, NE or SE) takes one step to get to. The point diagonal to that one, going towards the endpoint, takes 6 steps because the points adjacent to it both take 3 steps, and so on.</p>
+<p>From this point as I am still reading it, I will post the books that
+I <em>plan</em> on reading after finishing and digesting PAIP.</p>
 
-<p>Now this is a great solution but to use it effectively when dealing with large lattices we will have to come up with a program that can do the counting for us. Even a small 4x4 grid contains 70 possible paths, it would be ridiculous for us not to use a computer to do this repetitive task (not to mention that computers are far more accurate and are not prone to <em>"human error"</em>).</p>
+<p>I plan on tackling SICP again and at the same time go through <a href="http://www.amazon.com/books/dp/0521545668">Lisp In
+Small Pieces</a> by Christian
+Queinnec. This after reading Jao's review on said book. <img
+class="floatright" src="/img/l.i.s.p.jpg"> It seems to be the <a href="http://dragonbook.stanford.edu/">Dragon
+Book</a> equivalent for Lisp, describing
+11 interpreters and 2 compilers.</p>
 
-<p><img class="centerimage" src="/img/binomialpath4.png" /></p>
+<p>After the SICP and L.I.S.P duo, I plan on reading either
+<a href="http://paulgraham.com/">Paul Graham's</a>
+<a href="http://www.paulgraham.com/onlisp.html">On Lisp</a> or Doug Hoyte's <a href="http://letoverlambda.com/">Let
+over Lambda</a> (or maybe both???). Both are
+said to deal with extremely advanced programming topics, specifically
+the Lisp secret sauce, macros (LoL is supposed to be one of the
+most hardcore computer programming books out there). <img
+class="floatleft" src="/img/onlisp.jpg" style="width:10em">
+<img class="floatleft" src="/img/lol.jpg" style="width:10em"></p>
 
-<h3>Translating the method into code</h3>
+<p>Other books that I'm looking at but haven't yet decided when I will dedicate some time to them are:
+<a href="http://www.amazon.com/Introduction-Functional-Programming-Calculus-Mathematics/dp/0486478831">An Introduction to Functional Programming through Lambda Calculus</a>:
+While the book's title suggests that the Functional-style paradigm is
+the core of the text, according to various reviews it's a great
+introduction to the Lambda Calculus itself. I've been wanting to start
+reading up on the Lambda Calculus and this just might be the way in.</p>
 
-<p>So the method's premise is counting the all paths that have 1 step and working from there to come up with all points that require 2 steps, and from there to 3 steps and so on. How would this translate to code?</p>
+<p>Another seemingly interesting book is
+<a href="http://www.amazon.com/Common-LISP-Modules-Artificial-Intelligence/dp/0387976140">Common Lisp Modules: Artificial Intelligence in the Era of Neural Networks and Chaos Theory</a>.
+I've always been interested in Neural Networks and the chance of
+learning how to implement them in Lisp sounds too good. According to
+the book description it also contains speech and handwriting
+recognition code, a computer chess game, and other goodies.</p>
 
-<p>While it would be possible to come up with an algorithm that would walk all paths with 1 step and from there work out the paths with 2 steps and so forth, there is actually an easier method. I actually came up with this myself after staring at the number of paths in the above 4x4 grid, though I'm sure it must be listed somewhere as a method for counting lattice paths.</p>
+<p>Rounding out the collection are two books that apparently complement
+each other.
+<a href="http://www.amazon.com/Object-Oriented-Programming-COMMON-LISP-Programmers/dp/0201175894">Object Oriented Programming in Common Lisp</a>
+and
+<a href="https://mitpress.mit.edu/books/art-metaobject-protocol">The Art of the Meta Object Protocol</a>
+both deal with CLOS, the Common Lisp Object System. Object Oriented
+Programming in Common Lisp is supposed to be the <em>gentle</em> yet useful
+introduction to CLOS while The Art of the Meta Object Protocol,
+written by some of the developers of CLOS, dives into the actual
+implementation of the meta object protocol in CLOS and how to modify
+its behavior.</p>
 
-<p>If we take a look at the first  northeastern rows in the 4x4 grid, we'll see that the number of paths are as follows:</p>
+<p><em>Unfortunately I couldn't find the websites of some of the books so
+ I've linked to their Amazon page</em></p>
 
-<p><code>\[ \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 \end{bmatrix}\]</code></p>
-
-<p>If we take the third and fourth rows, we end up with the following matrix:</p>
-
-<p><code>\[ \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 \\ 1 &amp; 3 &amp; 6 &amp; 10 &amp; 15 \\ 1 &amp; 4 &amp; 10 &amp; 20 &amp; 35 \\ 1 &amp; 5 &amp; 15 &amp; 35 &amp; 70 \end{bmatrix}\]</code></p>
-
-<p>You'll note an interesting symmetry where the second row matches the second column, the third row the third column, etc. Yet that didn't really help any in coming up with a theoretical formula for calculating the next row from the preceeding one.</p>
-
-<p>Then I realized that one didn't have to come up with both adjacent points to determine the next one, since the adjacent points mirrored each other (the adjacent points to the second point on the second row are both 1 for example and the point itself is 2). All you have to do is come up with one point and multiply it by 2, that would yield the next point. The pattern that i reasoned out was that multiplying the second element of the top row by 2 would yield the path count below that element. Then adding that number to the next element in the top row would yield the count below that element and so forth.</p>
-
-<p>Starting from the first row:</p>
-
-<p><code>\[ \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \end{bmatrix}\]</code></p>
-
-<p>Take the second element and multiply it by 2, placing it below the second element:</p>
-
-<p><code>\[ \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ &amp; 2\end{bmatrix}\]</code></p>
-
-<p>Add that to the next element in the above row (2 + 1):</p>
-
-<p><code>\[ \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ &amp; 2 &amp; 3\end{bmatrix}\]</code></p>
-
-<p>And keep going on going:</p>
-
-<p><code>\[ \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\  &amp; 2 &amp; 3 &amp; 4 &amp; 5 \end{bmatrix}\]</code></p>
-
-<p>Then work on the third row by taking the second element of the second row (3) and repeating the process, 3 * 2 = 6 hence:</p>
-
-<p><code>\[ \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\  &amp; 2 &amp; 3 &amp; 4 &amp; 5 \\ &amp; &amp; 6\end{bmatrix}\]</code></p>
-
-<p>Take 6 and add it to the next element in the second row (4):</p>
-
-<p><code>\[ \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\  &amp; 2 &amp; 3 &amp; 4 &amp; 5 \\ &amp; &amp; 6 &amp; 10\end{bmatrix}\]</code></p>
-
-<p>And then take that and add it to the last element in the second row:</p>
-
-<p><code>\[ \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\  &amp; 2 &amp; 3 &amp; 4 &amp; 5 \\ &amp; &amp; 6 &amp; 10 &amp; 15\end{bmatrix}\]</code></p>
-
-<p>This algorithm allows you determine the number of paths from on edge to the other without actually drawing a diagram and manually counting the paths.</p>
-
-<p>Lisp implementation</p>
-
-<p><section class=code></p>
-
-<div class="highlight"><pre><code class="cl">  <span class="p">(</span><span class="nb">defvar</span> <span class="vg">*path-count*</span> <span class="o">&#39;</span><span class="p">())</span>
-
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">initial-steps</span> <span class="p">(</span><span class="nv">width</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">steps</span> <span class="o">&#39;</span><span class="p">()))</span>
-      <span class="p">(</span><span class="nb">dotimes</span> <span class="p">(</span><span class="nv">i</span> <span class="nv">width</span><span class="p">)</span>
-        <span class="p">(</span><span class="nb">push</span> <span class="mi">1</span> <span class="nv">steps</span><span class="p">))</span>
-      <span class="nv">steps</span><span class="p">))</span>
-
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">count-next-steps</span> <span class="p">(</span><span class="nv">previous</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">second</span> <span class="nv">previous</span><span class="p">)</span>
-      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nb">step</span> <span class="p">(</span><span class="nb">*</span> <span class="p">(</span><span class="nb">second</span> <span class="nv">previous</span><span class="p">)</span> <span class="mi">2</span><span class="p">))</span>
-            <span class="p">(</span><span class="nv">previous-copy</span> <span class="p">(</span><span class="nb">cddr</span> <span class="nv">previous</span><span class="p">))</span>
-            <span class="p">(</span><span class="nv">steps</span> <span class="o">&#39;</span><span class="p">()))</span>
-        <span class="p">(</span><span class="nb">push</span> <span class="nb">step</span> <span class="nv">steps</span><span class="p">)</span>
-        <span class="p">(</span><span class="nb">loop</span> <span class="nv">until</span> <span class="p">(</span><span class="nb">null</span> <span class="nv">previous-copy</span><span class="p">)</span>
-           <span class="nb">do</span> <span class="p">(</span><span class="k">progn</span> <span class="p">(</span><span class="nb">incf</span> <span class="nb">step</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">previous-copy</span><span class="p">))</span>
-                     <span class="p">(</span><span class="nb">push</span> <span class="nb">step</span> <span class="nv">steps</span><span class="p">)</span>
-                     <span class="p">(</span><span class="nb">setf</span> <span class="nv">previous-copy</span> <span class="p">(</span><span class="nb">cdr</span> <span class="nv">previous-copy</span><span class="p">))))</span>
-        <span class="p">(</span><span class="nb">reverse</span> <span class="nv">steps</span><span class="p">))</span>
-      <span class="nv">previous</span><span class="p">))</span>
-
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">count-paths</span> <span class="p">(</span><span class="nv">width</span><span class="p">)</span>
-    <span class="p">(</span><span class="nb">setf</span> <span class="vg">*path-count*</span> <span class="o">&#39;</span><span class="p">())</span>
-    <span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nv">initial-steps</span> <span class="nv">width</span><span class="p">)</span> <span class="vg">*path-count*</span><span class="p">)</span>
-    <span class="p">(</span><span class="nb">dotimes</span> <span class="p">(</span><span class="nv">i</span> <span class="p">(</span><span class="nb">1-</span> <span class="nv">width</span><span class="p">))</span> 
-      <span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nv">count-next-steps</span> <span class="p">(</span><span class="nb">car</span> <span class="vg">*path-count*</span><span class="p">))</span> <span class="vg">*path-count*</span><span class="p">)))</span>
-</code></pre></div>
-
-
-<p></section></p>
-
-<p>Let's try running it with a 3x3 grid:</p>
-
-<p><section class=shell></p>
-
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>count-paths 4<span class="o">)</span>
-
-<span class="go">NIL</span>
-<span class="gp">CL@USER$</span> *PATH-COUNT*
-<span class="go">((20) (6 10) (2 3 4) (1 1 1 1))</span>
-</code></pre></div>
-
-
-<p></section></p>
-
-<p><section class=centertext>*note that for a 3x3 grid, we entered 4 as the width, this si because 3x3 grids have 4 lattice points at the top </section></p>
-
-<p>The program returns the rows (in reverse order), with the last row being the total number of paths. A 3x3 grid indeed has 20 possible paths, we can see that when we inspect the 4x4 grid above, if we restrict it to a 3x3 grid the last lattice point will have 20 steps.</p>
-
-<p>How about 4x4? We know, again from the above grid, that 4x4 grids have 70 possible paths.</p>
-
-<p><section class=shell></p>
-
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>count-paths 5<span class="o">)</span>
-<span class="go">NIL</span>
-<span class="gp">CL@USER$</span> *PATH-COUNT*
-<span class="go">((70) (20 35) (6 10 15) (2 3 4 5) (1 1 1 1 1))</span>
-</code></pre></div>
-
-
-<p></section></p>
-
-<h3>Wrapping it up</h3>
-
-<p>Further testing is possible but I think we'll find that the above solution is accurate, at least when we take into account certain rules of movement from one lattice point to the next (no backward movements, always going either NE or SE).</p>
-
-<p>There is another reason that I am quite confident of this method, I used it to solve a math problem in a very popular website and the answer was validated.</p>
-
-<p>Still, if someone can find some flaw in the code or logic, I would be very happy if you would send a message detailing where and why. Also, anything on the algorithm I "discovered" would be appreciated as well, it seems very unlikely that someone hasn't thought about this way of counting lattice paths.</p>
-
-    <h6>24 Mar 2013</h6>
+    <h6>28 Jul 2013</h6>
   </section>
 </section>
 

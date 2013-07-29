@@ -210,6 +210,20 @@ img.profile {
   float: left;
   margin: 0 1em 26em 1em;
 }
+
+img.floatleft {
+  width: auto;
+  border-radius: 5px;
+  float: left;
+  margin: 0 1em 0em 1em;
+}
+
+img.floatright {
+  width: auto;
+  border-radius: 5px;
+  float: right;
+  margin: 0 1em 0em 1em;
+}
  
 footer {
   font-size: 0.65em;
