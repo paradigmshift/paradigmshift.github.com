@@ -46,6 +46,7 @@ a:hover {
   padding: 10px;
   min-height: 500px;
   border-radius: 5px;
+  -moz-border-radius: 5px;
   -webkit-box-shadow: 4px 3px 10px #000000, -4px 0px 10px #000000;
   -moz-box-shadow: 4px 3px 10px #000000, -4px 0px 10px #000000;
   box-shadow: 4px 3px 10px #000000, -4px 0px 10px #000000;
@@ -111,6 +112,7 @@ a:hover {
   width: 100%;
   background: gray;
   border-radius: 10px;
+  -moz-border-radius: 10px;
   text-align: left;
   padding: 0.3em;
   color: white;
@@ -164,6 +166,7 @@ pre {
   opacity: 0.5;
   background: #ffffff;
   border-radius: 5px;
+  -moz-border-radius: 5px;
   padding: 2px;
   min-width: 300px;
   font-size: 0.8em;
@@ -175,6 +178,7 @@ pre {
   color: white;
   background: black;
   border-radius: 5px;
+  -moz-border-radius: 5px;
   padding: 2px;
   min-width: 300px;
   font-size: 0.8em;
@@ -189,6 +193,7 @@ pre {
 
 .emphasis1 {
   color: #AF7817;
+  font-weight: bold;
 }
 
 .slime-prompt {
@@ -206,14 +211,16 @@ blockquote {
 img.profile {
   width: 15em;
   border-radius: 5px;
+  -moz-border-radius: 5px;
   border: 2px solid black;
   float: left;
-  margin: 0 1em 26em 1em;
+  margin: 0 1em 1em 1em;
 }
 
 img.floatleft {
   width: auto;
   border-radius: 5px;
+  -moz-border-radius: 5px;
   float: left;
   margin: 0 1em 0em 1em;
 }
@@ -221,6 +228,7 @@ img.floatleft {
 img.floatright {
   width: auto;
   border-radius: 5px;
+  -moz-border-radius: 5px;
   float: right;
   margin: 0 1em 0em 1em;
 }
@@ -248,4 +256,57 @@ img.centerimage {
 
 .centertext {
   text-align:center;
+}
+
+table.full-width {
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+caption {
+  font-size: 1.2em;
+  margin: 1em auto;
+}
+
+th, td {
+  padding: .65em;
+}
+
+table td {
+  display: table-cell;
+  vertical-align: top;
+}
+
+table td p {
+  font-size: 0.8em;
+}
+
+th {
+  background: #686868;
+  color: #fff;
+}
+
+th:first-child {
+  border-radius: 9px 0 0 0;
+  -moz-border-radius: 9px 0 0 0;
+}
+
+th:last-child {
+  border-radius: 0 9px 0 0;
+  -moz-border-radius: 0 9px 0 0;
+}
+
+tr:nth-child(even) {
+  background: #ccc;
+}
+
+tr:last-child td:first-child {
+  border-radius: 0 0 0 9px;
+  -moz-border-radius: 0 0 0 9px;
+}
+
+tr:last-child td:last-child {
+  border-radius: 0 0 9px 0;
+  -moz-border-radius: 0 0 9px 0;
 }
