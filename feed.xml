@@ -9,6 +9,10 @@
                <description> According to the  a href= http://en.wikipedia.o </description>
                <link> http://mozartreina.com/unit-tests-lisp.html </link>
                </item><item>
+               <title>   Searching Trees |  Mozart Reina  </title>
+               <description> Trees are data structures that have a parent-ch </description>
+               <link> http://mozartreina.com/tree-search.html </link>
+               </item><item>
                <title>   Soma-RSS, a Lisp-powered RSS feed creator |  Mozart Reina  </title>
                <description> As I mentioned previously in  a href= http://mo </description>
                <link> http://mozartreina.com/soma-rss-lisp-powered-rss-feed-creator.html </link>
@@ -46,7 +50,7 @@
                <link> http://mozartreina.com/lazy-evaluation.html </link>
                </item><item>
                <title>   Mozart Reina  </title>
-               <description> So I've obviously been paying a lot of attentio </description>
+               <description> Trees are data structures that have a parent-ch </description>
                <link> http://mozartreina.com/index.html </link>
                </item><item>
                <title>   Functions |  Mozart Reina  </title>
