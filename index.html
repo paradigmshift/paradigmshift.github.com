@@ -1,68 +1,87 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset=utf-8 />
-  <title>  Mozart Reina </title>
-  <link rel="stylesheet" href="/css/styles.css" type="text/css" />
-  <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
-  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.93/jsxgraphcore.js"></script>
-  <link rel="stylesheet" type="text/css" href="http://jsxgraph.uni-bayreuth.de/distrib/jsxgraph.css" />
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-  <script type="text/javascript" src="/scripts/menu.js"></script>
-  <script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    MathJax.Hub.Config({
-    tex2jax: {
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-    });
-    
-    MathJax.Hub.Queue(function() {
-    // Fix <code> tags after MathJax finishes running. This is a
-      // hack to overcome a shortcoming of Markdown. Discussion at
-      // https://github.com/mojombo/jekyll/issues/199
-      var all = MathJax.Hub.getAllJax(), i;
-      for(i = 0; i < all.length; i += 1) {
-                   all[i].SourceElement().parentNode.className += ' has-jax';
-                   }
-                   });
-  </script>
-  <script type="text/javascript">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>  Mozart Reina </title>
+    <link rel="stylesheet" href="/bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/styles.css" type="text/css" />
+    <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.93/jsxgraphcore.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://jsxgraph.uni-bayreuth.de/distrib/jsxgraph.css" />
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      MathJax.Hub.Config({
+      tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+      });
 
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-33571143-1']);
-    _gaq.push(['_trackPageview']);
+      MathJax.Hub.Queue(function() {
+      // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+                       all[i].SourceElement().parentNode.className += ' has-jax';
+                       }
+                       });
+                       </script>
+    <script type="text/javascript">
 
-    (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-33571143-1']);
+      _gaq.push(['_trackPageview']);
 
-  </script>
-</head>
-<body>
-  
-  <header id="top">
-    <h1> Math, Lisp, and general hackery </h1>
-  </header>
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
 
-  <div id="rss">
-    <a href="feed.xml">
-      <img src="/img/Feed-icon.svg"/>
-    </a>
-  </div>
-  
-  <nav role="navigation">
-    <ul id="menu">
-          <li><a href="/">Home</a>
-          <li><a href="/entries/">Entries</a></li>
-          <li><a href="/about/">About</a></li>
-    </ul>
-  </nav>
- 
-  <div id="main">
-      
+    </script>
+    <script src="/scripts/application.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid" id="main-container">
+      <div class="page-header">
+        <h1> Math, Lisp, <small> and other hackery </small> </h1>
+      </div>
+
+      <!-- <div id="rss"> -->
+      <!--   <a href="feed.xml"> -->
+      <!--     <img src="/img/Feed-icon.svg"/> -->
+      <!--   </a> -->
+      <!-- </div> -->
+      <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about/">About</a></li>
+              <li><a href="/entries/">Entries</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+        
 <section id="content">
   <h2> Searching Trees </h2>
   <section class="text">
@@ -78,9 +97,9 @@ computing.</p>
 Norvig's <a href="http://norvig.com/paip.html">Paradigms of Artificial Intelligence Programming</a>, those
 of you who have read PAIP will find much of the code familiar.</p>
 
-<p><img class="centerimage" src="/img/binary-tree.gif" /></p>
+<p><img class="img-responsive center-block" src="/img/binary-tree.gif" /></p>
 
-<p class="centertext">A Binary Tree</p>
+<h4 class="text-center">A Binary Tree</h4>
 
 
 <h3>A Problem of Search</h3>
@@ -110,15 +129,13 @@ successors,  from the current state.</p>
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">tree-search</span> <span class="p">(</span><span class="nv">states</span> <span class="nv">goal-p</span> <span class="nv">successor</span> <span class="nv">combiner</span><span class="p">)</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">tree-search</span> <span class="p">(</span><span class="nv">states</span> <span class="nv">goal-p</span> <span class="nv">successor</span> <span class="nv">combiner</span><span class="p">)</span>
   <span class="p">(</span><span class="nb">print</span> <span class="nv">states</span><span class="p">)</span>
   <span class="p">(</span><span class="nb">cond</span> <span class="p">((</span><span class="nb">null</span> <span class="nv">states</span><span class="p">)</span> <span class="no">nil</span><span class="p">)</span>
         <span class="p">((</span><span class="nb">funcall</span> <span class="nv">goal-p</span> <span class="p">(</span><span class="nb">first</span> <span class="nv">states</span><span class="p">))</span> <span class="p">(</span><span class="nb">first</span> <span class="nv">states</span><span class="p">))</span>
         <span class="p">(</span><span class="no">t</span> <span class="p">(</span><span class="nv">tree-search</span> <span class="p">(</span><span class="nb">funcall</span> <span class="nv">combiner</span> <span class="p">(</span><span class="nb">funcall</span> <span class="nv">successor</span> <span class="p">(</span><span class="nb">first</span> <span class="nv">states</span><span class="p">))</span>
                                  <span class="p">(</span><span class="nb">rest</span> <span class="nv">states</span><span class="p">))</span>
-                        <span class="nv">goal-p</span> <span class="nv">successor</span> <span class="nv">combiner</span><span class="p">))))</span>
-</code></pre></div>
-
+                        <span class="nv">goal-p</span> <span class="nv">successor</span> <span class="nv">combiner</span><span class="p">))))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -132,12 +149,10 @@ list of states that have to be checked.</p>
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl"><span class="c1">;; this is a function that will give the successors of a</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;; this is a function that will give the successors of a</span>
 <span class="c1">;;node in a binary tree</span>
 <span class="p">(</span><span class="nb">defun</span> <span class="nv">binary-tree</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
-  <span class="p">(</span><span class="nb">list</span> <span class="p">(</span><span class="nb">*</span> <span class="nv">x</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nb">1+</span> <span class="p">(</span><span class="nb">*</span> <span class="nv">x</span> <span class="mi">2</span><span class="p">))))</span>
-</code></pre></div>
-
+  <span class="p">(</span><span class="nb">list</span> <span class="p">(</span><span class="nb"><em></span> <span class="nv">x</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nb">1+</span> <span class="p">(</span><span class="nb"></em></span> <span class="nv">x</span> <span class="mi">2</span><span class="p">))))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -150,7 +165,7 @@ the successive node is not the goal, then it will check only one of
 successors of each node until it has reached the end of the tree,
 wherein it will go back and look at the second successor and repeat the process.</p>
 
-<p><img class="centerimage" src="/img/dps.png" style="width:250px"/></p>
+<p><img class="img-responsive center-block" src="/img/dps.png" style="width:250px"/></p>
 
 <p>This can be easily implemented with the <code>append</code> function, where we
 take the successive nodes from the current state and append them to
@@ -163,31 +178,27 @@ the tree ends</em>.</p>
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">depth-first-search</span> <span class="p">(</span><span class="nv">state</span> <span class="nv">goal-p</span> <span class="nv">successor</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">tree-search</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">state</span><span class="p">)</span> <span class="nv">goal-p</span> <span class="nv">successor</span> <span class="nf">#&#39;</span><span class="nb">append</span><span class="p">))</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">depth-first-search</span> <span class="p">(</span><span class="nv">state</span> <span class="nv">goal-p</span> <span class="nv">successor</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">tree-search</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">state</span><span class="p">)</span> <span class="nv">goal-p</span> <span class="nv">successor</span> <span class="nf">#'</span><span class="nb">append</span><span class="p">))</span></p>
 
-<span class="c1">;; goal check</span>
+<p><span class="c1">;; goal check</span>
 <span class="p">(</span><span class="nb">defun</span> <span class="nv">is</span> <span class="p">(</span><span class="nv">num</span><span class="p">)</span>
-  <span class="nf">#&#39;</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
-      <span class="p">(</span><span class="nb">eql</span> <span class="nv">x</span> <span class="nv">num</span><span class="p">)))</span>
-</code></pre></div>
-
+  <span class="nf">#'</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">eql</span> <span class="nv">x</span> <span class="nv">num</span><span class="p">)))</span></code></pre></figure></p>
 
 <p></section></p>
 
 <p>Let's try running it:
 <section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>depth-first-search 1 <span class="o">(</span>is 16<span class="o">)</span> <span class="c">#&#39;binary-tree)</span>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (depth-first-search 1 (is 16) #'binary-tree)</p>
 
-<span class="go">(1) </span>
-<span class="go">(2 3) </span>
-<span class="go">(4 5 3) </span>
-<span class="go">(8 9 5 3) </span>
-<span class="go">(16 17 9 5 3) </span>
-<span class="go">16</span>
-</code></pre></div>
-
+<p>(1)
+(2 3)
+(4 5 3)
+(8 9 5 3)
+(16 17 9 5 3)
+16</code></pre></figure></p>
 
 <p></section></p>
 
@@ -199,20 +210,18 @@ going forever.</p>
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>depth-first-search 1 <span class="o">(</span>is 12<span class="o">)</span> <span class="c">#&#39;binary-tree)</span>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (depth-first-search 1 (is 12) #'binary-tree)</p>
 
-<span class="go">(1) </span>
-<span class="go">(2 3) </span>
-<span class="go">(4 5 3) </span>
-<span class="go">(8 9 5 3) </span>
-<span class="go">(16 17 9 5 3) </span>
-<span class="go">(32 33 17 9 5 3) </span>
-<span class="go">(64 65 33 17 9 5 3) </span>
-<span class="go">(128 129 65 33 17 9 5 3) </span>
-<span class="go">........................</span>
-<span class="go">........................</span>
-</code></pre></div>
-
+<p>(1)
+(2 3)
+(4 5 3)
+(8 9 5 3)
+(16 17 9 5 3)
+(32 33 17 9 5 3)
+(64 65 33 17 9 5 3)
+(128 129 65 33 17 9 5 3)
+........................
+........................</code></pre></figure></p>
 
 <p></section></p>
 
@@ -227,18 +236,16 @@ the next depth level.</p>
 check both nodes before checking their successors, nodes 4, 5, 6,
 and 7.</p>
 
-<p><img src="/img/BFS.gif" class="centerimage" style="width:250px" /></p>
+<p><img src="/img/BFS.gif" class="img-responsive center-block" style="width:250px" /></p>
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl"><span class="c1">;; puts the successor nodes behind the previous un-checked nodes</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;; puts the successor nodes behind the previous un-checked nodes</span>
 <span class="p">(</span><span class="nb">defun</span> <span class="nv">prepend</span> <span class="p">(</span><span class="nv">new</span> <span class="nv">old</span><span class="p">)</span>
-  <span class="p">(</span><span class="nb">append</span> <span class="nv">old</span> <span class="nv">new</span><span class="p">))</span>
+  <span class="p">(</span><span class="nb">append</span> <span class="nv">old</span> <span class="nv">new</span><span class="p">))</span></p>
 
-<span class="p">(</span><span class="nb">defun</span> <span class="nv">breadth-first-search</span> <span class="p">(</span><span class="nv">state</span> <span class="nv">goal-p</span> <span class="nv">successor</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">tree-search</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">state</span><span class="p">)</span> <span class="nv">goal-p</span> <span class="nv">successor</span> <span class="nf">#&#39;</span><span class="nv">prepend</span><span class="p">))</span>
-</code></pre></div>
-
+<p><span class="p">(</span><span class="nb">defun</span> <span class="nv">breadth-first-search</span> <span class="p">(</span><span class="nv">state</span> <span class="nv">goal-p</span> <span class="nv">successor</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">tree-search</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">state</span><span class="p">)</span> <span class="nv">goal-p</span> <span class="nv">successor</span> <span class="nf">#'</span><span class="nv">prepend</span><span class="p">))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -247,23 +254,21 @@ finding 12 (depth-first search failed on an infinite binary tree).</p>
 
 <p><section class="shell"/></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>breadth-first-search 1 <span class="o">(</span>is 12<span class="o">)</span> <span class="c">#&#39;binary-tree)</span>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (breadth-first-search 1 (is 12) #'binary-tree)</p>
 
-<span class="go">(1) </span>
-<span class="go">(2 3) </span>
-<span class="go">(3 4 5) </span>
-<span class="go">(4 5 6 7) </span>
-<span class="go">(5 6 7 8 9) </span>
-<span class="go">(6 7 8 9 10 11) </span>
-<span class="go">(7 8 9 10 11 12 13) </span>
-<span class="go">(8 9 10 11 12 13 14 15) </span>
-<span class="go">(9 10 11 12 13 14 15 16 17) </span>
-<span class="go">(10 11 12 13 14 15 16 17 18 19) </span>
-<span class="go">(11 12 13 14 15 16 17 18 19 20 21) </span>
-<span class="go">(12 13 14 15 16 17 18 19 20 21 22 23) </span>
-<span class="go">12</span>
-</code></pre></div>
-
+<p>(1)
+(2 3)
+(3 4 5)
+(4 5 6 7)
+(5 6 7 8 9)
+(6 7 8 9 10 11)
+(7 8 9 10 11 12 13)
+(8 9 10 11 12 13 14 15)
+(9 10 11 12 13 14 15 16 17)
+(10 11 12 13 14 15 16 17 18 19)
+(11 12 13 14 15 16 17 18 19 20 21)
+(12 13 14 15 16 17 18 19 20 21 22 23)
+12</code></pre></figure></p>
 
 <p></section></p>
 
@@ -295,19 +300,17 @@ function as a <em>key parameter</em> to the function <code>sort</code>.</p>
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">diff</span> <span class="p">(</span><span class="nv">num</span><span class="p">)</span>
-  <span class="nf">#&#39;</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
-      <span class="p">(</span><span class="nb">abs</span> <span class="p">(</span><span class="nb">-</span> <span class="nv">x</span> <span class="nv">num</span><span class="p">))))</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">diff</span> <span class="p">(</span><span class="nv">num</span><span class="p">)</span>
+  <span class="nf">#'</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">abs</span> <span class="p">(</span><span class="nb">-</span> <span class="nv">x</span> <span class="nv">num</span><span class="p">))))</span></p>
 
-<span class="c1">;; sorts in ascending order, according to the score given by the cost-fn</span>
+<p><span class="c1">;; sorts in ascending order, according to the score given by the cost-fn</span>
 <span class="p">(</span><span class="nb">defun</span> <span class="nv">sorter</span> <span class="p">(</span><span class="nv">cost-fn</span><span class="p">)</span>
-  <span class="nf">#&#39;</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">new</span> <span class="nv">old</span><span class="p">)</span>
-      <span class="p">(</span><span class="nb">sort</span> <span class="p">(</span><span class="nb">append</span> <span class="nv">new</span> <span class="nv">old</span><span class="p">)</span> <span class="nf">#&#39;</span><span class="nb">&lt;</span> <span class="ss">:key</span> <span class="nv">cost-fn</span><span class="p">)))</span>
+  <span class="nf">#'</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">new</span> <span class="nv">old</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">sort</span> <span class="p">(</span><span class="nb">append</span> <span class="nv">new</span> <span class="nv">old</span><span class="p">)</span> <span class="nf">#'</span><span class="nb">&lt;</span> <span class="ss">:key</span> <span class="nv">cost-fn</span><span class="p">)))</span></p>
 
-<span class="p">(</span><span class="nb">defun</span> <span class="nv">best-first-search</span> <span class="p">(</span><span class="nv">state</span> <span class="nv">goal-p</span> <span class="nv">successor</span> <span class="nv">cost-fn</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">tree-search</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">state</span><span class="p">)</span> <span class="nv">goal-p</span> <span class="nv">successor</span> <span class="p">(</span><span class="nv">sorter</span> <span class="nv">cost-fn</span><span class="p">)))</span>
-</code></pre></div>
-
+<p><span class="p">(</span><span class="nb">defun</span> <span class="nv">best-first-search</span> <span class="p">(</span><span class="nv">state</span> <span class="nv">goal-p</span> <span class="nv">successor</span> <span class="nv">cost-fn</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">tree-search</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">state</span><span class="p">)</span> <span class="nv">goal-p</span> <span class="nv">successor</span> <span class="p">(</span><span class="nv">sorter</span> <span class="nv">cost-fn</span><span class="p">)))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -315,18 +318,16 @@ function as a <em>key parameter</em> to the function <code>sort</code>.</p>
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>best-first-search 1 <span class="o">(</span>is 12<span class="o">)</span> <span class="c">#&#39;binary-tree (diff 12))</span>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (best-first-search 1 (is 12) #'binary-tree (diff 12))</p>
 
-<span class="go">(1) </span>
-<span class="go">(3 2) </span>
-<span class="go">(7 6 2) </span>
-<span class="go">(14 15 6 2) </span>
-<span class="go">(15 6 2 28 29) </span>
-<span class="go">(6 2 28 29 30 31) </span>
-<span class="go">(12 13 2 28 29 30 31) </span>
-<span class="go">12</span>
-</code></pre></div>
-
+<p>(1)
+(3 2)
+(7 6 2)
+(14 15 6 2)
+(15 6 2 28 29)
+(6 2 28 29 30 31)
+(12 13 2 28 29 30 31)
+12</code></pre></figure></p>
 
 <p></section></p>
 
@@ -363,36 +364,32 @@ so that the sort function will place it at the back of the queue.</p>
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl"><span class="c1">;; most-positive-fix-num returns the largest integer allowed in the system</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;; most-positive-fix-num returns the largest integer allowed in the system</span>
 <span class="p">(</span><span class="nb">defun</span> <span class="nv">price-is-right</span> <span class="p">(</span><span class="nv">num</span><span class="p">)</span>
-  <span class="nf">#&#39;</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+  <span class="nf">#'</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
       <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">&gt;</span> <span class="nv">x</span> <span class="nv">num</span><span class="p">)</span>
           <span class="nv">most-positive-fixnum</span>
-          <span class="nv">x</span><span class="p">)))</span>
-</code></pre></div>
-
+          <span class="nv">x</span><span class="p">)))</span></code></pre></figure></p>
 
 <p></section></p>
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>best-first-search 1 <span class="o">(</span>is 12<span class="o">)</span> <span class="c">#&#39;binary-tree (price-is-right 12))</span>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (best-first-search 1 (is 12) #'binary-tree (price-is-right 12))</p>
 
-<span class="go">(1) </span>
-<span class="go">(2 3) </span>
-<span class="go">(3 4 5) </span>
-<span class="go">(4 5 6 7) </span>
-<span class="go">(5 6 7 8 9) </span>
-<span class="go">(6 7 8 9 10 11) </span>
-<span class="go">(7 8 9 10 11 12 13) </span>
-<span class="go">(8 9 10 11 12 14 15 13) </span>
-<span class="go">(9 10 11 12 16 17 14 15 13) </span>
-<span class="go">(10 11 12 18 19 16 17 14 15 13) </span>
-<span class="go">(11 12 20 21 18 19 16 17 14 15 13) </span>
-<span class="go">(12 22 23 20 21 18 19 16 17 14 15 13) </span>
-<span class="go">12</span>
-</code></pre></div>
-
+<p>(1)
+(2 3)
+(3 4 5)
+(4 5 6 7)
+(5 6 7 8 9)
+(6 7 8 9 10 11)
+(7 8 9 10 11 12 13)
+(8 9 10 11 12 14 15 13)
+(9 10 11 12 16 17 14 15 13)
+(10 11 12 18 19 16 17 14 15 13)
+(11 12 20 21 18 19 16 17 14 15 13)
+(12 22 23 20 21 18 19 16 17 14 15 13)
+12</code></pre></figure></p>
 
 <p></section></p>
 
@@ -413,14 +410,12 @@ is determined by the beam width.</p>
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">beam-search</span> <span class="p">(</span><span class="nv">state</span> <span class="nv">goal-p</span> <span class="nv">successor</span> <span class="nv">cost-fn</span> <span class="nv">beam-width</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">tree-search</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">state</span><span class="p">)</span> <span class="nv">goal-p</span> <span class="nv">successor</span> <span class="nf">#&#39;</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">new</span> <span class="nv">old</span><span class="p">)</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">beam-search</span> <span class="p">(</span><span class="nv">state</span> <span class="nv">goal-p</span> <span class="nv">successor</span> <span class="nv">cost-fn</span> <span class="nv">beam-width</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">tree-search</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">state</span><span class="p">)</span> <span class="nv">goal-p</span> <span class="nv">successor</span> <span class="nf">#'</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">new</span> <span class="nv">old</span><span class="p">)</span>
                                                  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">sorted</span> <span class="p">(</span><span class="nb">funcall</span> <span class="p">(</span><span class="nv">sorter</span> <span class="nv">cost-fn</span><span class="p">)</span> <span class="nv">new</span> <span class="nv">old</span><span class="p">)))</span>
                                                    <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">&gt;</span> <span class="nv">beam-width</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">sorted</span><span class="p">))</span>
                                                        <span class="nv">sorted</span>
-                                                       <span class="p">(</span><span class="nb">subseq</span> <span class="nv">sorted</span> <span class="mi">0</span> <span class="nv">beam-width</span><span class="p">))))))</span>
-</code></pre></div>
-
+                                                       <span class="p">(</span><span class="nb">subseq</span> <span class="nv">sorted</span> <span class="mi">0</span> <span class="nv">beam-width</span><span class="p">))))))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -428,18 +423,16 @@ is determined by the beam width.</p>
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>beam-search 1 <span class="o">(</span>is 12<span class="o">)</span> <span class="c">#&#39;binary-tree (price-is-right 12) 2)</span>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (beam-search 1 (is 12) #'binary-tree (price-is-right 12) 2)</p>
 
-<span class="go">(1) </span>
-<span class="go">(2 3) </span>
-<span class="go">(3 4) </span>
-<span class="go">(4 6) </span>
-<span class="go">(6 8) </span>
-<span class="go">(8 12) </span>
-<span class="go">(12 16) </span>
-<span class="go">12</span>
-</code></pre></div>
-
+<p>(1)
+(2 3)
+(3 4)
+(4 6)
+(6 8)
+(8 12)
+(12 16)
+12</code></pre></figure></p>
 
 <p></section></p>
 
@@ -449,19 +442,17 @@ is determined by the beam width.</p>
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>beam-search 1 <span class="o">(</span>is 12<span class="o">)</span> <span class="c">#&#39;binary-tree (price-is-right 12) 3)</span>
-<span class="go">(1) </span>
-<span class="go">(2 3) </span>
-<span class="go">(3 4 5) </span>
-<span class="go">(4 5 6) </span>
-<span class="go">(5 6 8) </span>
-<span class="go">(6 8 10) </span>
-<span class="go">(8 10 12) </span>
-<span class="go">(10 12 16) </span>
-<span class="go">(12 20 21) </span>
-<span class="go">12</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (beam-search 1 (is 12) #'binary-tree (price-is-right 12) 3)
+(1)
+(2 3)
+(3 4 5)
+(4 5 6)
+(5 6 8)
+(6 8 10)
+(8 10 12)
+(10 12 16)
+(12 20 21)
+12</code></pre></figure></p>
 
 <p></section></p>
 
@@ -486,10 +477,14 @@ which approach will work best.</p>
 </section>
 
 
-
-  </div>
-  <footer>
-    <p>&#0169; Mozart Reina 2012 | All Rights Reserved. </p>
-  </footer>
-</body>
+      </div>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <footer>
+            <p class="text-info">&#0169; Mozart Reina 2012 | All Rights Reserved. </p>
+            </footer>
+          </div>
+        </div>
+    </div>
+  </body>
 </html>

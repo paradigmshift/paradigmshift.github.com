@@ -1,68 +1,87 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset=utf-8 />
-  <title>  Soma-RSS, a Lisp-powered RSS feed creator |  Mozart Reina </title>
-  <link rel="stylesheet" href="/css/styles.css" type="text/css" />
-  <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
-  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.93/jsxgraphcore.js"></script>
-  <link rel="stylesheet" type="text/css" href="http://jsxgraph.uni-bayreuth.de/distrib/jsxgraph.css" />
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-  <script type="text/javascript" src="/scripts/menu.js"></script>
-  <script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    MathJax.Hub.Config({
-    tex2jax: {
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-    });
-    
-    MathJax.Hub.Queue(function() {
-    // Fix <code> tags after MathJax finishes running. This is a
-      // hack to overcome a shortcoming of Markdown. Discussion at
-      // https://github.com/mojombo/jekyll/issues/199
-      var all = MathJax.Hub.getAllJax(), i;
-      for(i = 0; i < all.length; i += 1) {
-                   all[i].SourceElement().parentNode.className += ' has-jax';
-                   }
-                   });
-  </script>
-  <script type="text/javascript">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>  Soma-RSS, a Lisp-powered RSS feed creator |  Mozart Reina </title>
+    <link rel="stylesheet" href="/bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/styles.css" type="text/css" />
+    <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.93/jsxgraphcore.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://jsxgraph.uni-bayreuth.de/distrib/jsxgraph.css" />
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      MathJax.Hub.Config({
+      tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+      });
 
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-33571143-1']);
-    _gaq.push(['_trackPageview']);
+      MathJax.Hub.Queue(function() {
+      // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+                       all[i].SourceElement().parentNode.className += ' has-jax';
+                       }
+                       });
+                       </script>
+    <script type="text/javascript">
 
-    (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-33571143-1']);
+      _gaq.push(['_trackPageview']);
 
-  </script>
-</head>
-<body>
-  
-  <header id="top">
-    <h1> Math, Lisp, and general hackery </h1>
-  </header>
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
 
-  <div id="rss">
-    <a href="feed.xml">
-      <img src="/img/Feed-icon.svg"/>
-    </a>
-  </div>
-  
-  <nav role="navigation">
-    <ul id="menu">
-          <li><a href="/">Home</a>
-          <li><a href="/entries/">Entries</a></li>
-          <li><a href="/about/">About</a></li>
-    </ul>
-  </nav>
- 
-  <div id="main">
-      <section id="content">
+    </script>
+    <script src="/scripts/application.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid" id="main-container">
+      <div class="page-header">
+        <h1> Math, Lisp, <small> and other hackery </small> </h1>
+      </div>
+
+      <!-- <div id="rss"> -->
+      <!--   <a href="feed.xml"> -->
+      <!--     <img src="/img/Feed-icon.svg"/> -->
+      <!--   </a> -->
+      <!-- </div> -->
+      <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about/">About</a></li>
+              <li><a href="/entries/">Entries</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+        <section id="content">
   <h2> Soma-RSS, a Lisp-powered RSS feed creator </h2>
   <section class="text">
     <h3>The Project</h3>
@@ -85,19 +104,17 @@
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">create-entry</span> <span class="p">(</span><span class="nv">items</span><span class="p">)</span>
-      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">out</span> <span class="p">(</span><span class="nb">format</span> <span class="no">nil</span> <span class="s">&quot;&lt;?xml version=&#39;1.0&#39;?&gt;</span>
-<span class="s">                     &lt;rss version=&#39;2.0&#39;&gt;</span>
-<span class="s">                     &lt;channel&gt; </span>
-<span class="s">                     &lt;title&gt;Math, Lisp, and general hackery&lt;/title&gt; </span>
-<span class="s">                     &lt;description&gt;On-going documentation of my studies and projects&lt;/description&gt; </span>
-<span class="s">                     &lt;link&gt;http://mozartreina.com&lt;/link&gt; </span>
-<span class="s">                     ~{~a~}</span>
-<span class="s">                     &lt;/channel&gt;</span>
-<span class="s">                     &lt;/rss&gt;&quot;</span> <span class="nv">items</span><span class="p">)))</span>
-        <span class="nv">out</span><span class="p">))</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">create-entry</span> <span class="p">(</span><span class="nv">items</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">out</span> <span class="p">(</span><span class="nb">format</span> <span class="no">nil</span> <span class="s">"&lt;?xml version='1.0'?&gt;
+                     &lt;rss version='2.0'&gt;
+                     &lt;channel&gt;
+                     &lt;title&gt;Math, Lisp, and general hackery&lt;/title&gt;
+                     &lt;description&gt;On-going documentation of my studies and projects&lt;/description&gt;
+                     &lt;link&gt;http://mozartreina.com&lt;/link&gt;
+                     ~{~a~}
+                     &lt;/channel&gt;
+                     &lt;/rss&gt;"</span> <span class="nv">items</span><span class="p">)))</span>
+        <span class="nv">out</span><span class="p">))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -107,23 +124,21 @@
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">aggregate</span> <span class="p">(</span><span class="nv">dir</span> <span class="nv">path</span><span class="p">)</span>
-      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">entries</span> <span class="p">(</span><span class="nb">directory</span> <span class="p">(</span><span class="nb">concatenate</span> <span class="ss">&#39;string</span> <span class="nv">dir</span> <span class="s">&quot;/*.html&quot;</span><span class="p">)))</span>
-            <span class="p">(</span><span class="nv">parsed-data</span> <span class="o">&#39;</span><span class="p">()))</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">aggregate</span> <span class="p">(</span><span class="nv">dir</span> <span class="nv">path</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">entries</span> <span class="p">(</span><span class="nb">directory</span> <span class="p">(</span><span class="nb">concatenate</span> <span class="ss">'string</span> <span class="nv">dir</span> <span class="s">"/*.html"</span><span class="p">)))</span>
+            <span class="p">(</span><span class="nv">parsed-data</span> <span class="o">'</span><span class="p">()))</span>
         <span class="p">(</span><span class="nb">mapcar</span> <span class="p">(</span><span class="k">lambda</span><span class="p">(</span><span class="nv">x</span><span class="p">)</span>
                   <span class="p">(</span><span class="nb">with-open-file</span> <span class="p">(</span><span class="nc">stream</span> <span class="nv">x</span>
                                           <span class="ss">:direction</span> <span class="ss">:input</span><span class="p">)</span>
                     <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">data</span> <span class="p">(</span><span class="nb">make-string</span> <span class="p">(</span><span class="nb">file-length</span> <span class="nc">stream</span><span class="p">))))</span>
                       <span class="p">(</span><span class="nb">read-sequence</span> <span class="nv">data</span> <span class="nc">stream</span><span class="p">)</span>
-                      <span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nv">item-gen</span> <span class="p">(</span><span class="nv">parse-html</span> <span class="nv">data</span> <span class="s">&quot;&lt;title&gt;&quot;</span> <span class="s">&quot;&lt;/title&gt;&quot;</span><span class="p">)</span>
+                      <span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nv">item-gen</span> <span class="p">(</span><span class="nv">parse-html</span> <span class="nv">data</span> <span class="s">"&lt;title&gt;"</span> <span class="s">"&lt;/title&gt;"</span><span class="p">)</span>
                                       <span class="p">(</span><span class="nb">pathname-name</span> <span class="nv">x</span><span class="p">)</span>
-                                      <span class="p">(</span><span class="nv">parse-html</span> <span class="nv">data</span> <span class="s">&quot;&lt;p&gt;&quot;</span> <span class="s">&quot;&lt;/p&gt;&quot;</span><span class="p">)</span>
+                                      <span class="p">(</span><span class="nv">parse-html</span> <span class="nv">data</span> <span class="s">"&lt;p&gt;"</span> <span class="s">"&lt;/p&gt;"</span><span class="p">)</span>
                                       <span class="nv">path</span><span class="p">)</span>
                             <span class="nv">parsed-data</span><span class="p">))))</span>
                 <span class="nv">entries</span><span class="p">)</span>
-        <span class="nv">parsed-data</span><span class="p">))</span>
-</code></pre></div>
-
+        <span class="nv">parsed-data</span><span class="p">))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -143,36 +158,35 @@
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">remove-quote</span> <span class="p">(</span><span class="nv">str</span><span class="p">)</span>
-      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">q</span> <span class="p">(</span><span class="nb">search</span> <span class="s">&quot;\&quot;&quot;</span> <span class="nv">str</span><span class="p">))</span>
-            <span class="p">(</span><span class="nv">tag-beg</span> <span class="p">(</span><span class="nb">search</span> <span class="s">&quot;\&lt;&quot;</span> <span class="nv">str</span><span class="p">))</span>
-            <span class="p">(</span><span class="nv">tag-end</span> <span class="p">(</span><span class="nb">search</span> <span class="s">&quot;\&gt;&quot;</span> <span class="nv">str</span><span class="p">)))</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">remove-quote</span> <span class="p">(</span><span class="nv">str</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">q</span> <span class="p">(</span><span class="nb">search</span> <span class="s">"\""</span> <span class="nv">str</span><span class="p">))</span>
+            <span class="p">(</span><span class="nv">tag-beg</span> <span class="p">(</span><span class="nb">search</span> <span class="s">"&amp;lt;"</span> <span class="nv">str</span><span class="p">))</span>
+            <span class="p">(</span><span class="nv">tag-end</span> <span class="p">(</span><span class="nb">search</span> <span class="s">"&amp;gt;"</span> <span class="nv">str</span><span class="p">)))</span>
         <span class="p">(</span><span class="nb">cond</span> <span class="p">(</span><span class="nv">q</span> <span class="p">(</span><span class="k">progn</span> <span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nb">char</span> <span class="nv">str</span> <span class="nv">q</span><span class="p">)</span> <span class="sc">#\space</span><span class="p">)</span>
                         <span class="p">(</span><span class="nv">remove-quote</span> <span class="nv">str</span><span class="p">)))</span>
               <span class="p">(</span><span class="nv">tag-beg</span> <span class="p">(</span><span class="k">progn</span> <span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nb">char</span> <span class="nv">str</span> <span class="nv">tag-beg</span><span class="p">)</span> <span class="sc">#\space</span><span class="p">)</span>
                               <span class="p">(</span><span class="nv">remove-quote</span> <span class="nv">str</span><span class="p">)))</span>
               <span class="p">(</span><span class="nv">tag-end</span> <span class="p">(</span><span class="k">progn</span> <span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nb">char</span> <span class="nv">str</span> <span class="nv">tag-end</span><span class="p">)</span> <span class="sc">#\space</span><span class="p">)</span>
                               <span class="p">(</span><span class="nv">remove-quote</span> <span class="nv">str</span><span class="p">)))</span>
-              <span class="p">(</span><span class="no">t</span> <span class="nv">str</span><span class="p">))))</span>
+              <span class="p">(</span><span class="no">t</span> <span class="nv">str</span><span class="p">))))</span></p>
 
-    <span class="p">(</span><span class="nb">defun</span> <span class="nv">parse-html</span> <span class="p">(</span><span class="nv">str</span> <span class="nv">beg</span> <span class="nv">end</span><span class="p">)</span>
-      <span class="p">(</span><span class="nb">subseq</span> <span class="nv">str</span> <span class="p">(</span><span class="nb">search</span> <span class="nv">beg</span> <span class="nv">str</span><span class="p">)</span> <span class="p">(</span><span class="nb">search</span> <span class="nv">end</span> <span class="nv">str</span><span class="p">)))</span>
+<pre><code>&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt; &lt;span class="nv"&gt;parse-html&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;str&lt;/span&gt; &lt;span class="nv"&gt;beg&lt;/span&gt; &lt;span class="nv"&gt;end&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;subseq&lt;/span&gt; &lt;span class="nv"&gt;str&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;search&lt;/span&gt; &lt;span class="nv"&gt;beg&lt;/span&gt; &lt;span class="nv"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;search&lt;/span&gt; &lt;span class="nv"&gt;end&lt;/span&gt; &lt;span class="nv"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 
-    <span class="p">(</span><span class="nb">defun</span> <span class="nv">item-gen</span> <span class="p">(</span><span class="nv">title</span> <span class="nv">address</span> <span class="nv">dscrp</span> <span class="nv">path</span><span class="p">)</span>
-      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">dscrp</span> <span class="p">(</span><span class="nv">remove-quote</span> <span class="nv">dscrp</span><span class="p">)))</span>
-        <span class="p">(</span><span class="nb">format</span> <span class="no">nil</span> <span class="s">&quot;&lt;item&gt;</span>
-<span class="s">                   &lt;title&gt; ~a &lt;/title&gt;</span>
-<span class="s">                   &lt;description&gt; ~a &lt;/description&gt;</span>
-<span class="s">                   &lt;link&gt; ~a/~a.html &lt;/link&gt;</span>
-<span class="s">                   &lt;/item&gt;&quot;</span> <span class="p">(</span><span class="nb">subseq</span> <span class="nv">title</span> <span class="mi">7</span><span class="p">)</span> <span class="p">(</span><span class="nb">subseq</span> <span class="nv">dscrp</span> <span class="mi">3</span> <span class="mi">50</span><span class="p">)</span> <span class="nv">path</span> <span class="nv">address</span><span class="p">)))</span>
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt; &lt;span class="nv"&gt;item-gen&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;title&lt;/span&gt; &lt;span class="nv"&gt;address&lt;/span&gt; &lt;span class="nv"&gt;dscrp&lt;/span&gt; &lt;span class="nv"&gt;path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;dscrp&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;remove-quote&lt;/span&gt; &lt;span class="nv"&gt;dscrp&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;format&lt;/span&gt; &lt;span class="no"&gt;nil&lt;/span&gt; &lt;span class="s"&gt;"&amp;lt;item&amp;gt;
+               &amp;lt;title&amp;gt; ~a &amp;lt;/title&amp;gt;
+               &amp;lt;description&amp;gt; ~a &amp;lt;/description&amp;gt;
+               &amp;lt;link&amp;gt; ~a/~a.html &amp;lt;/link&amp;gt;
+               &amp;lt;/item&amp;gt;"&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;subseq&lt;/span&gt; &lt;span class="nv"&gt;title&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;subseq&lt;/span&gt; &lt;span class="nv"&gt;dscrp&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;path&lt;/span&gt; &lt;span class="nv"&gt;address&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 
-    <span class="p">(</span><span class="nb">defun</span> <span class="nv">create-file</span> <span class="p">(</span><span class="nv">data</span><span class="p">)</span>
-      <span class="p">(</span><span class="nb">with-open-file</span> <span class="p">(</span><span class="nc">stream</span> <span class="s">&quot;feed.xml&quot;</span>
-                              <span class="ss">:direction</span> <span class="ss">:output</span>
-                              <span class="ss">:if-exists</span> <span class="ss">:supersede</span><span class="p">)</span>
-        <span class="p">(</span><span class="nb">format</span> <span class="nc">stream</span> <span class="s">&quot;~a&quot;</span> <span class="nv">data</span><span class="p">)))</span>
-</code></pre></div>
-
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt; &lt;span class="nv"&gt;create-file&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;with-open-file&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nc"&gt;stream&lt;/span&gt; &lt;span class="s"&gt;"feed.xml"&lt;/span&gt;
+                          &lt;span class="ss"&gt;:direction&lt;/span&gt; &lt;span class="ss"&gt;:output&lt;/span&gt;
+                          &lt;span class="ss"&gt;:if-exists&lt;/span&gt; &lt;span class="ss"&gt;:supersede&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;format&lt;/span&gt; &lt;span class="nc"&gt;stream&lt;/span&gt; &lt;span class="s"&gt;"~a"&lt;/span&gt; &lt;span class="nv"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+</code></pre>
 
 <p></section></p>
 
@@ -183,10 +197,8 @@
 <p>Enter stage right:
 <section class="code"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">run-from-shell</span> <span class="p">()</span>
-      <span class="p">(</span><span class="nv">create-file</span> <span class="p">(</span><span class="nv">create-entry</span> <span class="p">(</span><span class="nv">aggregate</span> <span class="p">(</span><span class="nb">nth</span> <span class="mi">1</span> <span class="vg">*posix-argv*</span><span class="p">)</span> <span class="p">(</span><span class="nb">nth</span> <span class="mi">2</span> <span class="vg">*posix-argv*</span><span class="p">)))))</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">run-from-shell</span> <span class="p">()</span>
+      <span class="p">(</span><span class="nv">create-file</span> <span class="p">(</span><span class="nv">create-entry</span> <span class="p">(</span><span class="nv">aggregate</span> <span class="p">(</span><span class="nb">nth</span> <span class="mi">1</span> <span class="vg"><em>posix-argv</em></span><span class="p">)</span> <span class="p">(</span><span class="nb">nth</span> <span class="mi">2</span> <span class="vg"><em>posix-argv</em></span><span class="p">)))))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -194,19 +206,15 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> *posix-argv*
-<span class="go">(&quot;sbcl&quot;)</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ <em>posix-argv</em>
+("sbcl")</code></pre></figure></p>
 
 <p></section></p>
 
 <p>Now to create the executable, at the <code>REPL</code> enter:
 <section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>sb-ext:save-lisp-and-die <span class="s2">&quot;soma.lisp&quot;</span> :toplevel <span class="c">#&#39;run-from-shell :executable t)</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (sb-ext:save-lisp-and-die "soma.lisp" :toplevel #'run-from-shell :executable t)</code></pre></figure></p>
 
 <p></section></p>
 
@@ -223,10 +231,14 @@
 </section>
 
 
-
-  </div>
-  <footer>
-    <p>&#0169; Mozart Reina 2012 | All Rights Reserved. </p>
-  </footer>
-</body>
+      </div>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <footer>
+            <p class="text-info">&#0169; Mozart Reina 2012 | All Rights Reserved. </p>
+            </footer>
+          </div>
+        </div>
+    </div>
+  </body>
 </html>

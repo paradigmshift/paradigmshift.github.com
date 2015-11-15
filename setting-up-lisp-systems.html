@@ -1,68 +1,87 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset=utf-8 />
-  <title>  Setting up Lisp Systems |  Mozart Reina </title>
-  <link rel="stylesheet" href="/css/styles.css" type="text/css" />
-  <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
-  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.93/jsxgraphcore.js"></script>
-  <link rel="stylesheet" type="text/css" href="http://jsxgraph.uni-bayreuth.de/distrib/jsxgraph.css" />
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-  <script type="text/javascript" src="/scripts/menu.js"></script>
-  <script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    MathJax.Hub.Config({
-    tex2jax: {
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-    });
-    
-    MathJax.Hub.Queue(function() {
-    // Fix <code> tags after MathJax finishes running. This is a
-      // hack to overcome a shortcoming of Markdown. Discussion at
-      // https://github.com/mojombo/jekyll/issues/199
-      var all = MathJax.Hub.getAllJax(), i;
-      for(i = 0; i < all.length; i += 1) {
-                   all[i].SourceElement().parentNode.className += ' has-jax';
-                   }
-                   });
-  </script>
-  <script type="text/javascript">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>  Setting up Lisp Systems |  Mozart Reina </title>
+    <link rel="stylesheet" href="/bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/styles.css" type="text/css" />
+    <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.93/jsxgraphcore.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://jsxgraph.uni-bayreuth.de/distrib/jsxgraph.css" />
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      MathJax.Hub.Config({
+      tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+      });
 
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-33571143-1']);
-    _gaq.push(['_trackPageview']);
+      MathJax.Hub.Queue(function() {
+      // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+                       all[i].SourceElement().parentNode.className += ' has-jax';
+                       }
+                       });
+                       </script>
+    <script type="text/javascript">
 
-    (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-33571143-1']);
+      _gaq.push(['_trackPageview']);
 
-  </script>
-</head>
-<body>
-  
-  <header id="top">
-    <h1> Math, Lisp, and general hackery </h1>
-  </header>
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
 
-  <div id="rss">
-    <a href="feed.xml">
-      <img src="/img/Feed-icon.svg"/>
-    </a>
-  </div>
-  
-  <nav role="navigation">
-    <ul id="menu">
-          <li><a href="/">Home</a>
-          <li><a href="/entries/">Entries</a></li>
-          <li><a href="/about/">About</a></li>
-    </ul>
-  </nav>
- 
-  <div id="main">
-      <section id="content">
+    </script>
+    <script src="/scripts/application.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid" id="main-container">
+      <div class="page-header">
+        <h1> Math, Lisp, <small> and other hackery </small> </h1>
+      </div>
+
+      <!-- <div id="rss"> -->
+      <!--   <a href="feed.xml"> -->
+      <!--     <img src="/img/Feed-icon.svg"/> -->
+      <!--   </a> -->
+      <!-- </div> -->
+      <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about/">About</a></li>
+              <li><a href="/entries/">Entries</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+        <section id="content">
   <h2> Setting up Lisp Systems </h2>
   <section class="text">
     <h3>What is a Lisp System?</h3>
@@ -84,9 +103,7 @@
 <p>Add this to the file (in this example we will be using my toplevel lisp directory):
 <section class="code"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="ss">:tree</span> <span class="p">(</span><span class="ss">:home</span> <span class="s">&quot;~/dev/lisp/&quot;</span><span class="p">))</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="ss">:tree</span> <span class="p">(</span><span class="ss">:home</span> <span class="s">"~/dev/lisp/"</span><span class="p">))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -96,17 +113,15 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>ql:quickload <span class="s2">&quot;quickproject&quot;</span><span class="o">)</span>
-<span class="go">To load &quot;quickproject&quot;:</span>
-<span class="go">  Load 1 ASDF system:</span>
-<span class="go">    quickproject</span>
-<span class="go">; Loading &quot;quickproject&quot;</span>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (ql:quickload "quickproject")
+To load "quickproject":
+  Load 1 ASDF system:
+    quickproject
+; Loading "quickproject"</p>
 
-<span class="go">(&quot;quickproject&quot;)</span>
-<span class="gp">CL@USER$</span>&lt;<span class="o">(</span>quickproject:make-project <span class="s2">&quot;/home/mo/dev/lisp/my-tools/&quot;</span><span class="o">)</span>
-<span class="go">&quot;my-tools&quot;</span>
-</code></pre></div>
-
+<p>("quickproject")
+CL@USER$&lt;(quickproject:make-project "/home/mo/dev/lisp/my-tools/")
+"my-tools"</code></pre></figure></p>
 
 <p></section></p>
 
@@ -114,12 +129,10 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="go">|-README.txt</span>
-<span class="go">|-my-tools.asd</span>
-<span class="go">|-package.lisp</span>
-<span class="go">|-my-tools.lisp</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">|-README.txt
+|-my-tools.asd
+|-package.lisp
+|-my-tools.lisp</code></pre></figure></p>
 
 <p></section></p>
 
@@ -127,15 +140,13 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span><span class="o">(</span>ql:quickload <span class="s2">&quot;my-tools&quot;</span><span class="o">)</span>
-<span class="go">To load &quot;my-tools&quot;:</span>
-<span class="go">  Load 1 ASDF system:</span>
-<span class="go">    my-tools</span>
-<span class="go">; Loading &quot;my-tools&quot;</span>
-<span class="go">[package my-tools]</span>
-<span class="go">(&quot;my-tools&quot;)</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$(ql:quickload "my-tools")
+To load "my-tools":
+  Load 1 ASDF system:
+    my-tools
+; Loading "my-tools"
+[package my-tools]
+("my-tools")</code></pre></figure></p>
 
 <p></section></p>
 
@@ -149,38 +160,37 @@
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">switch</span> <span class="p">(</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">lst</span><span class="p">)</span>
-      <span class="s">&quot;Switch elements at position a &amp; b with each other&quot;</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">switch</span> <span class="p">(</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">lst</span><span class="p">)</span>
+      <span class="s">"Switch elements at position a &amp; b with each other"</span>
       <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">newlst</span> <span class="p">(</span><span class="nb">copy-list</span> <span class="nv">lst</span><span class="p">)))</span>
         <span class="p">(</span><span class="nb">psetf</span> <span class="p">(</span><span class="nb">nth</span> <span class="nv">a</span> <span class="nv">newlst</span><span class="p">)</span> <span class="p">(</span><span class="nb">nth</span> <span class="nv">b</span> <span class="nv">newlst</span><span class="p">)</span>
                <span class="p">(</span><span class="nb">nth</span> <span class="nv">b</span> <span class="nv">newlst</span><span class="p">)</span> <span class="p">(</span><span class="nb">nth</span> <span class="nv">a</span> <span class="nv">newlst</span><span class="p">))</span>
-        <span class="nv">newlst</span><span class="p">))</span>
+        <span class="nv">newlst</span><span class="p">))</span></p>
 
-    <span class="p">(</span><span class="nb">defun</span> <span class="nv">permute</span> <span class="p">(</span><span class="nv">lst</span><span class="p">)</span>
-      <span class="c1">;; reduces the results from start-algo function</span>
-      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">final</span> <span class="no">nil</span><span class="p">))</span>
-        <span class="p">(</span><span class="nb">mapcar</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
-                  <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">=</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">lst</span><span class="p">))</span>
-                      <span class="p">(</span><span class="nb">push</span> <span class="nv">x</span> <span class="nv">final</span><span class="p">)))</span>
-                <span class="p">(</span><span class="nv">start-algo</span> <span class="nv">lst</span><span class="p">))</span>
-        <span class="nv">final</span><span class="p">))</span>
+<pre><code>&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt; &lt;span class="nv"&gt;permute&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="c1"&gt;;; reduces the results from start-algo function&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;final&lt;/span&gt; &lt;span class="no"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;mapcar&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+              &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;length&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;length&lt;/span&gt; &lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+                  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;push&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;final&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;start-algo&lt;/span&gt; &lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="nv"&gt;final&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 
-    <span class="p">(</span><span class="nb">defun</span> <span class="nv">start-algo</span> <span class="p">(</span><span class="nv">lst</span><span class="p">)</span>  
-      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">container</span> <span class="no">nil</span><span class="p">))</span>
-        <span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nb">list</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">lst</span><span class="p">)</span> <span class="p">(</span><span class="nb">cadr</span> <span class="nv">lst</span><span class="p">))</span> <span class="nv">container</span><span class="p">)</span>
-        <span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nv">switch</span> <span class="mi">0</span> <span class="mi">1</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">container</span><span class="p">))</span> <span class="nv">container</span><span class="p">)</span>
-        <span class="p">(</span><span class="nb">setf</span> <span class="nv">lst</span> <span class="p">(</span><span class="nb">cddr</span> <span class="nv">lst</span><span class="p">))</span>
-        <span class="p">(</span><span class="nb">dotimes</span> <span class="p">(</span><span class="nv">n</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">lst</span><span class="p">))</span>
-          <span class="p">(</span><span class="nb">mapcar</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
-                    <span class="p">(</span><span class="nb">setf</span> <span class="nv">x</span> <span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">lst</span><span class="p">)</span> <span class="nv">x</span><span class="p">))</span>
-                    <span class="p">(</span><span class="nb">push</span> <span class="nv">x</span> <span class="nv">container</span><span class="p">)</span>
-                    <span class="p">(</span><span class="nb">dotimes</span> <span class="p">(</span><span class="nv">i</span> <span class="p">(</span><span class="nb">1-</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">x</span><span class="p">)))</span>
-                      <span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nv">switch</span> <span class="nv">i</span> <span class="p">(</span><span class="nb">1+</span> <span class="nv">i</span><span class="p">)</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">container</span><span class="p">))</span> <span class="nv">container</span><span class="p">)))</span>
-                  <span class="nv">container</span><span class="p">)</span>
-          <span class="p">(</span><span class="nb">setf</span> <span class="nv">lst</span> <span class="p">(</span><span class="nb">cdr</span> <span class="nv">lst</span><span class="p">)))</span>
-        <span class="nv">container</span><span class="p">))</span>
-</code></pre></div>
-
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt; &lt;span class="nv"&gt;start-algo&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;container&lt;/span&gt; &lt;span class="no"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;push&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car&lt;/span&gt; &lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr&lt;/span&gt; &lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="nv"&gt;container&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;push&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;switch&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car&lt;/span&gt; &lt;span class="nv"&gt;container&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="nv"&gt;container&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;setf&lt;/span&gt; &lt;span class="nv"&gt;lst&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cddr&lt;/span&gt; &lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;dotimes&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;length&lt;/span&gt; &lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;mapcar&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;setf&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;push&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car&lt;/span&gt; &lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+                &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;push&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;container&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;dotimes&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;1-&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;length&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+                  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;push&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;switch&lt;/span&gt; &lt;span class="nv"&gt;i&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;1+&lt;/span&gt; &lt;span class="nv"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car&lt;/span&gt; &lt;span class="nv"&gt;container&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="nv"&gt;container&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+              &lt;span class="nv"&gt;container&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;setf&lt;/span&gt; &lt;span class="nv"&gt;lst&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr&lt;/span&gt; &lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+    &lt;span class="nv"&gt;container&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+</code></pre>
 
 <p></section></p>
 
@@ -192,12 +202,11 @@
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="c1">;;;; package.lisp</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="c1">;;;; package.lisp</span></p>
 
-    <span class="p">(</span><span class="nb">defpackage</span> <span class="ss">#:my-tools</span>
-      <span class="p">(</span><span class="ss">:use</span> <span class="ss">#:cl</span><span class="p">))</span>
-</code></pre></div>
-
+<pre><code>&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defpackage&lt;/span&gt; &lt;span class="ss"&gt;#:my-tools&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:use&lt;/span&gt; &lt;span class="ss"&gt;#:cl&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+</code></pre>
 
 <p></section></p>
 
@@ -207,14 +216,13 @@
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="c1">;;;; my-tools.asd</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="c1">;;;; my-tools.asd</span></p>
 
-    <span class="p">(</span><span class="nv">asdf:defsystem</span> <span class="ss">#:my-tools</span>
-      <span class="ss">:serial</span> <span class="no">t</span>
-      <span class="ss">:components</span> <span class="p">((</span><span class="ss">:file</span> <span class="s">&quot;package&quot;</span><span class="p">)</span>
-                   <span class="p">(</span><span class="ss">:file</span> <span class="s">&quot;my-tools&quot;</span><span class="p">)))</span>
-</code></pre></div>
-
+<pre><code>&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;asdf:defsystem&lt;/span&gt; &lt;span class="ss"&gt;#:my-tools&lt;/span&gt;
+  &lt;span class="ss"&gt;:serial&lt;/span&gt; &lt;span class="no"&gt;t&lt;/span&gt;
+  &lt;span class="ss"&gt;:components&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="ss"&gt;:file&lt;/span&gt; &lt;span class="s"&gt;"package"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+               &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:file&lt;/span&gt; &lt;span class="s"&gt;"my-tools"&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+</code></pre>
 
 <p></section></p>
 
@@ -222,15 +230,14 @@
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="c1">;;;; my-tools.asd</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="c1">;;;; my-tools.asd</span></p>
 
-    <span class="p">(</span><span class="nv">asdf:defsystem</span> <span class="ss">#:my-tools</span>
-      <span class="ss">:serial</span> <span class="no">t</span>
-      <span class="ss">:depends-on</span> <span class="p">(</span><span class="ss">#:drakma</span><span class="p">)</span>
-      <span class="ss">:components</span> <span class="p">((</span><span class="ss">:file</span> <span class="s">&quot;package&quot;</span><span class="p">)</span>
-                   <span class="p">(</span><span class="ss">:file</span> <span class="s">&quot;my-tools&quot;</span><span class="p">)))</span>
-</code></pre></div>
-
+<pre><code>&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;asdf:defsystem&lt;/span&gt; &lt;span class="ss"&gt;#:my-tools&lt;/span&gt;
+  &lt;span class="ss"&gt;:serial&lt;/span&gt; &lt;span class="no"&gt;t&lt;/span&gt;
+  &lt;span class="ss"&gt;:depends-on&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;#:drakma&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="ss"&gt;:components&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="ss"&gt;:file&lt;/span&gt; &lt;span class="s"&gt;"package"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+               &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:file&lt;/span&gt; &lt;span class="s"&gt;"my-tools"&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+</code></pre>
 
 <p></section></p>
 
@@ -238,15 +245,13 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>ql:quickload <span class="s2">&quot;my-tools&quot;</span><span class="o">)</span>
-<span class="go">To load &quot;my-tools&quot;:</span>
-<span class="go">  Load 1 ASDF system:</span>
-<span class="go">    my-tools</span>
-<span class="go">; Loading &quot;my-tools&quot;</span>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (ql:quickload "my-tools")
+To load "my-tools":
+  Load 1 ASDF system:
+    my-tools
+; Loading "my-tools"</p>
 
-<span class="go">(&quot;my-tools&quot;)</span>
-</code></pre></div>
-
+<p>("my-tools")</code></pre></figure></p>
 
 <p></section></p>
 
@@ -254,14 +259,12 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>my-tools::permute <span class="err">&#39;</span><span class="o">(</span>1 2 3 4<span class="o">))</span>
-<span class="go">((4 1 2 3) (1 4 2 3) (1 2 4 3) (1 2 3 4) (4 1 3 2) (1 4 3 2) (1 3 4 2)</span>
-<span class="go"> (1 3 2 4) (4 3 1 2) (3 4 1 2) (3 1 4 2) (3 1 2 4) (4 2 1 3) (2 4 1 3)</span>
-<span class="go"> (2 1 4 3) (2 1 3 4) (4 2 3 1) (2 4 3 1) (2 3 4 1) (2 3 1 4) (4 3 2 1)</span>
-<span class="go"> (3 4 2 1) (3 2 4 1) (3 2 1 4))</span>
-<span class="gp">CL@USER$</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (my-tools::permute '(1 2 3 4))
+((4 1 2 3) (1 4 2 3) (1 2 4 3) (1 2 3 4) (4 1 3 2) (1 4 3 2) (1 3 4 2)
+ (1 3 2 4) (4 3 1 2) (3 4 1 2) (3 1 4 2) (3 1 2 4) (4 2 1 3) (2 4 1 3)
+ (2 1 4 3) (2 1 3 4) (4 2 3 1) (2 4 3 1) (2 3 4 1) (2 3 1 4) (4 3 2 1)
+ (3 4 2 1) (3 2 4 1) (3 2 1 4))
+CL@USER$</code></pre></figure></p>
 
 <p></section></p>
 
@@ -273,20 +276,18 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>permute <span class="err">&#39;</span><span class="o">(</span>1 2 3 4<span class="o">))</span>
-<span class="go">; in: PERMUTE &#39;(1 2 3 4)</span>
-<span class="go">;     (PERMUTE &#39;(1 2 3 4))</span>
-<span class="go">; </span>
-<span class="go">; caught STYLE-WARNING:</span>
-<span class="go">;   undefined function: PERMUTE</span>
-<span class="go">; </span>
-<span class="go">; compilation unit finished</span>
-<span class="go">;   Undefined function:</span>
-<span class="go">;     PERMUTE</span>
-<span class="go">;   caught 1 STYLE-WARNING condition</span>
-<span class="go">; Evaluation aborted on #&lt;UNDEFINED-FUNCTION PERMUTE {1004BCECE3}&gt;.</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (permute '(1 2 3 4))
+; in: PERMUTE '(1 2 3 4)
+;     (PERMUTE '(1 2 3 4))
+;
+; caught STYLE-WARNING:
+;   undefined function: PERMUTE
+;
+; compilation unit finished
+;   Undefined function:
+;     PERMUTE
+;   caught 1 STYLE-WARNING condition
+; Evaluation aborted on #&lt;UNDEFINED-FUNCTION PERMUTE {1004BCECE3}&gt;.</code></pre></figure></p>
 
 <p></section></p>
 
@@ -294,13 +295,12 @@
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="c1">;;;; package.lisp</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="c1">;;;; package.lisp</span></p>
 
-    <span class="p">(</span><span class="nb">defpackage</span> <span class="ss">#:my-tools</span>
-      <span class="p">(</span><span class="ss">:use</span> <span class="ss">#:cl</span><span class="p">)</span>
-      <span class="p">(</span><span class="ss">:export</span> <span class="ss">#:permute</span><span class="p">))</span>
-</code></pre></div>
-
+<pre><code>&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defpackage&lt;/span&gt; &lt;span class="ss"&gt;#:my-tools&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:use&lt;/span&gt; &lt;span class="ss"&gt;#:cl&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:export&lt;/span&gt; &lt;span class="ss"&gt;#:permute&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+</code></pre>
 
 <p></section></p>
 
@@ -308,20 +308,18 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span><span class="o">(</span>ql:quickload <span class="s2">&quot;my-tools&quot;</span><span class="o">)</span>
-<span class="go">To load &quot;my-tools&quot;:</span>
-<span class="go">  Load 1 ASDF system:</span>
-<span class="go">    my-tools</span>
-<span class="go">; Loading &quot;my-tools&quot;</span>
-<span class="go">[package my-tools]</span>
-<span class="go">(&quot;my-tools&quot;)</span>
-<span class="gp">CL@USER$</span><span class="o">(</span>my-tools:permute <span class="err">&#39;</span><span class="o">(</span>1 2 3 4<span class="o">))</span>
-<span class="go">((4 1 2 3) (1 4 2 3) (1 2 4 3) (1 2 3 4) (4 1 3 2) (1 4 3 2) (1 3 4 2)</span>
-<span class="go"> (1 3 2 4) (4 3 1 2) (3 4 1 2) (3 1 4 2) (3 1 2 4) (4 2 1 3) (2 4 1 3)</span>
-<span class="go"> (2 1 4 3) (2 1 3 4) (4 2 3 1) (2 4 3 1) (2 3 4 1) (2 3 1 4) (4 3 2 1)</span>
-<span class="go"> (3 4 2 1) (3 2 4 1) (3 2 1 4))</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$(ql:quickload "my-tools")
+To load "my-tools":
+  Load 1 ASDF system:
+    my-tools
+; Loading "my-tools"
+[package my-tools]
+("my-tools")
+CL@USER$(my-tools:permute '(1 2 3 4))
+((4 1 2 3) (1 4 2 3) (1 2 4 3) (1 2 3 4) (4 1 3 2) (1 4 3 2) (1 3 4 2)
+ (1 3 2 4) (4 3 1 2) (3 4 1 2) (3 1 4 2) (3 1 2 4) (4 2 1 3) (2 4 1 3)
+ (2 1 4 3) (2 1 3 4) (4 2 3 1) (2 4 3 1) (2 3 4 1) (2 3 1 4) (4 3 2 1)
+ (3 4 2 1) (3 2 4 1) (3 2 1 4))</code></pre></figure></p>
 
 <p></section></p>
 
@@ -341,17 +339,15 @@
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="nv">asdf:defsystem</span> <span class="ss">#:my-tools</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nv">asdf:defsystem</span> <span class="ss">#:my-tools</span>
       <span class="ss">:serial</span> <span class="no">t</span>
       <span class="ss">:depends-on</span> <span class="p">(</span><span class="ss">#:drakma</span><span class="p">)</span>
-      <span class="ss">:components</span> <span class="p">((</span><span class="ss">:file</span> <span class="s">&quot;urls&quot;</span><span class="p">)</span>
-                   <span class="p">(</span><span class="ss">:file</span> <span class="s">&quot;models&quot;</span><span class="p">)</span>
-                   <span class="p">(</span><span class="ss">:file</span> <span class="s">&quot;views&quot;</span><span class="p">)</span>
-                   <span class="p">(</span><span class="ss">:file</span> <span class="s">&quot;init&quot;</span><span class="p">)</span>
-                   <span class="p">(</span><span class="ss">:file</span> <span class="s">&quot;package&quot;</span><span class="p">)</span>
-                   <span class="p">(</span><span class="ss">:file</span> <span class="s">&quot;my-tools&quot;</span><span class="p">)))</span>
-</code></pre></div>
-
+      <span class="ss">:components</span> <span class="p">((</span><span class="ss">:file</span> <span class="s">"urls"</span><span class="p">)</span>
+                   <span class="p">(</span><span class="ss">:file</span> <span class="s">"models"</span><span class="p">)</span>
+                   <span class="p">(</span><span class="ss">:file</span> <span class="s">"views"</span><span class="p">)</span>
+                   <span class="p">(</span><span class="ss">:file</span> <span class="s">"init"</span><span class="p">)</span>
+                   <span class="p">(</span><span class="ss">:file</span> <span class="s">"package"</span><span class="p">)</span>
+                   <span class="p">(</span><span class="ss">:file</span> <span class="s">"my-tools"</span><span class="p">)))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -365,15 +361,15 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>quickproject:make-project <span class="s2">&quot;~/dev/lisp/my-cms/&quot;</span>
-<span class="go">                      :depends-on &#39;(aserve))</span>
-<span class="go">&quot;my-cms&quot;</span>
-<span class="gp">CL@USER$</span>
-<span class="gp">CL@USER$</span> <span class="o">(</span>net.aserve:start :port 8000<span class="o">)</span>
-<span class="gp">#</span>&lt;NET.ASERVE:WSERVER port 8000 <span class="o">{</span>1002C5F453<span class="o">}</span>&gt;
-<span class="gp">CL@USER$</span>
-</code></pre></div>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (quickproject:make-project "~/dev/lisp/my-cms/"
+                      :depends-on '(aserve))
+"my-cms"
+CL@USER$
+CL@USER$ (net.aserve:start :port 8000)</p>
 
+<h1>&lt;NET.ASERVE:WSERVER port 8000 {1002C5F453}&gt;</h1>
+
+<p>CL@USER$</code></pre></figure></p>
 
 <p></section></p>
 
@@ -390,10 +386,14 @@
 </section>
 
 
-
-  </div>
-  <footer>
-    <p>&#0169; Mozart Reina 2012 | All Rights Reserved. </p>
-  </footer>
-</body>
+      </div>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <footer>
+            <p class="text-info">&#0169; Mozart Reina 2012 | All Rights Reserved. </p>
+            </footer>
+          </div>
+        </div>
+    </div>
+  </body>
 </html>

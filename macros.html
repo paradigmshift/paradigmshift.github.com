@@ -1,68 +1,87 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset=utf-8 />
-  <title>  Lisp Macro Programming |  Mozart Reina </title>
-  <link rel="stylesheet" href="/css/styles.css" type="text/css" />
-  <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
-  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.93/jsxgraphcore.js"></script>
-  <link rel="stylesheet" type="text/css" href="http://jsxgraph.uni-bayreuth.de/distrib/jsxgraph.css" />
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-  <script type="text/javascript" src="/scripts/menu.js"></script>
-  <script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    MathJax.Hub.Config({
-    tex2jax: {
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-    });
-    
-    MathJax.Hub.Queue(function() {
-    // Fix <code> tags after MathJax finishes running. This is a
-      // hack to overcome a shortcoming of Markdown. Discussion at
-      // https://github.com/mojombo/jekyll/issues/199
-      var all = MathJax.Hub.getAllJax(), i;
-      for(i = 0; i < all.length; i += 1) {
-                   all[i].SourceElement().parentNode.className += ' has-jax';
-                   }
-                   });
-  </script>
-  <script type="text/javascript">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>  Lisp Macro Programming |  Mozart Reina </title>
+    <link rel="stylesheet" href="/bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/styles.css" type="text/css" />
+    <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.93/jsxgraphcore.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://jsxgraph.uni-bayreuth.de/distrib/jsxgraph.css" />
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      MathJax.Hub.Config({
+      tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+      });
 
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-33571143-1']);
-    _gaq.push(['_trackPageview']);
+      MathJax.Hub.Queue(function() {
+      // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+                       all[i].SourceElement().parentNode.className += ' has-jax';
+                       }
+                       });
+                       </script>
+    <script type="text/javascript">
 
-    (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-33571143-1']);
+      _gaq.push(['_trackPageview']);
 
-  </script>
-</head>
-<body>
-  
-  <header id="top">
-    <h1> Math, Lisp, and general hackery </h1>
-  </header>
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
 
-  <div id="rss">
-    <a href="feed.xml">
-      <img src="/img/Feed-icon.svg"/>
-    </a>
-  </div>
-  
-  <nav role="navigation">
-    <ul id="menu">
-          <li><a href="/">Home</a>
-          <li><a href="/entries/">Entries</a></li>
-          <li><a href="/about/">About</a></li>
-    </ul>
-  </nav>
- 
-  <div id="main">
-      <section id="content">
+    </script>
+    <script src="/scripts/application.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid" id="main-container">
+      <div class="page-header">
+        <h1> Math, Lisp, <small> and other hackery </small> </h1>
+      </div>
+
+      <!-- <div id="rss"> -->
+      <!--   <a href="feed.xml"> -->
+      <!--     <img src="/img/Feed-icon.svg"/> -->
+      <!--   </a> -->
+      <!-- </div> -->
+      <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about/">About</a></li>
+              <li><a href="/entries/">Entries</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+        <section id="content">
   <h2> Lisp Macro Programming </h2>
   <section class="text">
     <h3>Macros</h3>
@@ -77,12 +96,10 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>+ 3 2<span class="o">)</span>
-<span class="go">5</span>
-<span class="gp">CL@USER$</span> <span class="o">(</span>+ 4 9<span class="o">)</span>
-<span class="go">13</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (+ 3 2)
+5
+CL@USER$ (+ 4 9)
+13</code></pre></figure></p>
 
 <p></section></p>
 
@@ -92,11 +109,9 @@
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="nb">defmacro</span> <span class="nv">infix-math</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">op</span> <span class="nv">y</span><span class="p">)</span>
-      <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">member</span> <span class="nv">op</span> <span class="o">&#39;</span><span class="p">(</span><span class="nb">+</span> <span class="nb">*</span> <span class="nb">-</span> <span class="nb">/</span><span class="p">))</span>
-          <span class="o">`</span><span class="p">(</span><span class="o">,</span><span class="nv">op</span> <span class="o">,</span><span class="nv">x</span> <span class="o">,</span><span class="nv">y</span><span class="p">)))</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nb">defmacro</span> <span class="nv">infix-math</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">op</span> <span class="nv">y</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">member</span> <span class="nv">op</span> <span class="o">'</span><span class="p">(</span><span class="nb">+</span> <span class="nb">*</span> <span class="nb">-</span> <span class="nb">/</span><span class="p">))</span>
+          <span class="o">`</span><span class="p">(</span><span class="o">,</span><span class="nv">op</span> <span class="o">,</span><span class="nv">x</span> <span class="o">,</span><span class="nv">y</span><span class="p">)))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -106,14 +121,12 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>INFIX-MATH 1 + 2<span class="o">)</span>
-<span class="go">3</span>
-<span class="gp">CL@USER$</span> <span class="o">(</span>INFIX-MATH 1 * 2<span class="o">)</span>
-<span class="go">2</span>
-<span class="gp">CL@USER$</span> <span class="o">(</span>INFIX-MATH 1 s 3<span class="o">)</span>
-<span class="go">NIL</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (INFIX-MATH 1 + 2)
+3
+CL@USER$ (INFIX-MATH 1 * 2)
+2
+CL@USER$ (INFIX-MATH 1 s 3)
+NIL</code></pre></figure></p>
 
 <p></section></p>
 
@@ -123,11 +136,9 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>macroexpand <span class="sb">`</span><span class="o">(</span>INFIX-MATH 1 * 2<span class="o">))</span>    
-<span class="go">(* 1 2)</span>
-<span class="go">T</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (macroexpand `(INFIX-MATH 1 * 2))  <br/>
+(* 1 2)
+T</code></pre></figure></p>
 
 <p></section></p>
 
@@ -151,15 +162,13 @@
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl"><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">split</span> <span class="p">(</span><span class="nv">lst</span> <span class="nv">yes</span> <span class="nv">no</span><span class="p">)</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">split</span> <span class="p">(</span><span class="nv">lst</span> <span class="nv">yes</span> <span class="nv">no</span><span class="p">)</span>
   <span class="o">`</span><span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">x</span> <span class="o">,</span><span class="nv">lst</span><span class="p">))</span>
      <span class="p">(</span><span class="k">if</span> <span class="nv">x</span>
          <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">head</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">x</span><span class="p">))</span>
                <span class="p">(</span><span class="nv">tail</span> <span class="p">(</span><span class="nb">cdr</span> <span class="nv">x</span><span class="p">)))</span>
            <span class="o">,</span><span class="nv">yes</span><span class="p">)</span>
-       <span class="o">,</span><span class="nv">no</span><span class="p">)))</span>
-</code></pre></div>
-
+       <span class="o">,</span><span class="nv">no</span><span class="p">)))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -169,19 +178,17 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>split <span class="err">&#39;</span><span class="o">(</span>2 3<span class="o">)</span>
-<span class="go">           (format t &quot;the list is splittable, the first element is ~a, and the rest are ~a&quot; </span>
-<span class="go">             head tail)</span>
-<span class="go">           (format t &quot;the list is not splittable&quot;))</span>
-<span class="go">the list is splittable, the first element is 2, and the rest are (3)</span>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (split '(2 3)
+           (format t "the list is splittable, the first element is ~a, and the rest are ~a"
+             head tail)
+           (format t "the list is not splittable"))
+the list is splittable, the first element is 2, and the rest are (3)</p>
 
-<span class="gp">CL@USER$</span> <span class="o">(</span>split <span class="err">&#39;</span><span class="o">()</span>
-<span class="go">           (format t &quot;the list is splittable, the first element is ~a, and the rest are ~a&quot; </span>
-<span class="go">             head tail)</span>
-<span class="go">           (format t &quot;the list is not splittable&quot;))</span>
-<span class="go">the list is not splittable</span>
-</code></pre></div>
-
+<p>CL@USER$ (split '()
+           (format t "the list is splittable, the first element is ~a, and the rest are ~a"
+             head tail)
+           (format t "the list is not splittable"))
+the list is not splittable</code></pre></figure></p>
 
 <p></section></p>
 
@@ -191,13 +198,11 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="go">(let ((x 100))</span>
-<span class="go">           (split &#39;(2 3)</span>
-<span class="go">                  (print x)</span>
-<span class="go">                  nil))</span>
-<span class="go">(2 3)</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">(let ((x 100))
+           (split '(2 3)
+                  (print x)
+                  nil))
+(2 3)</code></pre></figure></p>
 
 <p></section></p>
 
@@ -207,18 +212,16 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span><span class="nb">let</span> <span class="o">((</span>x 100<span class="o">))</span>
-<span class="go">           (macroexpand `(split &#39;(2 3)</span>
-<span class="go">                  (print x)</span>
-<span class="go">                  nil)))</span>
-<span class="go">(LET ((X &#39;(2 3)))</span>
-<span class="go">  (IF X</span>
-<span class="go">      (LET ((HEAD (CAR X)) (TAIL (CDR X)))</span>
-<span class="go">        (PRINT X))</span>
-<span class="go">      NIL))</span>
-<span class="go">T</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (let ((x 100))
+           (macroexpand `(split '(2 3)
+                  (print x)
+                  nil)))
+(LET ((X '(2 3)))
+  (IF X
+      (LET ((HEAD (CAR X)) (TAIL (CDR X)))
+        (PRINT X))
+      NIL))
+T</code></pre></figure></p>
 
 <p></section></p>
 
@@ -234,10 +237,9 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>gensym<span class="o">)</span>
-<span class="gp">#</span>:G897
-</code></pre></div>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (gensym)</p>
 
+<h1>:G897</code></pre></figure></h1>
 
 <p></section></p>
 
@@ -245,16 +247,14 @@
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="nb">defmacro</span> <span class="nv">split</span> <span class="p">(</span><span class="nv">lst</span> <span class="nv">yes</span> <span class="nv">no</span><span class="p">)</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nb">defmacro</span> <span class="nv">split</span> <span class="p">(</span><span class="nv">lst</span> <span class="nv">yes</span> <span class="nv">no</span><span class="p">)</span>
       <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">x</span> <span class="p">(</span><span class="nb">gensym</span><span class="p">)))</span>
         <span class="o">`</span><span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="o">,</span><span class="nv">x</span> <span class="o">,</span><span class="nv">lst</span><span class="p">))</span>
            <span class="p">(</span><span class="k">if</span> <span class="o">,</span><span class="nv">x</span>
                <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">head</span> <span class="p">(</span><span class="nb">car</span> <span class="o">,</span><span class="nv">x</span><span class="p">))</span>
                      <span class="p">(</span><span class="nv">tail</span> <span class="p">(</span><span class="nb">cdr</span> <span class="o">,</span><span class="nv">x</span><span class="p">)))</span>
                  <span class="o">,</span><span class="nv">yes</span><span class="p">)</span>
-             <span class="o">,</span><span class="nv">no</span><span class="p">))))</span>
-</code></pre></div>
-
+             <span class="o">,</span><span class="nv">no</span><span class="p">))))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -266,15 +266,13 @@
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">x</span> <span class="o">&#39;</span><span class="err">#</span><span class="nv">g134</span><span class="p">))</span>
-      <span class="o">`</span><span class="p">(</span><span class="k">let</span> <span class="p">((</span> <span class="o">&#39;</span><span class="err">#</span><span class="nv">g134</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">2</span> <span class="mi">3</span><span class="p">)))</span>
-         <span class="p">(</span><span class="k">if</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
-             <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">head</span> <span class="p">(</span><span class="nb">car</span> <span class="o">&#39;</span><span class="err">#</span><span class="nv">g134</span><span class="p">))</span>
-                   <span class="p">(</span><span class="nv">tail</span> <span class="p">(</span><span class="nb">car</span> <span class="o">&#39;</span><span class="err">#</span><span class="nv">g134</span><span class="p">)))</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">x</span> <span class="o">'</span><span class="err">#</span><span class="nv">g134</span><span class="p">))</span>
+      <span class="o">`</span><span class="p">(</span><span class="k">let</span> <span class="p">((</span> <span class="o">'</span><span class="err">#</span><span class="nv">g134</span> <span class="o">'</span><span class="p">(</span><span class="mi">2</span> <span class="mi">3</span><span class="p">)))</span>
+         <span class="p">(</span><span class="k">if</span> <span class="o">'</span><span class="p">(</span><span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+             <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">head</span> <span class="p">(</span><span class="nb">car</span> <span class="o">'</span><span class="err">#</span><span class="nv">g134</span><span class="p">))</span>
+                   <span class="p">(</span><span class="nv">tail</span> <span class="p">(</span><span class="nb">car</span> <span class="o">'</span><span class="err">#</span><span class="nv">g134</span><span class="p">)))</span>
                <span class="o">....</span>
-               <span class="o">....</span>
-</code></pre></div>
-
+               <span class="o">....</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -282,13 +280,11 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span><span class="nb">let</span> <span class="o">((</span>x 100<span class="o">))</span>
-<span class="go">           (split &#39;(2 3)</span>
-<span class="go">             (print x)</span>
-<span class="go">              nil))</span>
-<span class="go">100</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (let ((x 100))
+           (split '(2 3)
+             (print x)
+              nil))
+100</code></pre></figure></p>
 
 <p></section></p>
 
@@ -302,7 +298,7 @@
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">add-elements</span> <span class="p">(</span><span class="nv">lst</span><span class="p">)</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">add-elements</span> <span class="p">(</span><span class="nv">lst</span><span class="p">)</span>
       <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">x</span> <span class="mi">0</span><span class="p">))</span>
         <span class="p">(</span><span class="k">labels</span> <span class="p">((</span><span class="nv">f</span> <span class="p">(</span><span class="nv">lst</span><span class="p">)</span>
                     <span class="p">(</span><span class="nv">split</span> <span class="nv">lst</span>
@@ -310,18 +306,14 @@
                                   <span class="p">(</span><span class="nv">f</span> <span class="nv">tail</span><span class="p">))</span>
                            <span class="no">nil</span><span class="p">)))</span>
           <span class="p">(</span><span class="nv">f</span> <span class="nv">lst</span><span class="p">))</span>
-        <span class="nv">x</span><span class="p">))</span>
-</code></pre></div>
-
+        <span class="nv">x</span><span class="p">))</span></code></pre></figure></p>
 
 <p></section></p>
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>add-elements <span class="err">&#39;</span><span class="o">(</span>1 2 3 4<span class="o">))</span>
-<span class="go">10</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (add-elements '(1 2 3 4))
+10</code></pre></figure></p>
 
 <p></section></p>
 
@@ -329,19 +321,15 @@
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">add-elements-functional</span> <span class="p">(</span><span class="nv">lst</span><span class="p">)</span>
-      <span class="p">(</span><span class="nb">reduce</span> <span class="nf">#&#39;</span><span class="nb">+</span> <span class="nv">lst</span><span class="p">))</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">add-elements-functional</span> <span class="p">(</span><span class="nv">lst</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">reduce</span> <span class="nf">#'</span><span class="nb">+</span> <span class="nv">lst</span><span class="p">))</span></code></pre></figure></p>
 
 <p></section></p>
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>add-elements-functional <span class="err">&#39;</span><span class="o">(</span>1 2 3 4<span class="o">))</span>
-<span class="go">10</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (add-elements-functional '(1 2 3 4))
+10</code></pre></figure></p>
 
 <p></section></p>
 
@@ -353,12 +341,10 @@
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="nb">defmacro</span> <span class="nv">if-var</span> <span class="p">(</span><span class="nv">var</span><span class="p">)</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nb">defmacro</span> <span class="nv">if-var</span> <span class="p">(</span><span class="nv">var</span><span class="p">)</span>
       <span class="o">`</span><span class="p">(</span><span class="k">if</span> <span class="o">,</span><span class="nv">var</span>
            <span class="o">,</span><span class="nv">var</span>
-         <span class="no">nil</span><span class="p">))</span>
-</code></pre></div>
-
+         <span class="no">nil</span><span class="p">))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -366,13 +352,11 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="go">(if-var (progn (print &quot;evaluated&quot;)</span>
-<span class="go">                        t))</span>
-<span class="go">&quot;evaluated&quot; </span>
-<span class="go">&quot;evaluated&quot; </span>
-<span class="go">T</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">(if-var (progn (print "evaluated")
+                        t))
+"evaluated"
+"evaluated"
+T</code></pre></figure></p>
 
 <p></section></p>
 
@@ -393,13 +377,11 @@
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="nb">defmacro</span> <span class="nv">if-var</span> <span class="p">(</span><span class="nv">var</span><span class="p">)</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nb">defmacro</span> <span class="nv">if-var</span> <span class="p">(</span><span class="nv">var</span><span class="p">)</span>
       <span class="o">`</span><span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">x</span> <span class="o">,</span><span class="nv">var</span><span class="p">))</span>
          <span class="p">(</span><span class="k">if</span> <span class="nv">x</span>
              <span class="nv">x</span>
-           <span class="no">nil</span><span class="p">)))</span>
-</code></pre></div>
-
+           <span class="no">nil</span><span class="p">)))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -407,12 +389,10 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="go">(if-var (progn (print &quot;evaluated&quot;)</span>
-<span class="go">                        t))</span>
-<span class="go">&quot;evaluated&quot; </span>
-<span class="go">T</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">(if-var (progn (print "evaluated")
+                        t))
+"evaluated"
+T</code></pre></figure></p>
 
 <p></section></p>
 
@@ -435,10 +415,14 @@
 </section>
 
 
-
-  </div>
-  <footer>
-    <p>&#0169; Mozart Reina 2012 | All Rights Reserved. </p>
-  </footer>
-</body>
+      </div>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <footer>
+            <p class="text-info">&#0169; Mozart Reina 2012 | All Rights Reserved. </p>
+            </footer>
+          </div>
+        </div>
+    </div>
+  </body>
 </html>

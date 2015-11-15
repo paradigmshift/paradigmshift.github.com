@@ -1,68 +1,87 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset=utf-8 />
-  <title>  Unit Testing in Common Lisp |  Mozart Reina </title>
-  <link rel="stylesheet" href="/css/styles.css" type="text/css" />
-  <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
-  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.93/jsxgraphcore.js"></script>
-  <link rel="stylesheet" type="text/css" href="http://jsxgraph.uni-bayreuth.de/distrib/jsxgraph.css" />
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-  <script type="text/javascript" src="/scripts/menu.js"></script>
-  <script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    MathJax.Hub.Config({
-    tex2jax: {
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-    });
-    
-    MathJax.Hub.Queue(function() {
-    // Fix <code> tags after MathJax finishes running. This is a
-      // hack to overcome a shortcoming of Markdown. Discussion at
-      // https://github.com/mojombo/jekyll/issues/199
-      var all = MathJax.Hub.getAllJax(), i;
-      for(i = 0; i < all.length; i += 1) {
-                   all[i].SourceElement().parentNode.className += ' has-jax';
-                   }
-                   });
-  </script>
-  <script type="text/javascript">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>  Unit Testing in Common Lisp |  Mozart Reina </title>
+    <link rel="stylesheet" href="/bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/styles.css" type="text/css" />
+    <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.93/jsxgraphcore.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://jsxgraph.uni-bayreuth.de/distrib/jsxgraph.css" />
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      MathJax.Hub.Config({
+      tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+      });
 
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-33571143-1']);
-    _gaq.push(['_trackPageview']);
+      MathJax.Hub.Queue(function() {
+      // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+                       all[i].SourceElement().parentNode.className += ' has-jax';
+                       }
+                       });
+                       </script>
+    <script type="text/javascript">
 
-    (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-33571143-1']);
+      _gaq.push(['_trackPageview']);
 
-  </script>
-</head>
-<body>
-  
-  <header id="top">
-    <h1> Math, Lisp, and general hackery </h1>
-  </header>
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
 
-  <div id="rss">
-    <a href="feed.xml">
-      <img src="/img/Feed-icon.svg"/>
-    </a>
-  </div>
-  
-  <nav role="navigation">
-    <ul id="menu">
-          <li><a href="/">Home</a>
-          <li><a href="/entries/">Entries</a></li>
-          <li><a href="/about/">About</a></li>
-    </ul>
-  </nav>
- 
-  <div id="main">
-      <section id="content">
+    </script>
+    <script src="/scripts/application.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid" id="main-container">
+      <div class="page-header">
+        <h1> Math, Lisp, <small> and other hackery </small> </h1>
+      </div>
+
+      <!-- <div id="rss"> -->
+      <!--   <a href="feed.xml"> -->
+      <!--     <img src="/img/Feed-icon.svg"/> -->
+      <!--   </a> -->
+      <!-- </div> -->
+      <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about/">About</a></li>
+              <li><a href="/entries/">Entries</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+        <section id="content">
   <h2> Unit Testing in Common Lisp </h2>
   <section class="text">
     <h3>A Little about the History of Testing in Software Development</h3>
@@ -83,15 +102,14 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>ql:quickload <span class="s2">&quot;lisp-unit&quot;</span><span class="o">)</span>
-<span class="go">    To load &quot;lisp-unit&quot;:</span>
-<span class="go">      Load 1 ASDF system:</span>
-<span class="go">        lisp-unit</span>
-<span class="go">    ; Loading &quot;lisp-unit&quot;</span>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (ql:quickload "lisp-unit")
+    To load "lisp-unit":
+      Load 1 ASDF system:
+        lisp-unit
+    ; Loading "lisp-unit"</p>
 
-<span class="go">    (&quot;lisp-unit&quot;)</span>
-</code></pre></div>
-
+<pre><code>("lisp-unit")&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+</code></pre>
 
 <p></section></p>
 
@@ -104,16 +122,14 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>defun by-5 <span class="o">(</span>x<span class="o">)</span>
-<span class="go">           (* x 5))</span>
-<span class="go">BY-5</span>
-<span class="gp">CL@USER$</span> <span class="o">(</span>define-test by-5
-<span class="go">           (assert-equal 10 (by-5 2))</span>
-<span class="go">           (assert-equal 20 (by-5 4)))</span>
-<span class="go">BY-5</span>
-<span class="gp">CL@USER$</span> 
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (defun by-5 (x)
+           (* x 5))
+BY-5
+CL@USER$ (define-test by-5
+           (assert-equal 10 (by-5 2))
+           (assert-equal 20 (by-5 4)))
+BY-5
+CL@USER$ </code></pre></figure></p>
 
 <p></section>
 <em>here we've defined a custom function <code>by-5</code> that takes any number and multiplies it by 5, and defined a test, also called <code>by-5</code> which will try to ensure that if we pass 2 and 5 to the function <code>by-5</code>, it will return 10 and 20</em></p>
@@ -125,11 +141,9 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>run-tests<span class="o">)</span>
-<span class="go">BY-5: 2 assertions passed, 0 failed.</span>
-<span class="go">; No value</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (run-tests)
+BY-5: 2 assertions passed, 0 failed.
+; No value</code></pre></figure></p>
 
 <p></section></p>
 
@@ -137,18 +151,16 @@
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>define-test by-5
-<span class="go">           (assert-equal 10 (by-5 2))</span>
-<span class="go">           (assert-equal 20 (by-5 4))</span>
-<span class="go">           (assert-equal 30 (by-5 10)))</span>
-<span class="go">BY-5</span>
-<span class="gp">CL@USER$</span> <span class="o">(</span>run-tests<span class="o">)</span>
-<span class="go">BY-5: (BY-5 10) failed: </span>
-<span class="go">Expected 30 but saw 50</span>
-<span class="go">BY-5: 2 assertions passed, 1 failed.</span>
-<span class="go">; No value</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (define-test by-5
+           (assert-equal 10 (by-5 2))
+           (assert-equal 20 (by-5 4))
+           (assert-equal 30 (by-5 10)))
+BY-5
+CL@USER$ (run-tests)
+BY-5: (BY-5 10) failed:
+Expected 30 but saw 50
+BY-5: 2 assertions passed, 1 failed.
+; No value</code></pre></figure></p>
 
 <p></section></p>
 
@@ -172,11 +184,9 @@ where value is the expected value that the function is supposed to return, and f
 
 <p><section class="code"></p>
 
-<div class="highlight"><pre><code class="cl">    <span class="p">(</span><span class="nv">define-test</span> <span class="nv">my-test</span>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nv">define-test</span> <span class="nv">my-test</span>
       <span class="p">(</span><span class="nb">dotimes</span> <span class="p">(</span> <span class="nv">i</span> <span class="mi">5</span><span class="p">)</span>
-        <span class="p">(</span><span class="nv">assert-equal</span> <span class="nv">i</span> <span class="p">(</span><span class="nv">my-function</span> <span class="nv">i</span><span class="p">))))</span>
-</code></pre></div>
-
+        <span class="p">(</span><span class="nv">assert-equal</span> <span class="nv">i</span> <span class="p">(</span><span class="nv">my-function</span> <span class="nv">i</span><span class="p">))))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -188,14 +198,12 @@ where value is the expected value that the function is supposed to return, and f
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>lisp-unit:assert-true <span class="o">(</span>&gt; 7 3<span class="o">))</span>
-<span class="go">T</span>
-<span class="gp">CL@USER$</span> <span class="o">(</span>lisp-unit:assert-true <span class="o">(</span>&gt; 7 10<span class="o">))</span>
-<span class="go">(&gt; 7 10) failed: </span>
-<span class="go">Expected T but saw NIL</span>
-<span class="go">NIL</span>
-</code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (lisp-unit:assert-true (&gt; 7 3))
+T
+CL@USER$ (lisp-unit:assert-true (&gt; 7 10))
+(&gt; 7 10) failed:
+Expected T but saw NIL
+NIL</code></pre></figure></p>
 
 <p></section></p>
 
@@ -207,19 +215,21 @@ where value is the expected value that the function is supposed to return, and f
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>defpackage :my-package
-<span class="go">           (:use :cl)</span>
-<span class="go">           (:export #:my-func-1</span>
-<span class="go">                    #:my-func-2))</span>
-<span class="gp">#</span>&lt;PACKAGE <span class="s2">&quot;MY-PACKAGE&quot;</span>&gt;
-<span class="gp">CL@USER$</span> <span class="o">(</span>in-package :my-package<span class="o">)</span>
-<span class="gp">#</span>&lt;PACKAGE <span class="s2">&quot;MY-PACKAGE&quot;</span>&gt;
-<span class="go">MY-PACKAGE&gt; (defun my-func-1 (x)</span>
-<span class="go">              .....</span>
-<span class="go">            (defun my-func-2 (y)</span>
-<span class="go">              .....</span>
-</code></pre></div>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (defpackage :my-package
+           (:use :cl)
+           (:export #:my-func-1
+                    #:my-func-2))</p>
 
+<h1>&lt;PACKAGE "MY-PACKAGE"&gt;</h1>
+
+<p>CL@USER$ (in-package :my-package)</p>
+
+<h1>&lt;PACKAGE "MY-PACKAGE"&gt;</h1>
+
+<p>MY-PACKAGE&gt; (defun my-func-1 (x)
+              .....
+            (defun my-func-2 (y)
+              .....</code></pre></figure></p>
 
 <p></section></p>
 
@@ -227,20 +237,22 @@ where value is the expected value that the function is supposed to return, and f
 
 <p><section class="shell"></p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">CL@USER$</span> <span class="o">(</span>defpackage :my-package-tests
-<span class="go">           (:use :cl :lisp-unit :my-package))</span>
-<span class="gp">#</span>&lt;PACKAGE <span class="s2">&quot;MY-PACKAGE-TESTS&quot;</span>&gt;
-<span class="gp">CL@USER$</span> <span class="o">(</span>in-package :my-package-tests<span class="o">)</span>
-<span class="gp">#</span>&lt;PACKAGE <span class="s2">&quot;MY-PACKAGE-TESTS&quot;</span>&gt;
-<span class="go">MY-PACKAGE-TESTS&gt; (define-test my-test</span>
-<span class="go">                    (dotimes (i 10)</span>
-<span class="go">                      (assert-equal i (my-func-1 i))))</span>
-<span class="go">MY-TEST</span>
-<span class="go">MY-PACKAGE-TESTS&gt; (run-tests)</span>
-<span class="go">MY-TEST: 10 assertions passed, 0 failed.</span>
-<span class="go">; No value</span>
-</code></pre></div>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (defpackage :my-package-tests
+           (:use :cl :lisp-unit :my-package))</p>
 
+<h1>&lt;PACKAGE "MY-PACKAGE-TESTS"&gt;</h1>
+
+<p>CL@USER$ (in-package :my-package-tests)</p>
+
+<h1>&lt;PACKAGE "MY-PACKAGE-TESTS"&gt;</h1>
+
+<p>MY-PACKAGE-TESTS&gt; (define-test my-test
+                    (dotimes (i 10)
+                      (assert-equal i (my-func-1 i))))
+MY-TEST
+MY-PACKAGE-TESTS&gt; (run-tests)
+MY-TEST: 10 assertions passed, 0 failed.
+; No value</code></pre></figure></p>
 
 <p></section></p>
 
@@ -257,10 +269,14 @@ where value is the expected value that the function is supposed to return, and f
 </section>
 
 
-
-  </div>
-  <footer>
-    <p>&#0169; Mozart Reina 2012 | All Rights Reserved. </p>
-  </footer>
-</body>
+      </div>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <footer>
+            <p class="text-info">&#0169; Mozart Reina 2012 | All Rights Reserved. </p>
+            </footer>
+          </div>
+        </div>
+    </div>
+  </body>
 </html>
