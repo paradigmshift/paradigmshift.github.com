@@ -1,132 +1,160 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset=utf-8 />
-  <title>  Mozart Reina </title>
-  <link rel="stylesheet" href="/css/styles.css" type="text/css" />
-  <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
-  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.93/jsxgraphcore.js"></script>
-  <link rel="stylesheet" type="text/css" href="http://jsxgraph.uni-bayreuth.de/distrib/jsxgraph.css" />
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-  <script type="text/javascript" src="/scripts/menu.js"></script>
-  <script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    MathJax.Hub.Config({
-    tex2jax: {
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-    });
-    
-    MathJax.Hub.Queue(function() {
-    // Fix <code> tags after MathJax finishes running. This is a
-      // hack to overcome a shortcoming of Markdown. Discussion at
-      // https://github.com/mojombo/jekyll/issues/199
-      var all = MathJax.Hub.getAllJax(), i;
-      for(i = 0; i < all.length; i += 1) {
-                   all[i].SourceElement().parentNode.className += ' has-jax';
-                   }
-                   });
-  </script>
-  <script type="text/javascript">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>  Mozart Reina </title>
+    <link rel="stylesheet" href="/bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/styles.css" type="text/css" />
+    <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.93/jsxgraphcore.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://jsxgraph.uni-bayreuth.de/distrib/jsxgraph.css" />
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      MathJax.Hub.Config({
+      tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+      });
 
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-33571143-1']);
-    _gaq.push(['_trackPageview']);
+      MathJax.Hub.Queue(function() {
+      // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+                       all[i].SourceElement().parentNode.className += ' has-jax';
+                       }
+                       });
+                       </script>
+    <script type="text/javascript">
 
-    (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-33571143-1']);
+      _gaq.push(['_trackPageview']);
 
-  </script>
-</head>
-<body>
-  
-  <header id="top">
-    <h1> Math, Lisp, and general hackery </h1>
-  </header>
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
 
-  <div id="rss">
-    <a href="feed.xml">
-      <img src="/img/Feed-icon.svg"/>
-    </a>
-  </div>
-  
-  <nav role="navigation">
-    <ul id="menu">
-          <li><a href="/">Home</a>
-          <li><a href="/entries/">Entries</a></li>
-          <li><a href="/about/">About</a></li>
-    </ul>
-  </nav>
- 
-  <div id="main">
-      <p><section id="content">
+    </script>
+    <script src="/scripts/application.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid" id="main-container">
+      <div class="page-header">
+        <h1> Math, Lisp, <small> and other hackery </small> </h1>
+      </div>
+
+      <!-- <div id="rss"> -->
+      <!--   <a href="feed.xml"> -->
+      <!--     <img src="/img/Feed-icon.svg"/> -->
+      <!--   </a> -->
+      <!-- </div> -->
+      <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about/">About</a></li>
+              <li><a href="/entries/">Entries</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+        <p><section id="content">
 <section class="text">
-<img class="profile" src="/img/momo.png"/>
+<img class="img-responsive pull-left gap-right" src="/img/momo.png"/>
 A wannabe mathematician/computer scientist, my hacking skills are completely self-taught. My interests lie mainly in machine learning and AI (thanks to my exposure to Lisp), and in applied math.</p>
 
 <p>Thanks to resources such as <a href="http://www.diveintopython.net/">Dive into Python</a>, <a href="http://tldp.org/LDP/Bash-Beginners-Guide/html/">Bash Guide for Beginners</a> (a lot of people don't like this book but it worked wonders on me), and <a href="http://landoflisp.com/">Land of Lisp</a> I managed to start learning some coding concepts and skills on my own.</p>
 
 <p>I am currently based in Osaka, Japan, and when I'm not getting up at 3 AM to do my <a href="http://kpjayi.org">Ashtanga Yoga</a> practice I'm either teaching the Mysore program at <a href="http://www.spirityogastudio.com">Spirit Yoga</a> or in some random cafe boning up on my math and hacking.</p>
 
-<table class="full-width">
-  <caption>Tech Stack</caption>
+<div class="clearfix">
+<!-- Hack to put text below -->
+</div>
+
+
+<div class="table-responsive">
+<table class="table table-striped">
+  <caption><p class="bg-primary text-center">Tech Stack</p></caption>
   <col><col>
   <thead>
     <tr> <th>Languages</th> <th>Tools</th> </tr>
   </thead>
   <tbody>
     <tr>
-      <td><span class="emphasis1">[Common Lisp]</span></td>
+      <td><span class="text-warning">[Common Lisp]</span></td>
       <td></td>
     </tr>
     <tr>
-      <td><span class="emphasis1">[Python]</span></td>
-      <td><span class="emphasis1">[Django]</span><br />
-          <span class="emphasis1">[Twisted]</span></td>
+      <td><span class="text-warning">[Python]</span></td>
+      <td><span class="text-warning">[Django]</span><br />
+          <span class="text-warning">[Twisted]</span></td>
     </tr>
     <tr>
-      <td><span class="emphasis1">[JavaScript]</span></td>
-      <td><span class="emphasis1">[JQuery]</span><br />
-          <span class="emphasis1">[JQ Mobile]</span></td>
+      <td><span class="text-warning">[JavaScript]</span></td>
+      <td><span class="text-warning">[JQuery]</span><br />
+          <span class="text-warning">[JQ Mobile]</span></td>
     </tr>
     <tr>
-      <td><span class="emphasis1">[Bash]</span></td>
+      <td><span class="text-warning">[Bash]</span></td>
       <td></td>
     </tr>  
   </tbody>
 </table>
+</div>
 
 
 
 
-<table class="full-width">
-  <caption>Projects</caption>
+<div class="table-responsive">
+<table class="table table-striped">
+  <caption><p class="bg-primary text-center">Projects</p></caption>
   <col><col>
   <thead>
     <tr> <th>Commercial</th> <th>Personal</th> </tr>
   </thead>
   <tbody>
     <tr>
-      <td><span class="emphasis1">[Jekyll] </span><a href="/index.html">This site</a></td>
-      <td><span class="emphasis1">[Common Lisp] </span><a href="https://github.com/paradigmshift/salt-n-pepper">Salt-n-Pepper</a> <p>- an RC4 implementation</p></td>
+      <td><span class="text-warning">[Jekyll] </span><a href="/index.html">This site</a></td>
+      <td><span class="text-warning">[Common Lisp] </span><a href="https://github.com/paradigmshift/salt-n-pepper">Salt-n-Pepper</a> <p>- an RC4 implementation</p></td>
     </tr>
     <tr>
-      <td><span class="emphasis1">[Django] </span><a href="http://www.yoga-momo.com">Yoga Momo</a></td>
-      <td><span class="emphasis1">[Common Lisp] </span><a href="https://github.com/paradigmshift/soma-rss">Soma RSS</a><p> - an RSS feed creator for Jekyll-powered sites</p></td>
+      <td><span class="text-warning">[Django] </span><a href="http://www.yoga-momo.com">Yoga Momo</a></td>
+      <td><span class="text-warning">[Common Lisp] </span><a href="https://github.com/paradigmshift/soma-rss">Soma RSS</a><p> - an RSS feed creator for Jekyll-powered sites</p></td>
     </tr>
     <tr>
-      <td><span class="emphasis1">[Django] </span><a href="http://thewheatgrassspecialists.com/"</a>The Wheat Grass Specialists</td>
-      <td><span class="emphasis1">[Common Lisp] </span><a href="https://github.com/paradigmshift/locker">Locker</a> <p>- my version of LastPass for the Desktop (CLI and GUI)</p></td>
+      <td><span class="text-warning">[Django] </span><a href="http://thewheatgrassspecialists.com/"</a>The Wheat Grass Specialists</td>
+      <td><span class="text-warning">[Common Lisp] </span><a href="https://github.com/paradigmshift/locker">Locker</a> <p>- my version of LastPass for the Desktop (CLI and GUI)</p></td>
     </tr>
     <tr>
-      <td><span class="emphasis1">[Django] </span><a href="http://italianfoodspecialists.com"</a>The Italian Food Specialists</td>
-      <td><span class="emphasis1">[Common Lisp] </span><a href="https://gitorious.org/ganesh">Ganesh</a><p> - Spaced-Repition-Software (not working and abandonware)</p></td>
-    </tr>  
+      <td><span class="text-warning">[Django] </span><a href="http://italianfoodspecialists.com"</a>The Italian Food Specialists</td>
+      <td><span class="text-warning">[Common Lisp] </span><a href="https://gitorious.org/ganesh">Ganesh</a><p> - Spaced-Repition-Software (not working and abandonware)</p></td>
+    </tr> 
   </tbody>
 </table>
+</div>
 
 
 <h3>Public Profiles and Repos:</h3>
@@ -140,15 +168,19 @@ A wannabe mathematician/computer scientist, my hacking skills are completely sel
 </ul>
 
 
-<p>You can reach me at <a href="&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#109;&#111;&#122;&#x61;&#114;&#x74;&#x40;&#109;&#x6f;&#x7a;&#x61;&#x72;&#x74;&#114;&#101;&#x69;&#110;&#x61;&#x2e;&#x63;&#111;&#x6d;">&#109;&#111;&#122;&#97;&#114;&#116;&#64;&#x6d;&#x6f;&#122;&#x61;&#114;&#x74;&#x72;&#x65;&#x69;&#x6e;&#97;&#46;&#99;&#x6f;&#x6d;</a></p>
+<p>You can reach me at <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#109;&#111;&#x7a;&#97;&#x72;&#x74;&#64;&#109;&#x6f;&#x7a;&#97;&#x72;&#x74;&#x72;&#101;&#105;&#x6e;&#97;&#46;&#x63;&#111;&#109;">&#109;&#111;&#122;&#97;&#114;&#116;&#x40;&#x6d;&#111;&#122;&#97;&#x72;&#116;&#x72;&#101;&#105;&#x6e;&#x61;&#46;&#99;&#111;&#x6d;</a></p>
 
 <p></section>
 </section></p>
 
-
-  </div>
-  <footer>
-    <p>&#0169; Mozart Reina 2012 | All Rights Reserved. </p>
-  </footer>
-</body>
+      </div>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <footer>
+            <p class="text-info">&#0169; Mozart Reina 2012 | All Rights Reserved. </p>
+            </footer>
+          </div>
+        </div>
+    </div>
+  </body>
 </html>
