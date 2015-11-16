@@ -18,6 +18,7 @@
             src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
       MathJax.Hub.Config({
       tex2jax: {
+      processEnvironments: true,
       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
       }
       });
@@ -160,37 +161,36 @@ To load "my-tools":
 
 <p><section class="code"></p>
 
-<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">switch</span> <span class="p">(</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">lst</span><span class="p">)</span>
-      <span class="s">"Switch elements at position a &amp; b with each other"</span>
-      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">newlst</span> <span class="p">(</span><span class="nb">copy-list</span> <span class="nv">lst</span><span class="p">)))</span>
-        <span class="p">(</span><span class="nb">psetf</span> <span class="p">(</span><span class="nb">nth</span> <span class="nv">a</span> <span class="nv">newlst</span><span class="p">)</span> <span class="p">(</span><span class="nb">nth</span> <span class="nv">b</span> <span class="nv">newlst</span><span class="p">)</span>
-               <span class="p">(</span><span class="nb">nth</span> <span class="nv">b</span> <span class="nv">newlst</span><span class="p">)</span> <span class="p">(</span><span class="nb">nth</span> <span class="nv">a</span> <span class="nv">newlst</span><span class="p">))</span>
-        <span class="nv">newlst</span><span class="p">))</span></p>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">switch</span> <span class="p">(</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">lst</span><span class="p">)</span>
+  <span class="s">"Switch elements at position a &amp; b with each other"</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">newlst</span> <span class="p">(</span><span class="nb">copy-list</span> <span class="nv">lst</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nb">psetf</span> <span class="p">(</span><span class="nb">nth</span> <span class="nv">a</span> <span class="nv">newlst</span><span class="p">)</span> <span class="p">(</span><span class="nb">nth</span> <span class="nv">b</span> <span class="nv">newlst</span><span class="p">)</span>
+           <span class="p">(</span><span class="nb">nth</span> <span class="nv">b</span> <span class="nv">newlst</span><span class="p">)</span> <span class="p">(</span><span class="nb">nth</span> <span class="nv">a</span> <span class="nv">newlst</span><span class="p">))</span>
+    <span class="nv">newlst</span><span class="p">))</span></p>
 
-<pre><code>&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt; &lt;span class="nv"&gt;permute&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="c1"&gt;;; reduces the results from start-algo function&lt;/span&gt;
-  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;final&lt;/span&gt; &lt;span class="no"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;mapcar&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-              &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;length&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;length&lt;/span&gt; &lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-                  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;push&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;final&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;start-algo&lt;/span&gt; &lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="nv"&gt;final&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+<p><span class="p">(</span><span class="nb">defun</span> <span class="nv">permute</span> <span class="p">(</span><span class="nv">lst</span><span class="p">)</span>
+  <span class="c1">;; reduces the results from start-algo function</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">final</span> <span class="no">nil</span><span class="p">))</span>
+    <span class="p">(</span><span class="nb">mapcar</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+              <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">=</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">lst</span><span class="p">))</span>
+                  <span class="p">(</span><span class="nb">push</span> <span class="nv">x</span> <span class="nv">final</span><span class="p">)))</span>
+            <span class="p">(</span><span class="nv">start-algo</span> <span class="nv">lst</span><span class="p">))</span>
+    <span class="nv">final</span><span class="p">))</span></p>
 
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt; &lt;span class="nv"&gt;start-algo&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  
-  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;container&lt;/span&gt; &lt;span class="no"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;push&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car&lt;/span&gt; &lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr&lt;/span&gt; &lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="nv"&gt;container&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;push&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;switch&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car&lt;/span&gt; &lt;span class="nv"&gt;container&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="nv"&gt;container&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;setf&lt;/span&gt; &lt;span class="nv"&gt;lst&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cddr&lt;/span&gt; &lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;dotimes&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;length&lt;/span&gt; &lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;mapcar&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-                &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;setf&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;push&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car&lt;/span&gt; &lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-                &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;push&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;container&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-                &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;dotimes&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;1-&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;length&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-                  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;push&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;switch&lt;/span&gt; &lt;span class="nv"&gt;i&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;1+&lt;/span&gt; &lt;span class="nv"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car&lt;/span&gt; &lt;span class="nv"&gt;container&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="nv"&gt;container&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-              &lt;span class="nv"&gt;container&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;setf&lt;/span&gt; &lt;span class="nv"&gt;lst&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr&lt;/span&gt; &lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-    &lt;span class="nv"&gt;container&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-</code></pre>
+<p><span class="p">(</span><span class="nb">defun</span> <span class="nv">start-algo</span> <span class="p">(</span><span class="nv">lst</span><span class="p">)</span><br/>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">container</span> <span class="no">nil</span><span class="p">))</span>
+    <span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nb">list</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">lst</span><span class="p">)</span> <span class="p">(</span><span class="nb">cadr</span> <span class="nv">lst</span><span class="p">))</span> <span class="nv">container</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nv">switch</span> <span class="mi">0</span> <span class="mi">1</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">container</span><span class="p">))</span> <span class="nv">container</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">setf</span> <span class="nv">lst</span> <span class="p">(</span><span class="nb">cddr</span> <span class="nv">lst</span><span class="p">))</span>
+    <span class="p">(</span><span class="nb">dotimes</span> <span class="p">(</span><span class="nv">n</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">lst</span><span class="p">))</span>
+      <span class="p">(</span><span class="nb">mapcar</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+                <span class="p">(</span><span class="nb">setf</span> <span class="nv">x</span> <span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">lst</span><span class="p">)</span> <span class="nv">x</span><span class="p">))</span>
+                <span class="p">(</span><span class="nb">push</span> <span class="nv">x</span> <span class="nv">container</span><span class="p">)</span>
+                <span class="p">(</span><span class="nb">dotimes</span> <span class="p">(</span><span class="nv">i</span> <span class="p">(</span><span class="nb">1-</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">x</span><span class="p">)))</span>
+                  <span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nv">switch</span> <span class="nv">i</span> <span class="p">(</span><span class="nb">1+</span> <span class="nv">i</span><span class="p">)</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">container</span><span class="p">))</span> <span class="nv">container</span><span class="p">)))</span>
+              <span class="nv">container</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">setf</span> <span class="nv">lst</span> <span class="p">(</span><span class="nb">cdr</span> <span class="nv">lst</span><span class="p">)))</span>
+    <span class="nv">container</span><span class="p">))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -202,11 +202,10 @@ To load "my-tools":
 
 <p><section class="code"></p>
 
-<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="c1">;;;; package.lisp</span></p>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;;;; package.lisp</span></p>
 
-<pre><code>&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defpackage&lt;/span&gt; &lt;span class="ss"&gt;#:my-tools&lt;/span&gt;
-  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:use&lt;/span&gt; &lt;span class="ss"&gt;#:cl&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-</code></pre>
+<p><span class="p">(</span><span class="nb">defpackage</span> <span class="ss">#:my-tools</span>
+  <span class="p">(</span><span class="ss">:use</span> <span class="ss">#:cl</span><span class="p">))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -216,13 +215,12 @@ To load "my-tools":
 
 <p><section class="code"></p>
 
-<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="c1">;;;; my-tools.asd</span></p>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;;;; my-tools.asd</span></p>
 
-<pre><code>&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;asdf:defsystem&lt;/span&gt; &lt;span class="ss"&gt;#:my-tools&lt;/span&gt;
-  &lt;span class="ss"&gt;:serial&lt;/span&gt; &lt;span class="no"&gt;t&lt;/span&gt;
-  &lt;span class="ss"&gt;:components&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="ss"&gt;:file&lt;/span&gt; &lt;span class="s"&gt;"package"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-               &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:file&lt;/span&gt; &lt;span class="s"&gt;"my-tools"&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-</code></pre>
+<p><span class="p">(</span><span class="nv">asdf:defsystem</span> <span class="ss">#:my-tools</span>
+  <span class="ss">:serial</span> <span class="no">t</span>
+  <span class="ss">:components</span> <span class="p">((</span><span class="ss">:file</span> <span class="s">"package"</span><span class="p">)</span>
+               <span class="p">(</span><span class="ss">:file</span> <span class="s">"my-tools"</span><span class="p">)))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -230,14 +228,13 @@ To load "my-tools":
 
 <p><section class="code"></p>
 
-<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="c1">;;;; my-tools.asd</span></p>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;;;; my-tools.asd</span></p>
 
-<pre><code>&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;asdf:defsystem&lt;/span&gt; &lt;span class="ss"&gt;#:my-tools&lt;/span&gt;
-  &lt;span class="ss"&gt;:serial&lt;/span&gt; &lt;span class="no"&gt;t&lt;/span&gt;
-  &lt;span class="ss"&gt;:depends-on&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;#:drakma&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="ss"&gt;:components&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="ss"&gt;:file&lt;/span&gt; &lt;span class="s"&gt;"package"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-               &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:file&lt;/span&gt; &lt;span class="s"&gt;"my-tools"&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-</code></pre>
+<p><span class="p">(</span><span class="nv">asdf:defsystem</span> <span class="ss">#:my-tools</span>
+  <span class="ss">:serial</span> <span class="no">t</span>
+  <span class="ss">:depends-on</span> <span class="p">(</span><span class="ss">#:drakma</span><span class="p">)</span>
+  <span class="ss">:components</span> <span class="p">((</span><span class="ss">:file</span> <span class="s">"package"</span><span class="p">)</span>
+               <span class="p">(</span><span class="ss">:file</span> <span class="s">"my-tools"</span><span class="p">)))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -295,12 +292,11 @@ CL@USER$</code></pre></figure></p>
 
 <p><section class="code"></p>
 
-<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="c1">;;;; package.lisp</span></p>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;;;; package.lisp</span></p>
 
-<pre><code>&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defpackage&lt;/span&gt; &lt;span class="ss"&gt;#:my-tools&lt;/span&gt;
-  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:use&lt;/span&gt; &lt;span class="ss"&gt;#:cl&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:export&lt;/span&gt; &lt;span class="ss"&gt;#:permute&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-</code></pre>
+<p><span class="p">(</span><span class="nb">defpackage</span> <span class="ss">#:my-tools</span>
+  <span class="p">(</span><span class="ss">:use</span> <span class="ss">#:cl</span><span class="p">)</span>
+  <span class="p">(</span><span class="ss">:export</span> <span class="ss">#:permute</span><span class="p">))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -339,15 +335,15 @@ CL@USER$(my-tools:permute '(1 2 3 4))
 
 <p><section class="code"></p>
 
-<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nv">asdf:defsystem</span> <span class="ss">#:my-tools</span>
-      <span class="ss">:serial</span> <span class="no">t</span>
-      <span class="ss">:depends-on</span> <span class="p">(</span><span class="ss">#:drakma</span><span class="p">)</span>
-      <span class="ss">:components</span> <span class="p">((</span><span class="ss">:file</span> <span class="s">"urls"</span><span class="p">)</span>
-                   <span class="p">(</span><span class="ss">:file</span> <span class="s">"models"</span><span class="p">)</span>
-                   <span class="p">(</span><span class="ss">:file</span> <span class="s">"views"</span><span class="p">)</span>
-                   <span class="p">(</span><span class="ss">:file</span> <span class="s">"init"</span><span class="p">)</span>
-                   <span class="p">(</span><span class="ss">:file</span> <span class="s">"package"</span><span class="p">)</span>
-                   <span class="p">(</span><span class="ss">:file</span> <span class="s">"my-tools"</span><span class="p">)))</span></code></pre></figure></p>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">asdf:defsystem</span> <span class="ss">#:my-tools</span>
+  <span class="ss">:serial</span> <span class="no">t</span>
+  <span class="ss">:depends-on</span> <span class="p">(</span><span class="ss">#:drakma</span><span class="p">)</span>
+  <span class="ss">:components</span> <span class="p">((</span><span class="ss">:file</span> <span class="s">"urls"</span><span class="p">)</span>
+               <span class="p">(</span><span class="ss">:file</span> <span class="s">"models"</span><span class="p">)</span>
+               <span class="p">(</span><span class="ss">:file</span> <span class="s">"views"</span><span class="p">)</span>
+               <span class="p">(</span><span class="ss">:file</span> <span class="s">"init"</span><span class="p">)</span>
+               <span class="p">(</span><span class="ss">:file</span> <span class="s">"package"</span><span class="p">)</span>
+               <span class="p">(</span><span class="ss">:file</span> <span class="s">"my-tools"</span><span class="p">)))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -361,15 +357,13 @@ CL@USER$(my-tools:permute '(1 2 3 4))
 
 <p><section class="shell"></p>
 
-<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (quickproject:make-project "~/dev/lisp/my-cms/"
-                      :depends-on '(aserve))
-"my-cms"
-CL@USER$
-CL@USER$ (net.aserve:start :port 8000)</p>
-
-<h1>&lt;NET.ASERVE:WSERVER port 8000 {1002C5F453}&gt;</h1>
-
-<p>CL@USER$</code></pre></figure></p>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console"> CL@USER$ (quickproject:make-project "~/dev/lisp/my-cms/"
+                       :depends-on '(aserve))
+ "my-cms"
+ CL@USER$
+ CL@USER$ (net.aserve:start :port 8000)
+ #&lt;NET.ASERVE:WSERVER port 8000 {1002C5F453}&gt;
+ CL@USER$</code></pre></figure></p>
 
 <p></section></p>
 

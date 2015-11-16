@@ -18,6 +18,7 @@
             src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
       MathJax.Hub.Config({
       tex2jax: {
+      processEnvironments: true,
       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
       }
       });
@@ -87,13 +88,13 @@
     <h3>Definition of a Function</h3>
 
 <p>Functions are nothing more than equations where you can plug in an input variable <code>\(x\)</code> and get an output variable <code>\(y\)</code> in return.
-<code>\[
+$$
 x \xrightarrow{\text{input}}\boxed{function}\xrightarrow{\text{output}} y
-\]</code>
+$$
 Functions describe the relations, causalities, and changes between one variable (<em>the input</em>) and the next (<em>the output</em>). In function notation it is expressed as:
-<code>\[
+$$
 \Large y = f(x)
-\]</code></p>
+$$</p>
 
 <h3>Examples</h3>
 
@@ -104,62 +105,84 @@ Functions describe the relations, causalities, and changes between one variable 
 <p>The frequency of a cricket's chirp <code>\(y\)</code> is determined by temperature <code>\(x\)</code> with the function <code>\(y = 7x-30\)</code>.
 Given <code>\(x\)</code> is <code>\(27^\circ C\)</code>:</p>
 
-<p><code>\(\begin{align}
-y &amp;= 7x - 30 \\
-  &amp;= 7(27) - 30 \\
-y &amp;= 159 \mbox{ chirps per minute}
-\end{align}\)</code></p>
+<div style="margin-bottom:10px">
+`\(\begin{align}
+y &= 7x - 30 \\
+  &= 7(27) - 30 \\
+y &= 159 \mbox{ chirps per minute}
+\end{align}\)` 
+</div>
+
 
 <p><strong>An example of Changes</strong></p>
 
 <p>The speed of sound <code>\(y\)</code> in meters per second (<code>\(m/s\)</code>) changes in relation to the temperature <code>\(x^\circ C\)</code>.</p>
 
-<p><code>\(\begin{align}
-y &amp;= v(x) \\
-  &amp;= 0.6x + 331
-\end{align}\)</code></p>
+<div>
+`\(\begin{align}
+y &= v(x) \\
+  &= 0.6x + 331 
+\end{align}\)`
+</div>
 
-<p><code>\[\begin{array}{lll|lll}
-x &amp; = &amp; 15^\circ C &amp; x &amp; = &amp; -5^\circ C \\
-y &amp; = &amp; v(15) &amp; y &amp; = &amp; v(-5) \\
-&amp; = &amp; 0.6(15) + 331 &amp;&amp; = &amp; 0.6(-5) + 331 \\
-&amp; = &amp; 340 \mbox{m/s} &amp;&amp; = &amp; 328 \mbox{m/s} \\
-\end{array}\]</code></p>
+
+<div>
+$$
+\begin{array}{lll|lll}
+x & = & 15^\circ C & x & = & -5^\circ C\\
+y & = & v(15) & y & = & v(-5)\\
+& = & 0.6(15) + 331 && = & 0.6(-5) + 331\\
+& = & 340 \mbox{m/s} && = & 328 \mbox{m/s}
+\end{array}
+$$
+</div>
+
 
 <p><strong>An example of Relations</strong></p>
 
 <p>Conversion between <code>\(x^\circ\)</code> Fahrenheit to <code>\(y^\circ\)</code> Celsius.</p>
 
-<p><code>\[\begin {array}{lll|lll}
-y &amp; = &amp; f(x) &amp; x &amp; = &amp; 50^\circ F\\
-&amp; = &amp; \frac 5 9 (x - 32) &amp;&amp; = &amp;\frac 5 9 (50 - 32) \\
-&amp;&amp;&amp;&amp; = &amp; 10^\circ C
-\end{array}\]</code></p>
+<div>
+$$
+\begin {array}{lll|lll}
+y & = & f(x) & x & = & 50^\circ F\\
+& = & \frac 5 9 (x - 32) && = &\frac 5 9 (50 - 32) \\
+&&&& = & 10^\circ C 
+\end{array}
+$$
+</div>
+
 
 <h3>As an aside...</h3>
 
-<p><strong><em>Composition of functions</em></strong> is the combination of two or more functions.</p>
-
-<p><code>\[
+<p><strong><em>Composition of functions</em></strong> is the combination of two or more functions.
+$$
 x \rightarrow \boxed{f} \rightarrow f(x) \rightarrow \boxed{g} \rightarrow g(f(x))
-\]</code></p>
-
-<p>In computer science, functions that can be passed to other functions as input (<em>arguments</em>) are called <strong><a href="http://en.wikipedia.org/wiki/First-class_function">first class functions</a></strong>.</p>
+$$
+In computer science, functions that can be passed to other functions as input (<em>arguments</em>) are called <strong><a href="http://en.wikipedia.org/wiki/First-class_function">first class functions</a></strong>.</p>
 
 <h3>Graphing Functions</h3>
 
 <p>Graphing functions is quite simple, you plug in any variable <code>\(x\)</code> into the function and take the result <code>\(y\)</code> and use them as your <code>\(x, y\)</code> coordinates.</p>
 
-<p><code>\(f(x) = 2x - 1\)</code>
-<code>\[\begin{array}{c|c|c}
-x &amp; 2x - 1 &amp; (x,y) \\
-\hline
-1 &amp; 1 &amp; (1,1) \\
-2 &amp; 3 &amp; (2,3) \\
-3 &amp; 5 &amp; (3,5)
-\end{array}\]</code></p>
+<p><code>\(f(x) = 2x - 1\)</code></p>
 
-<div id="box" class="jxgbox"></div>
+<div>
+$$
+\begin{array}{c|c|c}
+x & 2x - 1 & (x,y) \\
+\hline
+1 & 1 & (1,1) \\
+2 & 3 & (2,3) \\
+3 & 5 & (3,5)
+\end{array}
+$$
+</div>
+
+
+
+
+<div id="box" class="jxgbox center-block" style="height:300px;width:300px"></div>
 
 
 <script type="text/javascript">

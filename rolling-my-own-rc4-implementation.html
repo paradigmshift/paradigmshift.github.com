@@ -18,6 +18,7 @@
             src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
       MathJax.Hub.Config({
       tex2jax: {
+      processEnvironments: true,
       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
       }
       });
@@ -106,8 +107,7 @@
 
 <p><strong>Pseudocode:</strong></p>
 
-<p><section class="code">
-<code>\(
+<p><code>\(
 \large{ \text{for i from } 0 \mbox{ to } 255 \\
 {\rm ~~}S[i] := i \\
 \text{endfor} \\
@@ -116,48 +116,38 @@ j := 0 \\
 {\rm ~~}j:= (j + S[i] + \mbox{key}[i {\rm ~mod ~keylength}]) \mbox{ mod } 256 \\
 {\rm ~~swap ~values ~of ~} S[i] \mbox{ and } S[j] \\
 \text{endfor}}
-\)</code>
-</section></p>
+\)</code></p>
 
-<p><strong>Lisp Implementation:</strong>
-  <section class="code"></p>
+<p><strong>Lisp Implementation:</strong></p>
 
-<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">  <span class="p">(</span><span class="nb">defun</span> <span class="nv">switch</span> <span class="p">(</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">lst</span><span class="p">)</span>
-  <span class="s">"Switch elements at position a &amp; b with each other"</span>
-    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">newlst</span> <span class="p">(</span><span class="nb">copy-list</span> <span class="nv">lst</span><span class="p">)))</span>
-      <span class="p">(</span><span class="nb">psetf</span> <span class="p">(</span><span class="nb">nth</span> <span class="nv">a</span> <span class="nv">newlst</span><span class="p">)</span> <span class="p">(</span><span class="nb">nth</span> <span class="nv">b</span> <span class="nv">newlst</span><span class="p">)</span>
-             <span class="p">(</span><span class="nb">nth</span> <span class="nv">b</span> <span class="nv">newlst</span><span class="p">)</span> <span class="p">(</span><span class="nb">nth</span> <span class="nv">a</span> <span class="nv">newlst</span><span class="p">))</span>
-      <span class="nv">newlst</span><span class="p">))</span></p>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">switch</span> <span class="p">(</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">lst</span><span class="p">)</span>
+<span class="s">"Switch elements at position a &amp; b with each other"</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">newlst</span> <span class="p">(</span><span class="nb">copy-list</span> <span class="nv">lst</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nb">psetf</span> <span class="p">(</span><span class="nb">nth</span> <span class="nv">a</span> <span class="nv">newlst</span><span class="p">)</span> <span class="p">(</span><span class="nb">nth</span> <span class="nv">b</span> <span class="nv">newlst</span><span class="p">)</span>
+           <span class="p">(</span><span class="nb">nth</span> <span class="nv">b</span> <span class="nv">newlst</span><span class="p">)</span> <span class="p">(</span><span class="nb">nth</span> <span class="nv">a</span> <span class="nv">newlst</span><span class="p">))</span>
+    <span class="nv">newlst</span><span class="p">))</span></p>
 
-<p>  <span class="p">(</span><span class="nb">defun</span> <span class="nv">list-init</span> <span class="p">()</span>
-    <span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">to</span> <span class="mi">255</span>
-      <span class="nv">collect</span> <span class="nv">i</span><span class="p">))</span></p>
+<p><span class="p">(</span><span class="nb">defun</span> <span class="nv">list-init</span> <span class="p">()</span>
+  <span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">to</span> <span class="mi">255</span>
+    <span class="nv">collect</span> <span class="nv">i</span><span class="p">))</span></p>
 
-<p>  <span class="p">(</span><span class="nb">defun</span> <span class="nv">key-init</span> <span class="p">(</span><span class="nv">key</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">let*</span> <span class="p">((</span><span class="nv">key-char</span> <span class="p">(</span><span class="nb">coerce</span> <span class="nv">key</span> <span class="ss">'list</span><span class="p">))</span>
-           <span class="p">(</span><span class="nv">key-list</span> <span class="p">(</span><span class="nb">mapcar</span> <span class="nf">#'</span><span class="nb">char-code</span> <span class="nv">key-char</span><span class="p">)))</span>
-      <span class="nv">key-list</span><span class="p">))</span>
-  </code></pre></figure></p>
-
-<p>  </section></p>
+<p><span class="p">(</span><span class="nb">defun</span> <span class="nv">key-init</span> <span class="p">(</span><span class="nv">key</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let*</span> <span class="p">((</span><span class="nv">key-char</span> <span class="p">(</span><span class="nb">coerce</span> <span class="nv">key</span> <span class="ss">'list</span><span class="p">))</span>
+         <span class="p">(</span><span class="nv">key-list</span> <span class="p">(</span><span class="nb">mapcar</span> <span class="nf">#'</span><span class="nb">char-code</span> <span class="nv">key-char</span><span class="p">)))</span>
+    <span class="nv">key-list</span><span class="p">))</span></code></pre></figure></p>
 
 <p>The function <code>list-init</code> initializes a list with the elements 0 to 255, this is used to scramble the key. <code>key-init</code> takes the passphrase in the form of a string, creates a list from that string, then returns the numeric code representation of each element in the list (normally the result would be the binary representation of each element, in this case it is ASCII code). <code>switch</code> is the function responsible for swapping the list values with each other.</p>
 
-<p>  <section class="code"></p>
-
-<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">  <span class="p">(</span><span class="nb">defun</span> <span class="nv">scramble</span> <span class="p">(</span><span class="nv">lst</span> <span class="nv">key-list</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">j</span> <span class="mi">0</span><span class="p">))</span>
-      <span class="p">(</span><span class="nb">dotimes</span> <span class="p">(</span><span class="nv">n</span> <span class="mi">255</span><span class="p">)</span>
-        <span class="p">(</span><span class="k">setq</span> <span class="nv">j</span> <span class="p">(</span><span class="nb">mod</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">j</span>
-                        <span class="p">(</span><span class="nb">nth</span> <span class="nv">n</span> <span class="nv">lst</span><span class="p">)</span>
-                        <span class="p">(</span><span class="nb">nth</span> <span class="p">(</span><span class="nb">mod</span> <span class="nv">n</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">key-list</span><span class="p">))</span>
-                             <span class="nv">key-list</span><span class="p">))</span>
-                     <span class="p">(</span><span class="nb">length</span> <span class="nv">key-list</span><span class="p">)))</span>
-        <span class="p">(</span><span class="k">setq</span> <span class="nv">lst</span> <span class="p">(</span><span class="nv">switch</span> <span class="nv">n</span> <span class="nv">j</span> <span class="nv">lst</span><span class="p">)))</span>
-      <span class="nv">lst</span><span class="p">))</span>
-  </code></pre></figure></p>
-
-<p>  </section></p>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">scramble</span> <span class="p">(</span><span class="nv">lst</span> <span class="nv">key-list</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">j</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="p">(</span><span class="nb">dotimes</span> <span class="p">(</span><span class="nv">n</span> <span class="mi">255</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">setq</span> <span class="nv">j</span> <span class="p">(</span><span class="nb">mod</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">j</span>
+                      <span class="p">(</span><span class="nb">nth</span> <span class="nv">n</span> <span class="nv">lst</span><span class="p">)</span>
+                      <span class="p">(</span><span class="nb">nth</span> <span class="p">(</span><span class="nb">mod</span> <span class="nv">n</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">key-list</span><span class="p">))</span>
+                           <span class="nv">key-list</span><span class="p">))</span>
+                   <span class="p">(</span><span class="nb">length</span> <span class="nv">key-list</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">setq</span> <span class="nv">lst</span> <span class="p">(</span><span class="nv">switch</span> <span class="nv">n</span> <span class="nv">j</span> <span class="nv">lst</span><span class="p">)))</span>
+    <span class="nv">lst</span><span class="p">))</span></code></pre></figure></p>
 
 <p><code>scramble</code>, as the function name suggests, begins the permutation of the passphrase (the output of <code>key-init</code>) using the list (or array) initialized by <code>list-init</code>. Each iteration has an effect not only on the passphrase but also on the list that is used to determine the permutation.</p>
 
@@ -170,7 +160,7 @@ j := 0 \\
 <p><code>\[
 \begin{array}{l}
 S = 0, 1, 2, 3 \\
-K = 1, 7, 1, 7 \\
+K = 1, 7, 1, 7  \\
 (i = 0, j = 0, S = 0, 1, 2, 3): \\
 j = (j + S[i] + K[i]) = 0 + 0 + 1 = 1 \\
 \mbox{Swap } S[i] \mbox{with } S[j] = S = 1, 0, 2, 3 \\
@@ -229,28 +219,24 @@ j := 0\\
 
 <p>After each iteration of the loop, the resulting <strong><code>K</code></strong> is then <strong>XOR</strong>ed with one byte of the message, this progresses in a linear manner (so every time a new computation for <strong><code>K</code></strong> is done, the next byte of the message is <strong>XOR</strong>ed).</p>
 
-<p><strong>Lisp Implementation:</strong>
-<section class="code"></p>
+<p><strong>Lisp Implementation:</strong></p>
 
-<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">  <span class="p">(</span><span class="nb">defun</span> <span class="nv">output-generator</span> <span class="p">(</span><span class="nv">i</span> <span class="nv">j</span> <span class="nv">s</span> <span class="nv">msg</span> <span class="nv">result</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">setq</span> <span class="nv">i</span> <span class="p">(</span><span class="nb">mod</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">i</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">256</span><span class="p">))</span>
-    <span class="p">(</span><span class="k">setq</span> <span class="nv">j</span> <span class="p">(</span><span class="nb">mod</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">j</span> <span class="p">(</span><span class="nb">nth</span> <span class="nv">i</span> <span class="nv">s</span><span class="p">))</span> <span class="mi">256</span><span class="p">))</span>
-    <span class="p">(</span><span class="k">setq</span> <span class="nv">s</span> <span class="p">(</span><span class="nv">switch</span> <span class="p">(</span><span class="nb">nth</span> <span class="nv">i</span> <span class="nv">s</span><span class="p">)</span>
-                    <span class="p">(</span><span class="nb">nth</span> <span class="nv">j</span> <span class="nv">s</span><span class="p">)</span> <span class="nv">s</span><span class="p">))</span>
-    <span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nb">boole</span> <span class="nv">boole-xor</span> <span class="p">(</span><span class="nb">mod</span> <span class="p">(</span><span class="nb">+</span> <span class="p">(</span><span class="nb">nth</span> <span class="nv">i</span> <span class="nv">s</span><span class="p">)</span>
-                                   <span class="p">(</span><span class="nb">nth</span> <span class="nv">j</span> <span class="nv">s</span><span class="p">))</span>
-                                <span class="mi">256</span><span class="p">)</span>
-                 <span class="p">(</span><span class="nb">car</span> <span class="nv">msg</span><span class="p">))</span> <span class="nv">result</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">msg</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="p">(</span><span class="nv">output-generator</span> <span class="p">(</span><span class="nb">+</span> <span class="mi">1</span> <span class="nv">i</span><span class="p">)</span>
-                          <span class="p">(</span><span class="nb">+</span> <span class="mi">1</span> <span class="nv">j</span><span class="p">)</span>
-                          <span class="nv">s</span>
-                          <span class="p">(</span><span class="nb">subseq</span> <span class="nv">msg</span> <span class="mi">1</span><span class="p">)</span>
-                          <span class="nv">result</span><span class="p">)</span>
-        <span class="p">(</span><span class="nb">reverse</span> <span class="nv">result</span><span class="p">)))</span>
-  </code></pre></figure></p>
-
-<p></section></p>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">output-generator</span> <span class="p">(</span><span class="nv">i</span> <span class="nv">j</span> <span class="nv">s</span> <span class="nv">msg</span> <span class="nv">result</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">i</span> <span class="p">(</span><span class="nb">mod</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">i</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">256</span><span class="p">))</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">j</span> <span class="p">(</span><span class="nb">mod</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">j</span> <span class="p">(</span><span class="nb">nth</span> <span class="nv">i</span> <span class="nv">s</span><span class="p">))</span> <span class="mi">256</span><span class="p">))</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">s</span> <span class="p">(</span><span class="nv">switch</span> <span class="p">(</span><span class="nb">nth</span> <span class="nv">i</span> <span class="nv">s</span><span class="p">)</span>
+                  <span class="p">(</span><span class="nb">nth</span> <span class="nv">j</span> <span class="nv">s</span><span class="p">)</span> <span class="nv">s</span><span class="p">))</span>
+  <span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nb">boole</span> <span class="nv">boole-xor</span> <span class="p">(</span><span class="nb">mod</span> <span class="p">(</span><span class="nb">+</span> <span class="p">(</span><span class="nb">nth</span> <span class="nv">i</span> <span class="nv">s</span><span class="p">)</span>
+                                 <span class="p">(</span><span class="nb">nth</span> <span class="nv">j</span> <span class="nv">s</span><span class="p">))</span>
+                              <span class="mi">256</span><span class="p">)</span>
+               <span class="p">(</span><span class="nb">car</span> <span class="nv">msg</span><span class="p">))</span> <span class="nv">result</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">msg</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">output-generator</span> <span class="p">(</span><span class="nb">+</span> <span class="mi">1</span> <span class="nv">i</span><span class="p">)</span>
+                        <span class="p">(</span><span class="nb">+</span> <span class="mi">1</span> <span class="nv">j</span><span class="p">)</span>
+                        <span class="nv">s</span>
+                        <span class="p">(</span><span class="nb">subseq</span> <span class="nv">msg</span> <span class="mi">1</span><span class="p">)</span>
+                        <span class="nv">result</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">reverse</span> <span class="nv">result</span><span class="p">)))</span></code></pre></figure></p>
 
 <h3>Test Run</h3>
 

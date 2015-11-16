@@ -18,6 +18,7 @@
             src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
       MathJax.Hub.Config({
       tex2jax: {
+      processEnvironments: true,
       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
       }
       });
@@ -144,13 +145,13 @@ T</code></pre></figure></p>
 
 <p>Take a look at the return value, what did the interpreter do? It basically took the arguments and rearranged them into prefix notation before evaluating them. This is what we told it to do every time it encountered <code>infix-math</code>.</p>
 
-<p><section class="code">
-    (defmacro infix-math (x op y)
-      (if (member op '(+ * - /))
-<section class="highlight-this">    <br/>
-      `(,op ,x ,y)))
-</section>
-</section></p>
+<div class="mathjax-incf-font">
+\(\require{color}\)
+\[(defmacro \ infix-math (x \ op \ y) \\
+(if (member op '(+ * - /)) \\
+ \color{red}\grave(,op \ ,x \ ,y)))\]
+ </div>
+
 
 <p>The arguments are entered in the order of <em>x</em> <em>operator</em> <em>y</em>, and reorders them into <em>operator</em> <em>x</em> <em>y</em>.</p>
 
@@ -199,9 +200,9 @@ the list is not splittable</code></pre></figure></p>
 <p><section class="shell"></p>
 
 <p><figure class="highlight"><pre><code class="language-console" data-lang="console">(let ((x 100))
-           (split '(2 3)
-                  (print x)
-                  nil))
+  (split '(2 3)
+          (print x)
+          nil))
 (2 3)</code></pre></figure></p>
 
 <p></section></p>
@@ -231,15 +232,14 @@ T</code></pre></figure></p>
 
 <p>This leads us to...</p>
 
-<h3><code>(gensym)</code></h3>
+<h3>(gensym)</h3>
 
 <p><a href="http://www.bookshelf.jp/texi/onlisp/onlisp_10.html#SEC73"><code>(gensym)</code></a> returns a unique symbol everytime it's called. Let's see it in action.</p>
 
 <p><section class="shell"></p>
 
-<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (gensym)</p>
-
-<h1>:G897</code></pre></figure></h1>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console"> CL@USER$ (gensym)
+ #:G897</code></pre></figure></p>
 
 <p></section></p>
 
@@ -247,14 +247,14 @@ T</code></pre></figure></p>
 
 <p><section class="code"></p>
 
-<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nb">defmacro</span> <span class="nv">split</span> <span class="p">(</span><span class="nv">lst</span> <span class="nv">yes</span> <span class="nv">no</span><span class="p">)</span>
-      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">x</span> <span class="p">(</span><span class="nb">gensym</span><span class="p">)))</span>
-        <span class="o">`</span><span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="o">,</span><span class="nv">x</span> <span class="o">,</span><span class="nv">lst</span><span class="p">))</span>
-           <span class="p">(</span><span class="k">if</span> <span class="o">,</span><span class="nv">x</span>
-               <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">head</span> <span class="p">(</span><span class="nb">car</span> <span class="o">,</span><span class="nv">x</span><span class="p">))</span>
-                     <span class="p">(</span><span class="nv">tail</span> <span class="p">(</span><span class="nb">cdr</span> <span class="o">,</span><span class="nv">x</span><span class="p">)))</span>
-                 <span class="o">,</span><span class="nv">yes</span><span class="p">)</span>
-             <span class="o">,</span><span class="nv">no</span><span class="p">))))</span></code></pre></figure></p>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">split</span> <span class="p">(</span><span class="nv">lst</span> <span class="nv">yes</span> <span class="nv">no</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">x</span> <span class="p">(</span><span class="nb">gensym</span><span class="p">)))</span>
+    <span class="o">`</span><span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="o">,</span><span class="nv">x</span> <span class="o">,</span><span class="nv">lst</span><span class="p">))</span>
+       <span class="p">(</span><span class="k">if</span> <span class="o">,</span><span class="nv">x</span>
+           <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">head</span> <span class="p">(</span><span class="nb">car</span> <span class="o">,</span><span class="nv">x</span><span class="p">))</span>
+                 <span class="p">(</span><span class="nv">tail</span> <span class="p">(</span><span class="nb">cdr</span> <span class="o">,</span><span class="nv">x</span><span class="p">)))</span>
+             <span class="o">,</span><span class="nv">yes</span><span class="p">)</span>
+         <span class="o">,</span><span class="nv">no</span><span class="p">))))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -266,13 +266,13 @@ T</code></pre></figure></p>
 
 <p><section class="code"></p>
 
-<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">x</span> <span class="o">'</span><span class="err">#</span><span class="nv">g134</span><span class="p">))</span>
-      <span class="o">`</span><span class="p">(</span><span class="k">let</span> <span class="p">((</span> <span class="o">'</span><span class="err">#</span><span class="nv">g134</span> <span class="o">'</span><span class="p">(</span><span class="mi">2</span> <span class="mi">3</span><span class="p">)))</span>
-         <span class="p">(</span><span class="k">if</span> <span class="o">'</span><span class="p">(</span><span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
-             <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">head</span> <span class="p">(</span><span class="nb">car</span> <span class="o">'</span><span class="err">#</span><span class="nv">g134</span><span class="p">))</span>
-                   <span class="p">(</span><span class="nv">tail</span> <span class="p">(</span><span class="nb">car</span> <span class="o">'</span><span class="err">#</span><span class="nv">g134</span><span class="p">)))</span>
-               <span class="o">....</span>
-               <span class="o">....</span></code></pre></figure></p>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">x</span> <span class="o">'</span><span class="err">#</span><span class="nv">g134</span><span class="p">))</span>
+  <span class="o">`</span><span class="p">(</span><span class="k">let</span> <span class="p">((</span> <span class="o">'</span><span class="err">#</span><span class="nv">g134</span> <span class="o">'</span><span class="p">(</span><span class="mi">2</span> <span class="mi">3</span><span class="p">)))</span>
+     <span class="p">(</span><span class="k">if</span> <span class="o">'</span><span class="p">(</span><span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+         <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">head</span> <span class="p">(</span><span class="nb">car</span> <span class="o">'</span><span class="err">#</span><span class="nv">g134</span><span class="p">))</span>
+               <span class="p">(</span><span class="nv">tail</span> <span class="p">(</span><span class="nb">car</span> <span class="o">'</span><span class="err">#</span><span class="nv">g134</span><span class="p">)))</span>
+           <span class="o">....</span>
+           <span class="o">....</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -280,11 +280,11 @@ T</code></pre></figure></p>
 
 <p><section class="shell"></p>
 
-<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (let ((x 100))
-           (split '(2 3)
-             (print x)
-              nil))
-100</code></pre></figure></p>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console"> CL@USER$ (let ((x 100))
+            (split '(2 3)
+              (print x)
+               nil))
+ 100</code></pre></figure></p>
 
 <p></section></p>
 
@@ -298,22 +298,22 @@ T</code></pre></figure></p>
 
 <p><section class="code"></p>
 
-<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">add-elements</span> <span class="p">(</span><span class="nv">lst</span><span class="p">)</span>
-      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">x</span> <span class="mi">0</span><span class="p">))</span>
-        <span class="p">(</span><span class="k">labels</span> <span class="p">((</span><span class="nv">f</span> <span class="p">(</span><span class="nv">lst</span><span class="p">)</span>
-                    <span class="p">(</span><span class="nv">split</span> <span class="nv">lst</span>
-                           <span class="p">(</span><span class="k">progn</span> <span class="p">(</span><span class="k">setq</span> <span class="nv">x</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">x</span> <span class="nv">head</span><span class="p">))</span>
-                                  <span class="p">(</span><span class="nv">f</span> <span class="nv">tail</span><span class="p">))</span>
-                           <span class="no">nil</span><span class="p">)))</span>
-          <span class="p">(</span><span class="nv">f</span> <span class="nv">lst</span><span class="p">))</span>
-        <span class="nv">x</span><span class="p">))</span></code></pre></figure></p>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">add-elements</span> <span class="p">(</span><span class="nv">lst</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">x</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="p">(</span><span class="k">labels</span> <span class="p">((</span><span class="nv">f</span> <span class="p">(</span><span class="nv">lst</span><span class="p">)</span>
+                <span class="p">(</span><span class="nv">split</span> <span class="nv">lst</span>
+                       <span class="p">(</span><span class="k">progn</span> <span class="p">(</span><span class="k">setq</span> <span class="nv">x</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">x</span> <span class="nv">head</span><span class="p">))</span>
+                              <span class="p">(</span><span class="nv">f</span> <span class="nv">tail</span><span class="p">))</span>
+                       <span class="no">nil</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nv">f</span> <span class="nv">lst</span><span class="p">))</span>
+    <span class="nv">x</span><span class="p">))</span></code></pre></figure></p>
 
 <p></section></p>
 
 <p><section class="shell"></p>
 
-<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (add-elements '(1 2 3 4))
-10</code></pre></figure></p>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console"> CL@USER$ (add-elements '(1 2 3 4))
+ 10</code></pre></figure></p>
 
 <p></section></p>
 
@@ -321,15 +321,15 @@ T</code></pre></figure></p>
 
 <p><section class="code"></p>
 
-<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">add-elements-functional</span> <span class="p">(</span><span class="nv">lst</span><span class="p">)</span>
-      <span class="p">(</span><span class="nb">reduce</span> <span class="nf">#'</span><span class="nb">+</span> <span class="nv">lst</span><span class="p">))</span></code></pre></figure></p>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">add-elements-functional</span> <span class="p">(</span><span class="nv">lst</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">reduce</span> <span class="nf">#'</span><span class="nb">+</span> <span class="nv">lst</span><span class="p">))</span></code></pre></figure></p>
 
 <p></section></p>
 
 <p><section class="shell"></p>
 
-<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (add-elements-functional '(1 2 3 4))
-10</code></pre></figure></p>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console"> CL@USER$ (add-elements-functional '(1 2 3 4))
+ 10</code></pre></figure></p>
 
 <p></section></p>
 
@@ -341,10 +341,10 @@ T</code></pre></figure></p>
 
 <p><section class="code"></p>
 
-<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nb">defmacro</span> <span class="nv">if-var</span> <span class="p">(</span><span class="nv">var</span><span class="p">)</span>
-      <span class="o">`</span><span class="p">(</span><span class="k">if</span> <span class="o">,</span><span class="nv">var</span>
-           <span class="o">,</span><span class="nv">var</span>
-         <span class="no">nil</span><span class="p">))</span></code></pre></figure></p>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">if-var</span> <span class="p">(</span><span class="nv">var</span><span class="p">)</span>
+  <span class="o">`</span><span class="p">(</span><span class="k">if</span> <span class="o">,</span><span class="nv">var</span>
+       <span class="o">,</span><span class="nv">var</span>
+     <span class="no">nil</span><span class="p">))</span></code></pre></figure></p>
 
 <p></section></p>
 
@@ -352,11 +352,11 @@ T</code></pre></figure></p>
 
 <p><section class="shell"></p>
 
-<p><figure class="highlight"><pre><code class="language-console" data-lang="console">(if-var (progn (print "evaluated")
-                        t))
-"evaluated"
-"evaluated"
-T</code></pre></figure></p>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console"> (if-var (progn (print "evaluated")
+                         t))
+ "evaluated"
+ "evaluated"
+ T</code></pre></figure></p>
 
 <p></section></p>
 
@@ -364,24 +364,24 @@ T</code></pre></figure></p>
 
 <p>If you look back on the macro that was just defined, you can see that <code>,var</code> appears twice in the code.</p>
 
-<p><section class="code">
-    (defmacro if-var (var)
-<section class="highlight-this">
-      `(if ,var
-           ,var
-</section>
-         nil))
-</section></p>
+<div class="mathjax-incf-font">
+\(\require{color}\)
+`\[\boldsymbol{(defmacro \ if-var (var) \\
+     \grave(if \color{red},var \\
+      \quad \color{red},var \\
+      \quad  nil))}\]`
+</div>
+
 
 <p>To avoid this, we have to write the code in a way that it only evaluates once.</p>
 
 <p><section class="code"></p>
 
-<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nb">defmacro</span> <span class="nv">if-var</span> <span class="p">(</span><span class="nv">var</span><span class="p">)</span>
-      <span class="o">`</span><span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">x</span> <span class="o">,</span><span class="nv">var</span><span class="p">))</span>
-         <span class="p">(</span><span class="k">if</span> <span class="nv">x</span>
-             <span class="nv">x</span>
-           <span class="no">nil</span><span class="p">)))</span></code></pre></figure></p>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">if-var</span> <span class="p">(</span><span class="nv">var</span><span class="p">)</span>
+  <span class="o">`</span><span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">x</span> <span class="o">,</span><span class="nv">var</span><span class="p">))</span>
+     <span class="p">(</span><span class="k">if</span> <span class="nv">x</span>
+         <span class="nv">x</span>
+       <span class="no">nil</span><span class="p">)))</span></code></pre></figure></p>
 
 <p></section></p>
 

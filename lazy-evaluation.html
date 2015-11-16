@@ -18,6 +18,7 @@
             src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
       MathJax.Hub.Config({
       tex2jax: {
+      processEnvironments: true,
       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
       }
       });
@@ -219,19 +220,16 @@ CL@USER$ (or (exp1) (exp2))</p>
 
 <p><section class="shell"></p>
 
-<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (exp3)</p>
-
-<p>; in: EXP3
-;     (EXP3)
-;
-; caught STYLE-WARNING:
-;   undefined function: EXP3
-;
-; compilation unit finished
-;   Undefined function:
-;     EXP3
-;   caught 1 STYLE-WARNING condition
-; Evaluation aborted on #&lt;UNDEFINED-FUNCTION EXP3 {1004F1C1A3}&gt;.</code></pre></figure></p>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (exp3)
+ in: EXP3
+     (EXP3)
+ caught STYLE-WARNING:
+   undefined function: EXP3
+ compilation unit finished
+   Undefined function:
+     EXP3
+   caught 1 STYLE-WARNING condition
+ Evaluation aborted on #&lt;UNDEFINED-FUNCTION EXP3 {1004F1C1A3}&gt;.</code></pre></figure></p>
 
 <p></section></p>
 
@@ -257,17 +255,15 @@ CL@USER$ (or (exp1) (exp2) (exp3) (exp4))</p>
 
 <p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (or (exp3) (exp2) (exp1))</p>
 
-<p>; in: OR (EXP3)
-;     (EXP3)
-;
-; caught STYLE-WARNING:
-;   undefined function: EXP3
-;
-; compilation unit finished
-;   Undefined function:
-;     EXP3
-;   caught 1 STYLE-WARNING condition
-; Evaluation aborted on #&lt;UNDEFINED-FUNCTION EXP3 {100537C653}&gt;.</code></pre></figure></p>
+<p> in: OR (EXP3)
+     (EXP3)
+ caught STYLE-WARNING:
+   undefined function: EXP3
+ compilation unit finished
+   Undefined function:
+     EXP3
+   caught 1 STYLE-WARNING condition
+ Evaluation aborted on #&lt;UNDEFINED-FUNCTION EXP3 {100537C653}&gt;.</code></pre></figure></p>
 
 <p></section></p>
 
@@ -377,15 +373,13 @@ Evaluation took:
 
 <p><section class="shell"></p>
 
-<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (defun add (x y)
-           (lazy (+ x y)))
-ADD
-CL@USER$ (add 1 2)</p>
-
-<h1>&lt;CLOSURE (LAMBDA () :IN ADD) {1003F30A4B}&gt;</h1>
-
-<p>CL@USER$ (funcall (add 1 2))
-3</code></pre></figure></p>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console"> CL@USER$ (defun add (x y)
+            (lazy (+ x y)))
+ ADD
+ CL@USER$ (add 1 2)
+ #&lt;CLOSURE (LAMBDA () :IN ADD) {1003F30A4B}&gt;
+ CL@USER$ (funcall (add 1 2))
+ 3</code></pre></figure></p>
 
 <p></section></p>
 

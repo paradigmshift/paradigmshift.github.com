@@ -18,6 +18,7 @@
             src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
       MathJax.Hub.Config({
       tex2jax: {
+      processEnvironments: true,
       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
       }
       });
@@ -154,22 +155,22 @@ The value "hello" is not of type NUMBER.
 
 <p>Backtraces, as mentioned earlier, are a record of the code being evaluated by the compiler up until it encounters an error and cannot continue. While most of it is incomprehensible to all except a very select few...</p>
 
-<p><section class="shell">
-    Backtrace:
-      0: (SB-KERNEL::OBJECT-NOT-TYPE-ERROR-HANDLER ..)
-          Locals:
-            SB-DEBUG::ARG-0 = :<NOT-AVAILABLE>
-            SB-DEBUG::ARG-1 = #.(SB-SYS:INT-SAP #X7FFFF5215BC0)
-            SB-DEBUG::ARG-2 = #&lt;SB-ALIEN-INTERNALS:ALIEN-VALUE :SAP #X7FFFF5215740 :TYPE (<em> (STRUCT SB-VM::OS-CONTEXT-T-STRUCT))>
-            SB-DEBUG::ARG-3 = (149 21)
-      1: (SB-KERNEL:INTERNAL-ERROR #.(SB-SYS:INT-SAP #X7FFFF5215740) #<unavailable argument>)
-          Locals:
-            SB-DEBUG::ARG-0 = #.(SB-SYS:INT-SAP #X7FFFF5215740)
-            SB-DEBUG::ARG-1 = :<NOT-AVAILABLE>
-      2: ("foreign function: #x418B2F")
-          [No Locals]
-</section>
-</em>Backtrace with all variables exposed*</p>
+<pre><code>Backtrace:
+  0: (SB-KERNEL::OBJECT-NOT-TYPE-ERROR-HANDLER ..)
+      Locals:
+        SB-DEBUG::ARG-0 = :&lt;NOT-AVAILABLE&gt;
+        SB-DEBUG::ARG-1 = #.(SB-SYS:INT-SAP #X7FFFF5215BC0)
+        SB-DEBUG::ARG-2 = #&lt;SB-ALIEN-INTERNALS:ALIEN-VALUE :SAP #X7FFFF5215740 :TYPE (* (STRUCT SB-VM::OS-CONTEXT-T-STRUCT))&gt;
+        SB-DEBUG::ARG-3 = (149 21)
+  1: (SB-KERNEL:INTERNAL-ERROR #.(SB-SYS:INT-SAP #X7FFFF5215740) #&lt;unavailable argument&gt;)
+      Locals:
+        SB-DEBUG::ARG-0 = #.(SB-SYS:INT-SAP #X7FFFF5215740)
+        SB-DEBUG::ARG-1 = :&lt;NOT-AVAILABLE&gt;
+  2: ("foreign function: #x418B2F")
+      [No Locals]
+</code></pre>
+
+<p><em>Backtrace with all variables exposed</em></p>
 
 <p>...there is very useful information that can be gleaned from them. One of the most important things that can be retrieved are the values of variables at each stage of the execution.</p>
 
@@ -233,29 +234,24 @@ Backtrace:
 
 <p><section class="shell"></p>
 
-<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (defclass foo () (a  b c))</p>
-
-<h1>&lt;STANDARD-CLASS FOO&gt;</h1>
-
-<p>CL@USER$ (make-instance *)</p>
-
-<h1>&lt;FOO {100426DEE3}&gt;</h1>
-
-<p>CL@USER$</code></pre></figure></p>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console"> CL@USER$ (defclass foo () (a  b c))
+ #&lt;STANDARD-CLASS FOO&gt;
+ CL@USER$ (make-instance *)
+ #&lt;FOO {100426DEE3}&gt;
+ CL@USER$</code></pre></figure></p>
 
 <p></section></p>
 
 <p>Enter the Inspector with <code>C-c I</code> and enter <code>*</code> when asked for the value to inspect (this tells the inspector to inspect the latest value evaluated by the REPL). You should be presented with the following output.</p>
 
-<p><section class="shell">
-    #<FOO {100426DEE3}>
-    --------------------
-    Class: #<STANDARD-CLASS FOO>
-    --------------------
-     Group slots by inheritance [ ]
-     Sort slots alphabetically  [X]</p>
+<pre><code>#&lt;FOO {100426DEE3}&gt;
+--------------------
+Class: #&lt;STANDARD-CLASS FOO&gt;
+--------------------
+ Group slots by inheritance [ ]
+ Sort slots alphabetically  [X]
 
-<pre><code>All Slots:
+All Slots:
 [ ]  A = #&lt;unbound&gt;
 [ ]  B = #&lt;unbound&gt;
 [ ]  C = #&lt;unbound&gt;
@@ -263,27 +259,22 @@ Backtrace:
 [set value]  [make unbound]
 </code></pre>
 
-<p></section></p>
-
 <p>As you can see there is a short description of the object at the top and summary of the current state. You can select the slots and either change or clear the bound values. Set the value of slot <code>A</code> to 45, for example, then go back to the REPL and verify that the change has been implemented.</p>
 
-<p><section class="shell">
-    #<FOO {100426DEE3}>
-    --------------------
-    Class: #<STANDARD-CLASS FOO>
-    --------------------
-     Group slots by inheritance [ ]
-     Sort slots alphabetically  [X]</p>
+<pre><code>#&lt;FOO {100426DEE3}&gt;
+--------------------
+Class: #&lt;STANDARD-CLASS FOO&gt;
+--------------------
+ Group slots by inheritance [ ]
+ Sort slots alphabetically  [X]
 
-<pre><code>All Slots:
+All Slots:
 [X]  A = 45
 [ ]  B = #&lt;unbound&gt;
 [ ]  C = #&lt;unbound&gt;
 
 [set value]  [make unbound]
 </code></pre>
-
-<p></section></p>
 
 <p><section class="shell"></p>
 
@@ -300,21 +291,19 @@ Backtrace:
 
 <p><section class="code"></p>
 
-<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">test</span> <span class="p">(</span><span class="nv">lst</span><span class="p">)</span>
-      <span class="p">(</span><span class="nb">print</span> <span class="p">(</span><span class="nb">+</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">lst</span><span class="p">)</span> <span class="p">(</span><span class="nb">cadr</span> <span class="nv">lst</span><span class="p">)))</span>
-      <span class="p">(</span><span class="nb">break</span><span class="p">)</span>
-      <span class="p">(</span><span class="nv">test</span> <span class="p">(</span><span class="nb">cdr</span> <span class="nv">lst</span><span class="p">)))</span>
-  </code></pre></figure></p>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">test</span> <span class="p">(</span><span class="nv">lst</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">print</span> <span class="p">(</span><span class="nb">+</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">lst</span><span class="p">)</span> <span class="p">(</span><span class="nb">cadr</span> <span class="nv">lst</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nb">break</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">test</span> <span class="p">(</span><span class="nb">cdr</span> <span class="nv">lst</span><span class="p">)))</span></code></pre></figure></p>
 
 <p></section></p>
 
 <p>This will produce the following response from the debugger:</p>
 
-<p><section class="shell">
-    break
-       [Condition of type SIMPLE-CONDITION]</p>
+<pre><code>break
+   [Condition of type SIMPLE-CONDITION]
 
-<pre><code>Restarts:
+Restarts:
  0: [CONTINUE] Return from BREAK.
  1: [RETRY] Retry SLIME REPL evaluation request.
  2: [*ABORT] Return to SLIME's top level.
@@ -329,15 +318,12 @@ Backtrace:
   3: (EVAL (TEST '(1 2 3 4 5)))
 </code></pre>
 
-<p></section></p>
-
 <p>As we can see from the top description, the debugger was invoked by the <code>break</code> statement. We can then inspect the local variables at <code>1: (TEST (1 2 3 4 5))</code> and see that the function <code>test</code> was evaluated with the list <code>(1 2 3 4 5)</code>. We can then continue stepping through the code by either choosing <strong><code>0</code></strong> from the restart options displayed or by pressing <strong><code>s</code></strong>. The second iteration of the function will then give us:</p>
 
-<p><section class="shell">
-    break
-       [Condition of type SIMPLE-CONDITION]</p>
+<pre><code>break
+   [Condition of type SIMPLE-CONDITION]
 
-<pre><code>Restarts:
+Restarts:
  0: [CONTINUE] Return from BREAK.
  1: [RETRY] Retry SLIME REPL evaluation request.
  2: [*ABORT] Return to SLIME's top level.
@@ -350,19 +336,16 @@ Backtrace:
         SB-DEBUG::ARG-0 = (2 3 4 5)
 </code></pre>
 
-<p></section></p>
-
 <p>This is almost exactly the same as the previous message, except that the values which are passed onto the function are now <code>(2 3 4 5)</code> instead of <code>(1 2 3 4 5)</code>. This is because our function chops off the first element of the list each time it calls itself. As you continue stepping through, you can observe as the function will continue to truncate the arguments.</p>
 
-<p><section class="shell">
-    Backtrace:
-      0: (BREAK "break")
-      1: (TEST (3 4 5))
-          Locals:
-            SB-DEBUG::ARG-0 = (3 4 5)
-    ...</p>
-
 <pre><code>Backtrace:
+  0: (BREAK "break")
+  1: (TEST (3 4 5))
+      Locals:
+        SB-DEBUG::ARG-0 = (3 4 5)
+...
+
+Backtrace:
   0: (BREAK "break")
   1: (TEST (4 5))
       Locals:
@@ -376,8 +359,6 @@ Backtrace:
       Locals:
         SB-DEBUG::ARG-0 = (5)
 </code></pre>
-
-<p></section></p>
 
 <h3>Learning more</h3>
 

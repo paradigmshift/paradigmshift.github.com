@@ -18,6 +18,7 @@
             src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
       MathJax.Hub.Config({
       tex2jax: {
+      processEnvironments: true,
       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
       }
       });
@@ -84,7 +85,7 @@
         <section id="content">
   <h2> Unit Testing in Common Lisp </h2>
   <section class="text">
-    <h3>A Little about the History of Testing in Software Development</h3>
+    <h3>The History of Testing in Software Development</h3>
 
 <p>According to the <a href="http://en.wikipedia.org/wiki/Software_testing#History">wikipedia entry on testing</a>, testing, or writing unit-tests, sprung from a desire to formally separate debugging (which can be described as "fixing" errors <em>when they appear</em>) from assertion or verification (making sure that the code is correct).</p>
 
@@ -106,17 +107,15 @@
     To load "lisp-unit":
       Load 1 ASDF system:
         lisp-unit
-    ; Loading "lisp-unit"</p>
-
-<pre><code>("lisp-unit")&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-</code></pre>
+    ; Loading "lisp-unit"</code></pre></figure></p>
 
 <p></section></p>
 
 <h3>Usage</h3>
 
-<p>Tests are defined with <code>define-test</code>:
-<section class="code">
+<p>Tests are defined with <code>define-test</code>:</p>
+
+<p><section class="code">
 <strong>(define-test <code>\(\mbox{name exp}_1\mbox{ exp}_2\)</code>...)</strong>
 </section></p>
 
@@ -218,15 +217,11 @@ NIL</code></pre></figure></p>
 <p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (defpackage :my-package
            (:use :cl)
            (:export #:my-func-1
-                    #:my-func-2))</p>
-
-<h1>&lt;PACKAGE "MY-PACKAGE"&gt;</h1>
-
-<p>CL@USER$ (in-package :my-package)</p>
-
-<h1>&lt;PACKAGE "MY-PACKAGE"&gt;</h1>
-
-<p>MY-PACKAGE&gt; (defun my-func-1 (x)
+                    #:my-func-2))
+    #&lt;PACKAGE "MY-PACKAGE"&gt;
+CL@USER$ (in-package :my-package)
+    #&lt;PACKAGE "MY-PACKAGE"&gt;
+MY-PACKAGE&gt; (defun my-func-1 (x)
               .....
             (defun my-func-2 (y)
               .....</code></pre></figure></p>
@@ -237,22 +232,18 @@ NIL</code></pre></figure></p>
 
 <p><section class="shell"></p>
 
-<p><figure class="highlight"><pre><code class="language-console" data-lang="console">CL@USER$ (defpackage :my-package-tests
-           (:use :cl :lisp-unit :my-package))</p>
-
-<h1>&lt;PACKAGE "MY-PACKAGE-TESTS"&gt;</h1>
-
-<p>CL@USER$ (in-package :my-package-tests)</p>
-
-<h1>&lt;PACKAGE "MY-PACKAGE-TESTS"&gt;</h1>
-
-<p>MY-PACKAGE-TESTS&gt; (define-test my-test
-                    (dotimes (i 10)
-                      (assert-equal i (my-func-1 i))))
-MY-TEST
-MY-PACKAGE-TESTS&gt; (run-tests)
-MY-TEST: 10 assertions passed, 0 failed.
-; No value</code></pre></figure></p>
+<p><figure class="highlight"><pre><code class="language-console" data-lang="console"> CL@USER$ (defpackage :my-package-tests
+            (:use :cl :lisp-unit :my-package))
+ #&lt;PACKAGE "MY-PACKAGE-TESTS"&gt;
+ CL@USER$ (in-package :my-package-tests)
+ #&lt;PACKAGE "MY-PACKAGE-TESTS"&gt;
+ MY-PACKAGE-TESTS&gt; (define-test my-test
+                     (dotimes (i 10)
+                       (assert-equal i (my-func-1 i))))
+ MY-TEST
+ MY-PACKAGE-TESTS&gt; (run-tests)
+ MY-TEST: 10 assertions passed, 0 failed.
+ ; No value</code></pre></figure></p>
 
 <p></section></p>
 

@@ -18,6 +18,7 @@
             src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
       MathJax.Hub.Config({
       tex2jax: {
+      processEnvironments: true,
       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
       }
       });
@@ -101,9 +102,9 @@
 
 <p>The derivative in this case is the difference between the two points, also called the <a href="http://www.purplemath.com/modules/slope.htm">slope</a>, which is calculated with the following formula:</p>
 
-<p><code>\[
-\large{m = \frac{y_2 - y_1} {x_2-x_1}} \\
-\]</code></p>
+<p>$$
+\large{m = \frac{y_2 - y_1} {x_2-x_1}} \
+$$</p>
 
 <p>In this example that would be <code>\(\frac {16 - 4} {4 - 2} = \frac {12} 2 = 6 \)</code>. The rate of change between the two points is 6... with one caveat. Since the derivative was derived from two points, it is only accurate when used with these two points. The farther you get from these two points, the less accurate the slope becomes.</p>
 
@@ -145,9 +146,9 @@
 <p><a href="http://en.wikipedia.org/wiki/Isaac_Newton">Newton</a> used <em>dot notation</em>, which involves placing a dot over the dependent variable as seen in <code>\(\dot y = \frac {dy} {dt}\)</code>.</p>
 
 <p>The formula for deriving the derivative of a function has to calculate the rate of change between the points in the graphed function. The standard formula is:
-<code>\[
+$$
 f'(x) = \frac {f(x + e) - f(x)} e
-\]</code>
+$$
 This is actually exactly the same as the slope formula presented above. <code>\(f(x + e)\)</code> is nothing more than <code>\(y_2\)</code>, where <code>\(e\)</code> is the difference between <code>\(y_1\)</code> and <code>\(y_2\)</code> therefore <code>\(y_1 + e = y_2\)</code> (when the variable <code>\(x\)</code> is plugged into the function, <code>\(y\)</code> comes out the other end). The bottom part of the equation has been simplified, in it's full form it would read <code>\(\frac {f(x + e) - f(x)} {(x + e) - x}\)</code>. Canceling the positive and negative <code>\(x\)</code> leaves just <code>\(e\)</code>.</p>
 
 <h4>Example</h4>
@@ -177,17 +178,17 @@ f'(x) = 2x + e \\
 
 <p>So we say that as <code>\(x\)</code> approaches the value <code>\(L\)</code>, the statement <code>\(f(x) = L\)</code> becomes true. The notation for a limit is <code>\(\lim\limits_{x\rightarrow c}\)</code>, where <code>\(x\)</code> is approaching <code>\(c\)</code>. The complete expression of the above example would be:</p>
 
-<p><code>\[
+<p>$$
 \lim_{x\rightarrow C}f(x) = L
-\]</code></p>
+$$</p>
 
 <p>So now that we have defined limits, how do they apply to differentiation?</p>
 
 <p>Remember that <code>\(e\)</code> is the <em>distance</em> or <em>difference</em> between two points, but since we aren't solving for the difference between specific points but for the rate of change at <em>any</em> point, the solution here is to introduce a limit wherein we state that as <code>\(e\)</code> approaches <code>\(0\)</code> (when <code>\(e = 0\)</code> there is only one point), the equation becomes accurate.</p>
 
-<p><code>\[
-f'(x) = \lim_{e\rightarrow 0} 2x + e \\
-\]</code></p>
+<p>$$
+f'(x) = \lim_{e\rightarrow 0} 2x + e \
+$$</p>
 
 <p>So going back to our equation:</p>
 
@@ -199,15 +200,15 @@ f'(x) = 2x
 
 <p>Let's do one more example to make sure that we understand how derivatives work.</p>
 
-<p><code>\[
+<p>$$
 f(x) = 20\sqrt x, x = 4
-\]</code></p>
+$$</p>
 
 <p>We are looking for the tangent line at the given <code>\(x\)</code> coordinate. This means that we will calculate the derivative (remember that the derivative is just another name for the slope), then plug it into the equation for tangent lines:</p>
 
-<p><code>\[
+<p>$$
 y = k(x - a) + f(a)
-\]</code></p>
+$$</p>
 
 <p><em><code>\(k\)</code> is the slope, and <code>\(a\)</code> is the given <code>\(x\)</code> coordinate.</em></p>
 

@@ -1,15 +1,8 @@
 body {
-    font-size: 1.8em;
     color: #555;
 }
 div#main-container {
     max-width: 1000px;
-}
-
-div.panel-heading.section-header {
-    /* background-color:#4863A0; */
-    /* color: white; */
-    
 }
 
 img.gap-right {
@@ -36,4 +29,12 @@ span.glyphicon.glyphicon-bookmark {
 
 h3 {
     color:#8C001A;
+}
+
+div.mathjax-incf-font {
+    font-size: 1.3em;
+}
+
+div.jxgbox {
+    margin-bottom: 10px;
 }
