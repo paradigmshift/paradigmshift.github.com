@@ -96,7 +96,7 @@
 </ul>
 
 
-<div id="box1" class="jxgbox"></div>
+<div id="box1" class="jxgbox center-block" style="width:250px; height:250px"></div>
 
 
 <script type="text/javascript">
@@ -114,7 +114,7 @@
 </ul>
 
 
-<div id="box3" class="jxgbox"></div>
+<div id="box3" class="jxgbox center-block" style="width:250px; height:250px"></div>
 
 
 <script type="text/javascript">
@@ -130,7 +130,7 @@
 </ul>
 
 
-<div id="box4" class="jxgbox"></div>
+<div id="box4" class="jxgbox center-block" style="width:250px; height:250px"></div>
 
 
 <script type="text/javascript">
@@ -146,7 +146,7 @@
 </ul>
 
 
-<div id="box2" class="jxgbox"></div>
+<div id="box2" class="jxgbox center-block" style="width:250px; height:250px"></div>
 
 
 <script type="text/javascript">
@@ -168,10 +168,8 @@
 
 <p>When using Lagrange's notation it is denoted as:</p>
 
-<div class="mathjax-incf-font">
-\[
-  \large{f''(x)}
-\]
+<div>
+`\[ \large{f''(x)} \]`
 </div>
 
 
@@ -185,26 +183,35 @@
 
 <p>Continuing with our example:</p>
 
-<p><code>\(f(x) = x^3 \\
+<div>
+`\(f(x) = x^3 \\
 f'(x) = 3x^2 \\
-f''(x) = 6x \)</code></p>
+f''(x) = 6x \)`
+</div>
+
 
 <p><code>\(3x^2 = 0\)</code> when <code>\(x = 0\)</code>, so <code>\((0,0)\)</code> is a Critical Point and a possible candidate for the <em>Inflection Point</em>. To determine whether it is an Inflection Point or not, we then have to see if the same <code>\(x\)</code> value that was used to find the Critical Point (<code>\(x = 0\)</code>) also produces 0 when plugged into the <code>\(2^\text{nd}\)</code> Derivative formula.</p>
 
-<p><code>\(f''(x) = 0 \Rightarrow 6x = 0 \\
-x = 0 \)</code></p>
+<div>
+`\(f''(x) = 0 \Rightarrow 6x = 0 \\
+x = 0 \)`
+</div>
+
 
 <p>In this particular case, if there is an Inflection Point, it <strong>has</strong> to be at <code>\((0,0)\)</code> (this is because <code>\(x = 0\)</code> is the only value that results in 0 when plugged into the first and second derivative). Yet this isn't enough, the derivative of the slope must change on either side of the point for it to qualify as an Inflection Point. We have to take two points on either side of the point and determine their values.</p>
 
-<p><code>\(x = 1 \\
+<div>
+`\(x = 1 \\
 f''(x) = 6(1) \rightarrow 6 \\
 x = -1 \\
 f''(x) = 6(-1) \rightarrow -6
-\)</code></p>
+\)`
+</div>
+
 
 <p>We can see that when we plug in 1, which is at the right side of 0, we get a positive result (6) and with -1, which is at the left side of 0, we get a negative result (-6). Hence, the point <code>\((0,0)\)</code> satisfies all the requirements for it to be considered an <em>Inflection Point</em>.</p>
 
-<div id="box5" class="jxgbox"></div>
+<div id="box5" class="jxgbox center-block" style="width:250px; height:250px"></div>
 
 
 <script type="text/javascript">
@@ -242,18 +249,26 @@ f''(x) = 6(-1) \rightarrow -6
 
 <p>Let's take the formula <code>\(f(x) = x^4-8x^2\)</code>.</p>
 
-<p><code>\(f'(x) = 4x^3 - 16x\\
-f''(x) = 12x^2 - 16 \)</code></p>
+<div>
+`\(f'(x) = 4x^3 - 16x\\
+f''(x) = 12x^2 - 16 \)`
+</div>
+
 
 <p>Now to find the Critical Points:</p>
 
-<p><code>\(f'(x) = 0 \Rightarrow 4x^3 - 16x = 0 \\
+<div>
+`\(f'(x) = 0 \Rightarrow 4x^3 - 16x = 0 \\
 4x(x^2-4) = 0 \\
 4x(x+2)(x-2) = 0 \\
 x = 0, 2, -2 \\
-x = (0,0), (-2, -16), (2, -16) \)</code></p>
+x = (0,0), (-2, -16), (2, -16) \)`
+</div>
 
-<div id="box6" class="jxgbox"></div>
+
+
+
+<div id="box6" class="jxgbox center-block" style="width:250px; height:250px"></div>
 
 
 <script type="text/javascript">
@@ -267,15 +282,21 @@ x = (0,0), (-2, -16), (2, -16) \)</code></p>
 
 <p>So these are the Critical Points, but are they all <strong><em>Inflection Points</em></strong>? Now we have to apply the <code>\(x\)</code> values to the <code>\(2^\text{nd}\)</code> Derivative:</p>
 
-<p><code>\(f''(x) = 12x^2 - 16 \\
+<div>
+`\(f''(x) = 12x^2 - 16 \\
 12(-2)^2 - 16 = 32 \\
 f''(x) = 12x^2 - 16 \\
-12(2)^2 - 16 = 32 \)</code></p>
+12(2)^2 - 16 = 32 \)`
+</div>
+
 
 <p>Well, plugging in -2  and 2 both produced positive results, so the points <code>\((-2, -16), (2, -16)\)</code> <strong><em>are not</em></strong> an Inflection Points! What about <code>\((0,0)\)</code>?</p>
 
-<p><code>\(f''(x) = 12x^2 - 16 \\
-12(0)^2 - 16 = -16 \)</code></p>
+<div>
+`\(f''(x) = 12x^2 - 16 \\
+12(0)^2 - 16 = -16 \)`
+</div>
+
 
 <p>Here the result is a negative number, still not 0, and therefore not an Inflection Point!</p>
 
@@ -285,23 +306,29 @@ f''(x) = 12x^2 - 16 \\
 
 <p>As we've seen in the previous example, there were no Critical Points that were Inflection Points. In this case, to determine the Inflection Point(s), we just set <code>\(f''(x)\)</code> to 0.</p>
 
-<p><code>\(f''(x) = 12x^2 - 16x \\
+<div>
+`\(f''(x) = 12x^2 - 16x \\
 12x^2 - 16x = 0 \\
 x^2 = \frac {16} {12} \\
-x = 1.1547 \)</code></p>
+x = 1.1547 \)`
+</div>
+
 
 <p>Now we test on either side of point 1.1547 to see if the signs change:</p>
 
-<p><code>\(x = 1.1547 + 0.1 \\
+<div>
+`\(x = 1.1547 + 0.1 \\
 12(1.2547)^2 - 16(1.2547) = 2.891 \\
 x = 1.1547 - 0.1 \\
-12(1.0547)^2 - 16(1.0547) = -3.526 \)</code></p>
+12(1.0547)^2 - 16(1.0547) = -3.526 \)`
+</div>
+
 
 <p>So when we shift to the right the sign is positive so the curve is concave upwards, and when we shift to the left the sign is negative and so concave downwards.</p>
 
 <p>Conclusion? <code>\(x = 1.1547\)</code> is an Inflection Point!</p>
 
-<div id="box7" class="jxgbox"></div>
+<div id="box7" class="jxgbox center-block" style="width:250px; height:250px"></div>
 
 
 <script type="text/javascript">

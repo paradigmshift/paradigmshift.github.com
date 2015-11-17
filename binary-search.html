@@ -97,7 +97,7 @@
 
 <p>Let's first present the Binary Search method, a.k.a the Binary Chop. The technique is actually quite simple to execute. Take a list represented as a line, the list contains the elements from 0 to 10:</p>
 
-<div id="box1" class="jxgbox", style="height:5em; width:30em;"></div>
+<div id="box1" class="jxgbox center-block", style="height:5em; width:30em;"></div>
 
 
 <script type="text/javascript">
@@ -112,7 +112,7 @@
 
 <p>Binary Search solves this problem by "guessing" where the element will be by adding the least variable it could be (in this case 0) and the largest (10), and getting the average. Thus it's first guess would be 5:</p>
 
-<div id="box2" class="jxgbox" style="height:5em; width:30em;"></div>
+<div id="box2" class="jxgbox center-block" style="height:5em; width:30em;"></div>
 
 
 <script type="text/javascript">
@@ -126,7 +126,7 @@
 
 <p>Now it does a check, is 5 the element it was looking for? Nope. Is 5 greater than the element wanted? Yes. So the largest variable (thus far 10), is changed the guess it just made (we know that 5 is larger than the element wanted, so we keep that as the upper bound, lower bound remains unchanged at 0). The rest of the list is thrown away, our new list looks like this:</p>
 
-<div id="box3" class="jxgbox" style="height:5em; width:30em;"></div>
+<div id="box3" class="jxgbox center-block" style="height:5em; width:30em;"></div>
 
 
 <script type="text/javascript">
@@ -140,7 +140,7 @@
 <p>Again we add the upper bound and lower bound together and get the average (
 <code>\((0 + 5)/2\)</code>), this is the new guess.</p>
 
-<div id="box4" class="jxgbox" style="height:5em; width:30em;"></div>
+<div id="box4" class="jxgbox center-block" style="height:5em; width:30em;"></div>
 
 
 <script type="text/javascript">
@@ -154,7 +154,7 @@
 
 <p>Again we check, is the guess greater than the value we're looking for? This time's it's a no... so is it less than the value wanted? Yes, 2.5 is less than 4. In this case, the upper bound is changed to 2.5, our previous guess, while the upper bound remains unchanged. This is the new line:</p>
 
-<div id="box5" class="jxgbox" style="height:5em; width:30em;"></div>
+<div id="box5" class="jxgbox center-block" style="height:5em; width:30em;"></div>
 
 
 <script type="text/javascript">
@@ -167,7 +167,7 @@
 
 <p>Again the upper bound and lower bound are added and averaged to produce our new guess. The average is 3.75:</p>
 
-<div id="box6" class="jxgbox" style="height:5em; width:30em;"></div>
+<div id="box6" class="jxgbox center-block" style="height:5em; width:30em;"></div>
 
 
 <script type="text/javascript">
@@ -250,7 +250,7 @@ CL@USER$ (chop 21 (loop for x from 1 to 1000 collect x))</p>
 
 <p>In it's original form, the Newton-Raphson formula for finding roots is this:</p>
 
-<p><code>\[X_1 = X_0 - \frac{f(X_0)}{f'(X_0)}\]</code></p>
+<p>$$ X_1 = X_0 - \frac{f(X_0)}{f'(X_0)} $$</p>
 
 <p>This is an interactive formula, where the next value of <code>\(X_1\)</code> is found by substituting the present value of <code>\(X_1\)</code> into the algorithm as <code>\(X_0\)</code>.</p>
 
@@ -477,24 +477,39 @@ CL@USER$</code></pre></figure></p>
 
 <p>There are actually scenarios where the Newton-Raphson formula cannot provide a <a href="http://www.damtp.cam.ac.uk/lab/people/sd/lectures/nummeth98/figure4.htm#FF_4">clear answer</a>. However, this happens when you try to find the root of a <strong>polynomial</strong> or a system of equations.</p>
 
-<p>For example, we implemented Newton-Raphson to look for square roots as follows:
-<code>\[ \text{guess}_1 = {guess}_0 - \frac{\text{number entered} - \text{guess}^2}{\text{guess}^2} \]</code></p>
+<p>For example, we implemented Newton-Raphson to look for square roots as follows:</p>
+
+<div> $$
+\text{guess}_1 = {guess}_0 - \frac{\text{number entered} - \text{guess}^2}{\text{guess}^2}
+$$ </div>
+
 
 <p>This is quite a simple expression and the derivative is stable, ensuring that the formula converges on a point with ever increasing accuracy.</p>
 
 <p>If however, you try to solve for the root of this particular function with Newton-Raphson:</p>
 
-<p><code>\[ f(x) = x^3 - 2x + 2 \]</code></p>
+<div> $$
+f(x) = x^3 - 2x + 2
+$$ </div>
+
 
 <p>Initial guess is <code>\(0\)</code></p>
 
-<p>First iteration:
-<code>\( x_1 = x_0 - \frac{f(x)}{f'(x)} = 0 - \frac{2}{-2} \\
-x_1 = 1\)</code></p>
+<div>
+First iteration:
+`\( x_1 = x_0 - \frac{f(x)}{f'(x)} = 0 - \frac{2}{-2} \\
+x_1 = 1\)`
+</div>
 
-<p>Second iteration:
-<code>\( x_2 = 1 - \frac{f(1)}{f'(1)} = 1 - \frac{1}{1} \\
-x_2 = 0\)</code></p>
+
+
+
+<div>
+Second iteration:
+`\( x_2 = 1 - \frac{f(1)}{f'(1)} = 1 - \frac{1}{1} \\
+x_2 = 0\)`
+</div>
+
 
 <p>Uh oh... we an see exactly where this is going... the points oscillate between 0 and 1.</p>
 
@@ -522,7 +537,10 @@ x_2 = 0\)</code></p>
 
 <p>Plugging in <code>\(-1.5\)</code> results in <code>\(1.625\)</code>, another positive number, so again <code>\(-1.5\)</code> replaces <code>\(-1\)</code> as the upper limit. On the next iteration, <code>\(-1.75\)</code> is the midpoint and yields <code>\(0.140625\)</code> when plugged in. Eventually you will end up with <code>\(-1.769\)</code>, which, when plugged into the equation:</p>
 
-<p><code>\[ (-1.769)^3 - 2(-1.769) + 2 = 0.0021 \]</code></p>
+<div>
+`\[ (-1.769)^3 - 2(-1.769) + 2 = 0.0021 \]`
+</div>
+
 
 <p>Close enough I think that we can declare <code>\(-1.769\)</code> as the root for the polynomial.</p>
 

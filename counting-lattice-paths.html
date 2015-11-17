@@ -124,11 +124,17 @@
 
 <p>If we take a look at the first  northeastern rows in the 4x4 grid, we'll see that the number of paths are as follows:</p>
 
-<p><code>\[ \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 \end{bmatrix}\]</code></p>
+<div> $$
+\begin{bmatrix} 1 & 1 & 1 & 1 & 1 \\ 1 & 2 & 3 & 4 & 5 \end{bmatrix}
+$$ </div>
+
 
 <p>If we take the third and fourth rows, we end up with the following matrix:</p>
 
-<p><code>\[ \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 \\ 1 &amp; 3 &amp; 6 &amp; 10 &amp; 15 \\ 1 &amp; 4 &amp; 10 &amp; 20 &amp; 35 \\ 1 &amp; 5 &amp; 15 &amp; 35 &amp; 70 \end{bmatrix}\]</code></p>
+<div> $$
+\begin{bmatrix} 1 & 1 & 1 & 1 & 1 \\ 1 & 2 & 3 & 4 & 5 \\ 1 & 3 & 6 & 10 & 15 \\ 1 & 4 & 10 & 20 & 35 \\ 1 & 5 & 15 & 35 & 70 \end{bmatrix}
+$$ </div>
+
 
 <p>You'll note an interesting symmetry where the second row matches the second column, the third row the third column, etc. Yet that didn't really help any in coming up with a theoretical formula for calculating the next row from the preceeding one.</p>
 
@@ -136,31 +142,52 @@
 
 <p>Starting from the first row:</p>
 
-<p><code>\[ \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \end{bmatrix}\]</code></p>
+<div> $$
+\begin{bmatrix} 1 & 1 & 1 & 1 & 1 \end{bmatrix}
+$$ </div>
+
 
 <p>Take the second element and multiply it by 2, placing it below the second element:</p>
 
-<p><code>\[ \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ &amp; 2\end{bmatrix}\]</code></p>
+<div> $$
+\begin{bmatrix} 1 & 1 & 1 & 1 & 1 \\ & 2\end{bmatrix}
+$$ </div>
+
 
 <p>Add that to the next element in the above row (2 + 1):</p>
 
-<p><code>\[ \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ &amp; 2 &amp; 3\end{bmatrix}\]</code></p>
+<div> $$
+\begin{bmatrix} 1 & 1 & 1 & 1 & 1 \\ & 2 & 3\end{bmatrix}
+$$ </div>
+
 
 <p>And keep going on going:</p>
 
-<p><code>\[ \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\  &amp; 2 &amp; 3 &amp; 4 &amp; 5 \end{bmatrix}\]</code></p>
+<div> $$
+\begin{bmatrix} 1 & 1 & 1 & 1 & 1 \\  & 2 & 3 & 4 & 5 \end{bmatrix}
+$$ </div>
+
 
 <p>Then work on the third row by taking the second element of the second row (3) and repeating the process, 3 * 2 = 6 hence:</p>
 
-<p><code>\[ \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\  &amp; 2 &amp; 3 &amp; 4 &amp; 5 \\ &amp; &amp; 6\end{bmatrix}\]</code></p>
+<div> $$
+\begin{bmatrix} 1 & 1 & 1 & 1 & 1 \\  & 2 & 3 & 4 & 5 \\ & & 6\end{bmatrix}
+$$ </div>
+
 
 <p>Take 6 and add it to the next element in the second row (4):</p>
 
-<p><code>\[ \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\  &amp; 2 &amp; 3 &amp; 4 &amp; 5 \\ &amp; &amp; 6 &amp; 10\end{bmatrix}\]</code></p>
+<div> $$
+\begin{bmatrix} 1 & 1 & 1 & 1 & 1 \\  & 2 & 3 & 4 & 5 \\ & & 6 & 10\end{bmatrix}
+$$ </div>
+
 
 <p>And then take that and add it to the last element in the second row:</p>
 
-<p><code>\[ \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\  &amp; 2 &amp; 3 &amp; 4 &amp; 5 \\ &amp; &amp; 6 &amp; 10 &amp; 15\end{bmatrix}\]</code></p>
+<div> $$
+\begin{bmatrix} 1 & 1 & 1 & 1 & 1 \\  & 2 & 3 & 4 & 5 \\ & & 6 & 10 & 15\end{bmatrix}
+$$ </div>
+
 
 <p>This algorithm allows you determine the number of paths from on edge to the other without actually drawing a diagram and manually counting the paths.</p>
 
@@ -168,32 +195,32 @@
 
 <p><section class=code></p>
 
-<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl">  <span class="p">(</span><span class="nb">defvar</span> <span class="vg"><em>path-count</em></span> <span class="o">'</span><span class="p">())</span></p>
+<p><figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defvar</span> <span class="vg"><em>path-count</em></span> <span class="o">'</span><span class="p">())</span></p>
 
-<p>  <span class="p">(</span><span class="nb">defun</span> <span class="nv">initial-steps</span> <span class="p">(</span><span class="nv">width</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">steps</span> <span class="o">'</span><span class="p">()))</span>
-      <span class="p">(</span><span class="nb">dotimes</span> <span class="p">(</span><span class="nv">i</span> <span class="nv">width</span><span class="p">)</span>
-        <span class="p">(</span><span class="nb">push</span> <span class="mi">1</span> <span class="nv">steps</span><span class="p">))</span>
-      <span class="nv">steps</span><span class="p">))</span></p>
+<p><span class="p">(</span><span class="nb">defun</span> <span class="nv">initial-steps</span> <span class="p">(</span><span class="nv">width</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">steps</span> <span class="o">'</span><span class="p">()))</span>
+    <span class="p">(</span><span class="nb">dotimes</span> <span class="p">(</span><span class="nv">i</span> <span class="nv">width</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">push</span> <span class="mi">1</span> <span class="nv">steps</span><span class="p">))</span>
+    <span class="nv">steps</span><span class="p">))</span></p>
 
-<p>  <span class="p">(</span><span class="nb">defun</span> <span class="nv">count-next-steps</span> <span class="p">(</span><span class="nv">previous</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">second</span> <span class="nv">previous</span><span class="p">)</span>
-      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nb">step</span> <span class="p">(</span><span class="nb">*</span> <span class="p">(</span><span class="nb">second</span> <span class="nv">previous</span><span class="p">)</span> <span class="mi">2</span><span class="p">))</span>
-            <span class="p">(</span><span class="nv">previous-copy</span> <span class="p">(</span><span class="nb">cddr</span> <span class="nv">previous</span><span class="p">))</span>
-            <span class="p">(</span><span class="nv">steps</span> <span class="o">'</span><span class="p">()))</span>
-        <span class="p">(</span><span class="nb">push</span> <span class="nb">step</span> <span class="nv">steps</span><span class="p">)</span>
-        <span class="p">(</span><span class="nb">loop</span> <span class="nv">until</span> <span class="p">(</span><span class="nb">null</span> <span class="nv">previous-copy</span><span class="p">)</span>
-           <span class="nb">do</span> <span class="p">(</span><span class="k">progn</span> <span class="p">(</span><span class="nb">incf</span> <span class="nb">step</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">previous-copy</span><span class="p">))</span>
-                     <span class="p">(</span><span class="nb">push</span> <span class="nb">step</span> <span class="nv">steps</span><span class="p">)</span>
-                     <span class="p">(</span><span class="nb">setf</span> <span class="nv">previous-copy</span> <span class="p">(</span><span class="nb">cdr</span> <span class="nv">previous-copy</span><span class="p">))))</span>
-        <span class="p">(</span><span class="nb">reverse</span> <span class="nv">steps</span><span class="p">))</span>
-      <span class="nv">previous</span><span class="p">))</span></p>
+<p><span class="p">(</span><span class="nb">defun</span> <span class="nv">count-next-steps</span> <span class="p">(</span><span class="nv">previous</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">second</span> <span class="nv">previous</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nb">step</span> <span class="p">(</span><span class="nb">*</span> <span class="p">(</span><span class="nb">second</span> <span class="nv">previous</span><span class="p">)</span> <span class="mi">2</span><span class="p">))</span>
+          <span class="p">(</span><span class="nv">previous-copy</span> <span class="p">(</span><span class="nb">cddr</span> <span class="nv">previous</span><span class="p">))</span>
+          <span class="p">(</span><span class="nv">steps</span> <span class="o">'</span><span class="p">()))</span>
+      <span class="p">(</span><span class="nb">push</span> <span class="nb">step</span> <span class="nv">steps</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">loop</span> <span class="nv">until</span> <span class="p">(</span><span class="nb">null</span> <span class="nv">previous-copy</span><span class="p">)</span>
+         <span class="nb">do</span> <span class="p">(</span><span class="k">progn</span> <span class="p">(</span><span class="nb">incf</span> <span class="nb">step</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">previous-copy</span><span class="p">))</span>
+                   <span class="p">(</span><span class="nb">push</span> <span class="nb">step</span> <span class="nv">steps</span><span class="p">)</span>
+                   <span class="p">(</span><span class="nb">setf</span> <span class="nv">previous-copy</span> <span class="p">(</span><span class="nb">cdr</span> <span class="nv">previous-copy</span><span class="p">))))</span>
+      <span class="p">(</span><span class="nb">reverse</span> <span class="nv">steps</span><span class="p">))</span>
+    <span class="nv">previous</span><span class="p">))</span></p>
 
-<p>  <span class="p">(</span><span class="nb">defun</span> <span class="nv">count-paths</span> <span class="p">(</span><span class="nv">width</span><span class="p">)</span>
-    <span class="p">(</span><span class="nb">setf</span> <span class="vg"><em>path-count</em></span> <span class="o">'</span><span class="p">())</span>
-    <span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nv">initial-steps</span> <span class="nv">width</span><span class="p">)</span> <span class="vg"><em>path-count</em></span><span class="p">)</span>
-    <span class="p">(</span><span class="nb">dotimes</span> <span class="p">(</span><span class="nv">i</span> <span class="p">(</span><span class="nb">1-</span> <span class="nv">width</span><span class="p">))</span>
-      <span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nv">count-next-steps</span> <span class="p">(</span><span class="nb">car</span> <span class="vg"><em>path-count</em></span><span class="p">))</span> <span class="vg"><em>path-count</em></span><span class="p">)))</span></code></pre></figure></p>
+<p><span class="p">(</span><span class="nb">defun</span> <span class="nv">count-paths</span> <span class="p">(</span><span class="nv">width</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">setf</span> <span class="vg"><em>path-count</em></span> <span class="o">'</span><span class="p">())</span>
+  <span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nv">initial-steps</span> <span class="nv">width</span><span class="p">)</span> <span class="vg"><em>path-count</em></span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">dotimes</span> <span class="p">(</span><span class="nv">i</span> <span class="p">(</span><span class="nb">1-</span> <span class="nv">width</span><span class="p">))</span>
+    <span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nv">count-next-steps</span> <span class="p">(</span><span class="nb">car</span> <span class="vg"><em>path-count</em></span><span class="p">))</span> <span class="vg"><em>path-count</em></span><span class="p">)))</span></code></pre></figure></p>
 
 <p></section></p>
 

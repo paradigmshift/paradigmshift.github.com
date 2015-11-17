@@ -89,7 +89,7 @@
 
 <p>A derivative of a function, in plainspeak, is the rate of change between points of the function when graphed. For example, for the function <code>\(f(x) = x^2\)</code>, when <code>\(x = 2\)</code> then <code>\(y = 4\)</code>, when <code>\(x = 4\)</code> then <code>\(y = 16\)</code>. When graphed, you get:</p>
 
-<div id="box" class="jxgbox"></div>
+<div id="box" class="jxgbox center-block" style="width:250px; height:250px"></div>
 
 
 <script type="text/javascript">
@@ -120,7 +120,7 @@ $$</p>
 
 <p><em>car skidding at point <code>\((0,0)\)</code>, predicted line of travel in red</em></p>
 
-<div id="box2" class="jxgbox"></div>
+<div id="box2" class="jxgbox center-block" style="width:250px; height:250px"></div>
 
 
 <script type="text/javascript">
@@ -155,12 +155,15 @@ This is actually exactly the same as the slope formula presented above. <code>\(
 
 <p>Revisiting the function <code>\(f(x) = x^2\)</code> above, we've already shown how to determine the derivative, or slope, when two points are given. Again, the slope will quickly become more and more inaccurate as we go farther and farther from the given <code>\(x, y\)</code> coordinates. If we want to find the rate of change at any given point, we will have to use the afore-mentioned formula.</p>
 
-<p><code>\(f(x) = x^2 \\
+<div>
+`\(f(x) = x^2 \\
 f'(x) = \frac {f(x + e) - f(x)} e \\
 f'(x) = \frac {(x + e)^2 - x^2} e \\
 f'(x) = \frac {x^2 + 2xe + e^2 - x^2} e \\
 f'(x) = 2x + e \\
-\)</code></p>
+\)`
+</div>
+
 
 <p>Uh oh... now what? How do we handle <code>\(e\)</code>? <code>\(e\)</code> as you may recall is the difference between one point and the next, but since we're trying to determine the derivative of the <em>function</em> and not two points, how do we solve for <code>\(e\)</code>? This is where we introduce the concept of <strong>limits</strong>.</p>
 
@@ -168,13 +171,16 @@ f'(x) = 2x + e \\
 
 <p>A short example is in order to demonstrate this idea. Say <code>\(L = 5\)</code> and <code>\(C = 10\)</code> and <code>\(f(x) = \frac x 2\)</code>.</p>
 
-<p><code>\(\mbox{If } x = 5, f(x) = \frac 5 2 = 2.5 \\
+<div>
+`\(\mbox{If } x = 5, f(x) = \frac 5 2 = 2.5 \\
 \mbox{If } x = 6, f(x) = \frac 6 2 = 3 \\
 \mbox{If } x = 7, f(x) = \frac 7 2 = 3.5 \\
 \mbox{If } x = 8, f(x) = \frac 8 2 = 4 \\
 \text{and so on...} \\
 \mbox{when } x = C, f(x) = \frac {10} {2} = 5 \\
-\)</code></p>
+\)`
+</div>
+
 
 <p>So we say that as <code>\(x\)</code> approaches the value <code>\(L\)</code>, the statement <code>\(f(x) = L\)</code> becomes true. The notation for a limit is <code>\(\lim\limits_{x\rightarrow c}\)</code>, where <code>\(x\)</code> is approaching <code>\(c\)</code>. The complete expression of the above example would be:</p>
 
@@ -192,9 +198,12 @@ $$</p>
 
 <p>So going back to our equation:</p>
 
-<p><code>\(f'(x) = 2x + 0 \\
+<div>
+`\(f'(x) = 2x + 0 \\
 f'(x) = 2x
-\)</code></p>
+\)`
+</div>
+
 
 <h3>One more?</h3>
 
@@ -214,28 +223,34 @@ $$</p>
 
 <p>So let's get on with it!</p>
 
-<p><code>\(\begin{array}{ll}
-f'(x) &amp;= \frac {f(x + e) - f(x)} e \\
-&amp; = \frac {f(4 + e) - f(4)} e \\
-&amp; = \frac {20\sqrt{4 + e} - 20 * 2} e \\
-&amp; = 20 \frac {\sqrt{4 + e} - 2} e * \frac {\sqrt{4 + e} + 2}{\sqrt{4 + e} + 2} \\
-&amp; = 20 \frac {4 + e - 4} {e{\sqrt{4 + e} + 2}} \\
-&amp; = \frac {20e} {e{\sqrt{4 + e} + 2}} \\
-&amp; = \frac {20} {\sqrt{4 + e} + 2} \\
-&amp; = \frac {20} {\sqrt{4 + 0} + 2} \\
-&amp; = \frac {20} 4 \\
-&amp; = 5
-\end{array}\)</code></p>
+<div>
+`\(\begin{array}{ll}
+f'(x) &= \frac {f(x + e) - f(x)} e \\
+& = \frac {f(4 + e) - f(4)} e \\
+& = \frac {20\sqrt{4 + e} - 20 * 2} e \\
+& = 20 \frac {\sqrt{4 + e} - 2} e * \frac {\sqrt{4 + e} + 2}{\sqrt{4 + e} + 2} \\
+& = 20 \frac {4 + e - 4} {e{\sqrt{4 + e} + 2}} \\
+& = \frac {20e} {e{\sqrt{4 + e} + 2}} \\
+& = \frac {20} {\sqrt{4 + e} + 2} \\
+& = \frac {20} {\sqrt{4 + 0} + 2} \\
+& = \frac {20} 4 \\
+& = 5
+\end{array}\)`
+</div>
+
 
 <p>So the derivative is <code>\(5\)</code>, now to plug it into the tangent line equation (also called the <em><a href="http://en.wikipedia.org/wiki/Linear_equation#Point.E2.80.93slope_form">point slope formula</a></em>):</p>
 
-<p><code>\(y = 5(x - 4) + 40 \\
+<div>
+`\(y = 5(x - 4) + 40 \\
 y = 5x + 20 \\
-\)</code></p>
+\)`
+</div>
+
 
 <p>This is the equation of the line tangent to <code>\(f(x) = 20\sqrt x\)</code> at point <code>\((4,40)\)</code>. Let's graph the equations so that we can visualize the results better.</p>
 
-<div id="box3" class="jxgbox"></div>
+<div id="box3" class="jxgbox center-block" style="width:250px; height:250px"></div>
 
 
 <script type="text/javascript">
