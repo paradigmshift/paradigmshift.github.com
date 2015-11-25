@@ -38,3 +38,10 @@ div.mathjax-incf-font {
 div.jxgbox {
     margin-bottom: 10px;
 }
+
+code.pre-x-scrollable {
+  overflow-x: auto;
+  overflow-wrap: normal;
+  word-wrap: normal;
+  white-space: pre;
+}
