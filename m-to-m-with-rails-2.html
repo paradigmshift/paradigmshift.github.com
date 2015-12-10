@@ -284,7 +284,7 @@
 
 <h3>The Difference Between the Two</h3>
 
-<p>The Rails documentation on the <a href="http://guides.rubyonrails.org/association_basics.html#choosing-between-has-many-through-and-has-and-belongs-to-many">topic</a> states that if you don't need to do anything with the join table (UserGroup) then it may be simpler to use <code>has_and-belongs_to_many</code> over <code>has_many :through</code>, however in practice the time you save on typing is minimal, and since you can't use validations, callbacks, etc. on the join model it makes more sense to default to using <code>has_many :through</code>.</p>
+<p>The Rails documentation on the <a href="http://guides.rubyonrails.org/association_basics.html#choosing-between-has-many-through-and-has-and-belongs-to-many">topic</a> states that if you don't need to do anything with the join table (UserGroup) then it may be simpler to use <code>has_and_belongs_to_many</code> over <code>has_many :through</code>, however in practice the time you save on typing is minimal, and since you can't use validations, callbacks, etc. on the join model it makes more sense to default to using <code>has_many :through</code>.</p>
 
     <h6>10 Dec 2015</h6>
   </section>
