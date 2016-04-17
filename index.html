@@ -84,210 +84,132 @@
       <div class="container-fluid">
         
 <section id="content">
-  <h2> Many to Many Relationships with Rails, part 2 </h2>
+  <h2> Pagination with Rails </h2>
   <section class="text">
-    <h3><code>has_many :through</code></h3>
+    <h3>Pagination</h3>
 
-<p>In the previous post we created a M:M relationship between <strong>Users</strong> and <strong>Group</strong> using Rails's <code>has_and_belongs_to_many</code> method. While still part of the standard, this way of doing it has fallen out of favor lately and instead the method <code>has_many :through</code> is usually used instead.</p>
+<p>Pagination is the division of what could be one single page into multiple pages. Although a lot of the time a single page format is advantageous over having multiple pages, when dealing with things like search results or a list of blog posts, it makes more sense from a usability point of view to split them up into discrete pages, as long as you're not displaying a ridiculously low amount of content per page. 10-20 items per page seems to be a decent sweetspot between ultra-long single pages and pagination-with-5-items-gone-crazy-pages.</p>
 
-<p>The main difference between the two is that <code>has_and_belongs_to_many</code> implicitly creates a join table and model linking the two models, while with <code>has_many :through</code> requires you to explicitly create the join model and the table in the database.</p>
+<p>There <em>is</em> something called <strong>infinite scroll</strong>, which looks like a compromise between one-page sites and pagination, you can see it in action on the mobile site of Facebook and some other social media applications. It works by displaying a fixed number of items, like pagination does, but when you reach the bottom of the page the page suddenly <strong>extends</strong> and what was the bottom now becomes the top, with more items loaded below. I don't know the implementation details but it seems (to my amateur eyes) to be an application of <a href="https://en.wikipedia.org/wiki/Lazy_evaluation">lazy evaluation</a>, where the evaluation of an expression (something like <code>Post.all</code> for example) is delayed until the program actually needs it (expressions are usually evaluated immediately, as soon as the relevant lexical environments are entered). We'll take that up another day (perhaps in Lisp as I'm not sure that Ruby supports lazy evaluation).</p>
 
-<p>Using the same example, we'll create a M:M relationship between <strong>User</strong> and <strong>Group</strong>.</p>
+<h3>SQL's offset</h3>
 
-<p>The models before adding the relationship:</p>
+<p>SQL has a clause called <code>offset</code>, which fetches database rows starting from the row number entered through the <code>offset</code> clause. For example, calling <code>Post.all</code> would give us all <code>Post</code> objects.</p>
 
-<p><em>models/user.rb</em></p>
+<pre><code>2.0.0-p648 :002 &gt; Post.all
+Post Load (1.6ms)  SELECT "posts".* FROM "posts" ORDER BY "posts"."updated_at" DESC
+=&gt; #&lt;ActiveRecord::Relation 
+[#&lt;Post id: 12, title: "l", url: "l", description: "", user_id: 1, created_at: "2016-03-18 13:31:15", updated_at: "2016-03-18 13:31:15", slug: "l"&gt;, 
+#&lt;Post id: 11, title: "k", url: "k", description: "", user_id: 1, created_at: "2016-03-18 13:31:10", updated_at: "2016-03-18 13:31:10", slug: "k"&gt;, 
+#&lt;Post id: 10, title: "j", url: "j", description: "", user_id: 1, created_at: "2016-03-18 13:31:07", updated_at: "2016-03-18 13:31:07", slug: "j"&gt;, 
+#&lt;Post id: 9, title: "i", url: "i", description: "", user_id: 1, created_at: "2016-03-18 13:31:02", updated_at: "2016-03-18 13:31:02", slug: "i"&gt;, 
+#&lt;Post id: 8, title: "h", url: "h", description: "", user_id: 1, created_at: "2016-03-18 13:30:58", updated_at: "2016-03-18 13:30:58", slug: "h"&gt;, 
+#&lt;Post id: 7, title: "g", url: "g", description: "", user_id: 1, created_at: "2016-03-18 13:30:54", updated_at: "2016-03-18 13:30:54", slug: "g"&gt;, 
+#&lt;Post id: 6, title: "f", url: "f", description: "", user_id: 1, created_at: "2016-03-18 13:30:49", updated_at: "2016-03-18 13:30:49", slug: "f"&gt;, 
+#&lt;Post id: 5, title: "e", url: "e", description: "", user_id: 1, created_at: "2016-03-18 13:30:45", updated_at: "2016-03-18 13:30:45", slug: "e"&gt;, 
+#&lt;Post id: 4, title: "d", url: "d", description: "", user_id: 1, created_at: "2016-03-18 13:30:40", updated_at: "2016-03-18 13:30:40", slug: "d"&gt;, 
+#&lt;Post id: 3, title: "c", url: "c", description: "", user_id: 1, created_at: "2016-03-18 13:30:35", updated_at: "2016-03-18 13:30:35", slug: "c"&gt;, ...]&gt; 
 
-<p><figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-<span class="k">end</span></code></pre></figure></p>
-
-<p><em>models/group.rb</em></p>
-
-<p><figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Group</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-<span class="k">end</span></code></pre></figure></p>
-
-<p><em>models/user_group.rb</em></p>
-
-<p><figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">UserGroup</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-<span class="k">end</span></code></pre></figure></p>
-
-<p>As you can see, unlike with <code>has_and_belongs_to_many</code>, we now have to add the <strong>UserGroup</strong> model ourselves, this is where the foreign keys of both <strong>User</strong> and <strong>Group</strong> will reside, linking the two models.</p>
-
-<p>Then we have to add a 1:M between <strong>Group</strong> and <strong>UserGroup</strong>, and also between <strong>Group</strong> and <strong>UserGroup</strong>.</p>
-
-<p><figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-  <span class="n">has_many</span> <span class="ss">:user_groups</span>
-<span class="k">end</span></p>
-
-<p><span class="k">class</span> <span class="nc">Group</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-  <span class="n">has_many</span> <span class="ss">:user_groups</span>
-<span class="k">end</span></p>
-
-<p><span class="k">class</span> <span class="nc">UserGroup</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-  <span class="n">belongs_to</span> <span class="ss">:user</span>
-  <span class="n">belongs_to</span> <span class="ss">:group</span>
-<span class="k">end</span></code></pre></figure></p>
-
-<p>Now we've hooked up both <strong>User</strong> and <strong>Group</strong> to <strong>UserGroup</strong>, it's time to link them with <code>:through</code> and create a M:M relationship.</p>
-
-<p><figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-  <span class="n">has_many</span> <span class="ss">:user_groups</span>
-  <span class="n">has_many</span> <span class="ss">:groups</span><span class="p">,</span> <span class="ss">through: :user_groups</span>
-<span class="k">end</span></p>
-
-<p><span class="k">class</span> <span class="nc">Group</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-  <span class="n">has_many</span> <span class="ss">:user_groups</span>
-  <span class="n">has_many</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">through: :user_groups</span>
-<span class="k">end</span></code></pre></figure></p>
-
-<p>Let's test it out on the Ruby Console:</p>
-
-<pre><code>2.0.0-p647 :010 &gt; User
- =&gt; User(Table doesn't exist) 
-2.0.0-p647 :012 &gt; Group
- =&gt; Group(Table doesn't exist) 
-2.0.0-p647 :014 &gt; UserGroup
- =&gt; UserGroup(Table doesn't exist) 
-2.0.0-p647 :017 &gt; 
+2.0.0-p648 :003 &gt; Post.all.size
+(0.2ms)  SELECT COUNT(*) FROM "posts"
+=&gt; 12 
 </code></pre>
 
-<p>So the models seem to load correctly, but there aren't any database tables that correspond to them.</p>
+<p>Now if you want all the <code>Post</code> objects except the first three, using <code>offset</code> you would do:</p>
 
-<h3>Migration</h3>
+<pre><code>2.0.0-p648 :015 &gt; Post.all.offset(3)
+Post Load (0.4ms)  SELECT "posts".* FROM "posts" ORDER BY "posts"."updated_at" DESC LIMIT -1 OFFSET 3
+ =&gt; #&lt;ActiveRecord::Relation [#&lt;Post id: 9, title: "i", url: "i", description: "", user_id: 1, created_at: "2016-03-18 13:31:02", updated_at: "2016-03-18 13:31:02", slug: "i"&gt;, 
+ #&lt;Post id: 8, title: "h", url: "h", description: "", user_id: 1, created_at: "2016-03-18 13:30:58", updated_at: "2016-03-18 13:30:58", slug: "h"&gt;, 
+ #&lt;Post id: 7, title: "g", url: "g", description: "", user_id: 1, created_at: "2016-03-18 13:30:54", updated_at: "2016-03-18 13:30:54", slug: "g"&gt;, 
+ #&lt;Post id: 6, title: "f", url: "f", description: "", user_id: 1, created_at: "2016-03-18 13:30:49", updated_at: "2016-03-18 13:30:49", slug: "f"&gt;, 
+ #&lt;Post id: 5, title: "e", url: "e", description: "", user_id: 1, created_at: "2016-03-18 13:30:45", updated_at: "2016-03-18 13:30:45", slug: "e"&gt;, 
+ #&lt;Post id: 4, title: "d", url: "d", description: "", user_id: 1, created_at: "2016-03-18 13:30:40", updated_at: "2016-03-18 13:30:40", slug: "d"&gt;, 
+ #&lt;Post id: 3, title: "c", url: "c", description: "", user_id: 1, created_at: "2016-03-18 13:30:35", updated_at: "2016-03-18 13:30:35", slug: "c"&gt;, 
+ #&lt;Post id: 2, title: "b", url: "b", description: "", user_id: 1, created_at: "2016-03-18 13:30:31", updated_at: "2016-03-18 13:30:31", slug: "b"&gt;, 
+ #&lt;Post id: 1, title: "a", url: "a", description: "", user_id: 1, created_at: "2016-03-18 13:30:27", updated_at: "2016-03-18 13:30:27", slug: "a"&gt;]&gt; 
 
-<p>Let's do the migrations and setup the database. First we create the migration files.</p>
-
-<pre><code>~/dev/ruby/example ruby-2.0.0-p647 » rails generate migration create_users                                                                                                                                                                          mo@x1[79%]
-      invoke  active_record
-      create    db/migrate/20151210061204_create_users.rb
-------------------------------------------------------------
-~/dev/ruby/example ruby-2.0.0-p647 » rails generate migration create_groups                                                                                                                                                                         mo@x1[79%]
-      invoke  active_record
-      create    db/migrate/20151210061216_create_groups.rb
-------------------------------------------------------------
-~/dev/ruby/example ruby-2.0.0-p647 » rails generate migration create_user_groups                                                                                                                                                                    mo@x1[79%]
-      invoke  active_record
-      create    db/migrate/20151210061250_create_user_groups.rb
+2.0.0-p648 :007 &gt; Post.all.offset(3).size
+(0.3ms)  SELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM "posts" LIMIT -1 OFFSET 3) subquery_for_count
+=&gt; 9 
 </code></pre>
 
-<p>Then setup the database tables. Here we give each group a <em>name</em>, each user a <em>username</em>, and the join table will have a <em>user_id</em> and a <em>group_id</em> associated to it for each row.</p>
+<p>And as you can see, it ignored the first 3 entries.</p>
 
-<p><em>db/migrations/timestamp_create_groups.rb</em></p>
+<p>Obviously this is not the only way to do it, you could just hit the database with <code>Post.all</code> then filter from there. However as much as possible it's a good idea to let the database do the work of querying and returning results, since they're designed and optimized to do just that... I can't imagine you could beat the performance of something that was designed to return <em>billions</em> (PostgreSQL) of rows a second.</p>
 
-<p><figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">CreateGroups</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
-  <span class="k">def</span> <span class="nf">change</span>
-    <span class="n">create_table</span> <span class="ss">:groups</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
-      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:name</span>
-      <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
+<h3>SQL's Limit</h3>
+
+<p>SQL has another clause called <code>limit</code> which, as the name implies, limits the rows returned to a certain number.</p>
+
+<pre><code>2.0.0-p648 :002 &gt; Post.all.limit(3)
+Post Load (2.1ms)  SELECT "posts".* FROM "posts" ORDER BY "posts"."updated_at" DESC LIMIT 3
+=&gt; #&lt;ActiveRecord::Relation [
+#&lt;Post id: 12, title: "l", url: "l", description: "", user_id: 1, created_at: "2016-03-18 13:31:15", updated_at: "2016-03-18 13:31:15", slug: "l"&gt;, 
+#&lt;Post id: 11, title: "k", url: "k", description: "", user_id: 1, created_at: "2016-03-18 13:31:10", updated_at: "2016-03-18 13:31:10", slug: "k"&gt;, 
+#&lt;Post id: 10, title: "j", url: "j", description: "", user_id: 1, created_at: "2016-03-18 13:31:07", updated_at: "2016-03-18 13:31:07", slug: "j"&gt;]&gt; 
+</code></pre>
+
+<h3>Putting it all together</h3>
+
+<p>So, with <code>clause</code> and <code>limit</code>, we now have the necessary building blocks to implement pagination. If we stop and think about it for a while, we would come to the conclusion that we could start with the limiting the objects presented to <code>\(n\)</code> objects per page. Let's say we choose 10 as an arbitrary number. We could then define something like this:</p>
+
+<p><em>posts_controller.rb</em></p>
+
+<p><figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">index</span>
+<span class="vi">@posts</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">all</span><span class="p">.</span><span class="nf">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">end</span></code></pre></figure></p>
 
-<p><em>db/migrations/timestmap_create_users.rb</em></p>
+<p><em>index.html.erb</em></p>
 
-<p><figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">CreateUsers</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
-  <span class="k">def</span> <span class="nf">change</span>
-    <span class="n">create_table</span> <span class="ss">:users</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
-      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:username</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
+<p><figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="sx">% @posts.each </span><span class="k">do</span> <span class="o">|</span><span class="n">post</span><span class="o">|</span> <span class="sx">%&gt;
+    &lt;%= link_to post.title, post_path(post) %&gt;</span>
+  <span class="o">&lt;</span><span class="sx">% end </span><span class="o">%&gt;</span>
+<span class="o">&lt;</span><span class="sr">/div&gt;</span></code></pre></figure></p>
+
+<p>This is ok for the first page... but what about when we need to go to the second page? First we need to figure out the number of pages we would have, given the limit (number of items/page) and the offset (the current page we're in).</p>
+
+<p><em>posts_controller.rb</em></p>
+
+<p><figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">index</span>
+<span class="vi">@limit</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">offset</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="ss">:offset</span><span class="p">].</span><span class="nf">to_i</span> <span class="o">*</span> <span class="vi">@limit</span> <span class="o">||=</span><span class="mi">0</span> <span class="c1"># offset equals the page we're in, so if we're in the first page </span>
+                                           <span class="c1"># offset = 0 * limit, in this case 10, fetching only the first 10 items. </span>
+                                           <span class="c1"># Second page, offset = 1 * limit, fetching 10 items after the first 10, etc.</span>
+<span class="vi">@posts</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">all</span><span class="p">.</span><span class="nf">offset</span><span class="p">(</span><span class="n">offset</span><span class="p">).</span><span class="nf">limit</span><span class="p">(</span><span class="n">limit</span><span class="p">)</span>
 <span class="k">end</span></code></pre></figure></p>
 
-<p><em>db/migrations/timestamp_create_user_groups</em></p>
+<p>So now everytime we call the index route, it will check what the <code>offset</code> value is in the session cookie, calculate the offset, and return the results based on the result. Now we need to setup number of pages displayed. This varies according to the number of entries, so if the entries are less than 10, only one page link is displayed, more than 10 but less than 20 means 2 pages, etc.</p>
 
-<p><figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">CreateUserGroups</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
-  <span class="k">def</span> <span class="nf">change</span>
-    <span class="n">create_table</span> <span class="ss">:user_groups</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
-      <span class="n">t</span><span class="p">.</span><span class="nf">integer</span> <span class="ss">:user_id</span>
-      <span class="n">t</span><span class="p">.</span><span class="nf">integer</span> <span class="ss">:group_id</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-<span class="k">end</span></code></pre></figure></p>
+<p><em>index.html.erb</em></p>
 
-<p>And finally run the migration.</p>
+<p><figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">.</span><span class="nf">.</span><span class="p">.</span><span class="nf">.</span>
+<span class="p">.</span><span class="nf">.</span><span class="p">.</span><span class="nf">.</span>
+<span class="c1"># ceil is called because you want the number rounded up, e.g. 16/10 should equal 2 not 1.6</span>
+<span class="o">&lt;</span><span class="sx">%= (Post.all.size.to_f/@limit).ceil.times do |n| %&gt;
+&lt;%=</span> <span class="n">link_to</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">).</span><span class="nf">to_s</span><span class="p">,</span> <span class="n">posts_path</span><span class="p">(</span><span class="ss">offset: </span><span class="n">n</span><span class="p">)</span> <span class="o">%&gt;</span>
+<span class="o">&lt;</span><span class="sx">% end </span><span class="o">%&gt;</span></code></pre></figure></p>
 
-<pre><code>~/dev/ruby/example ruby-2.0.0-p647 » rake db:migrate                                                                                                                                                                                                mo@x1[79%]
-== 20151210061204 CreateUsers: migrating ======================================
--- create_table(:users)
-   -&gt; 0.0010s
-== 20151210061204 CreateUsers: migrated (0.0010s) =============================
+<p>Let's try running through this: on the first page, as we established above, there is no offset value in the session cookie. That means that the <code>offset</code> variable = 0, and limit = 10; <code>@posts</code> then will equal the first 10 posts. If there are 16 posts in total, <code>\((16/limit).ceil\) = 2</code>, so two links will be generated at the bottom of the page that will look somewhat like this:</p>
 
-== 20151210061216 CreateGroups: migrating =====================================
--- create_table(:groups)
-   -&gt; 0.0004s
-== 20151210061216 CreateGroups: migrated (0.0005s) ============================
+<p><figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"posts?offset=0"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"posts?offset=1"</span><span class="nt">&gt;</span>2<span class="nt">&lt;/a&gt;</span></code></pre></figure></p>
 
-== 20151210061250 CreateUserGroups: migrating =================================
--- create_table(:user_groups)
-   -&gt; 0.0005s
-== 20151210061250 CreateUserGroups: migrated (0.0005s) ========================
-</code></pre>
+<p>So when the second link is called, the <code>offset</code> variable in the session (or <code>params[:offset]</code>) is 1, and the <code>index</code> method then calculates it's own value offset value which is:</p>
 
-<h3>Testing the Relationships</h3>
+<div>
+\[params[:offset] \cdot limit \rightarrow 1 \cdot 10 \rightarrow offset\ = 10 \]
+</div>
 
-<p>Now let's populate the database with users and groups.</p>
 
-<pre><code>2.0.0-p647 :015 &gt; mo = User.create(username: "Mo")
-2.0.0-p647 :023 &gt; andrea = User.create(username: "Andrea")
-2.0.0-p647 :029 &gt; mara = User.create(username: "Mara")
-2.0.0-p647 :039 &gt; google = Group.create(name: "Google")
-2.0.0-p647 :047 &gt; yahoo = Group.create(name: "Yahoo")
-2.0.0-p647 :064 &gt; bing = Group.create(name: "Bing")
-2.0.0-p647 :071 &gt; 
-</code></pre>
+<p>The expression that assigns a value to <code>@posts</code> can then be fully expanded to: <code>@posts = Post.all.offset(10).limit(10)</code>, which translates to <strong>"get 10 items AFTER the first 10"</strong>.</p>
 
-<p>Assigning groups to users:</p>
+<h3>To Conclude</h3>
 
-<pre><code>2.0.0-p647 :035 &gt; mo.groups &lt;&lt; google
-2.0.0-p647 :045 &gt; mo.groups &lt;&lt; yahoo
-2.0.0-p647 :055 &gt; andrea.groups &lt;&lt; google
-2.0.0-p647 :077 &gt; andrea.groups &lt;&lt; bing
-2.0.0-p647 :083 &gt; mara.groups &lt;&lt; yahoo
-2.0.0-p647 :087 &gt; 
-</code></pre>
+<p>There are times when pagination is not desirable, mainly when dealing with linear real-time events such as Facebook's or Twitter's feed, and in this case the afore-mentioned infinite scroll is superior. In other cases though, such as when you are dealing with query results, pagination is so far the best way to display multiple items.</p>
 
-<p>Testing the relationships:</p>
-
-<pre><code>2.0.0-p647 :124 &gt; mo.groups
-=&gt; #&lt;ActiveRecord::Associations::CollectionProxy [
-#&lt;Group id: 1, name: "Google", created_at: "2015-12-10 06:30:50", updated_at: "2015-12-10 06:30:50"&gt;,
-#&lt;Group id: 2, name: "Yahoo", created_at: "2015-12-10 06:31:01", updated_at: "2015-12-10 06:31:01"&gt;]&gt;
-
-2.0.0-p647 :128 &gt; andrea.groups
-=&gt; #&lt;ActiveRecord::Associations::CollectionProxy [
-#&lt;Group id: 1, name: "Google", created_at: "2015-12-10 06:30:50", updated_at: "2015-12-10 06:30:50"&gt;,
-#&lt;Group id: 3, name: "Bing", created_at: "2015-12-10 06:31:08", updated_at: "2015-12-10 06:31:08"&gt;]&gt;
-
-2.0.0-p647 :130 &gt; mara.groups
-=&gt; #&lt;ActiveRecord::Associations::CollectionProxy [
-#&lt;Group id: 2, name: "Yahoo", created_at: "2015-12-10 06:31:01", updated_at: "2015-12-10 06:31:01"&gt;]&gt;
-</code></pre>
-
-<p>So the that seems to work ok, now how about seeing if you can retrieve the users of each group.</p>
-
-<pre><code>2.0.0-p647 :132 &gt; google.users
-=&gt; #&lt;ActiveRecord::Associations::CollectionProxy [
-#&lt;User id: 1, username: "Mo", created_at: "2015-12-10 06:30:18", updated_at: "2015-12-10 06:30:18"&gt;,
-#&lt;User id: 2, username: "Andrea", created_at: "2015-12-10 06:30:27", updated_at: "2015-12-10 06:30:27"&gt;]&gt;
-
-2.0.0-p647 :140 &gt; yahoo.users
-=&gt; #&lt;ActiveRecord::Associations::CollectionProxy [
-#&lt;User id: 1, username: "Mo", created_at: "2015-12-10 06:30:18", updated_at: "2015-12-10 06:30:18"&gt;,
-#&lt;User id: 3, username: "Mara", created_at: "2015-12-10 06:30:34", updated_at: "2015-12-10 06:30:34"&gt;]&gt;
-
-2.0.0-p647 :143 &gt; bing.users
-  User Load (0.1ms)  SELECT "users".* FROM "users" INNER JOIN "user_groups" ON "users"."id" = "user_groups"."user_id" WHERE "user_groups"."group_id" = ?  [["group_id", 3]]
-  =&gt; #&lt;ActiveRecord::Associations::CollectionProxy [
-  #&lt;User id: 2, username: "Andrea", created_at: "2015-12-10 06:30:27", updated_at: "2015-12-10 06:30:27"&gt;]&gt;
-</code></pre>
-
-<p>Success! The relationships have been established.</p>
-
-<h3>The Difference Between the Two</h3>
-
-<p>The Rails documentation on the <a href="http://guides.rubyonrails.org/association_basics.html#choosing-between-has-many-through-and-has-and-belongs-to-many">topic</a> states that if you don't need to do anything with the join table (UserGroup) then it may be simpler to use <code>has_and_belongs_to_many</code> over <code>has_many :through</code>, however in practice the time you save on typing is minimal, and since you can't use validations, callbacks, etc. on the join model it makes more sense to default to using <code>has_many :through</code>.</p>
-
-    <h6>10 Dec 2015</h6>
+    <h6>06 Apr 2016</h6>
   </section>
 </section>
 
