@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>  Pagination with Rails |  Mozart Reina </title>
+    <link rel="stylesheet" href="/bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/styles.css" type="text/css" />
+    <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.93/jsxgraphcore.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://jsxgraph.uni-bayreuth.de/distrib/jsxgraph.css" />
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      MathJax.Hub.Config({
+      tex2jax: {
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+      });
+
+      MathJax.Hub.Queue(function() {
+      // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+                       all[i].SourceElement().parentNode.className += ' has-jax';
+                       }
+                       });
+                       </script>
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-33571143-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    <script src="/scripts/application.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid" id="main-container">
+      <div class="page-header">
+        <h1> Math, Lisp, <small> and other hackery </small> </h1>
+      </div>
+
+      <!-- <div id="rss"> -->
+      <!--   <a href="feed.xml"> -->
+      <!--     <img src="/img/Feed-icon.svg"/> -->
+      <!--   </a> -->
+      <!-- </div> -->
+      <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about/">About</a></li>
+              <li><a href="/entries/">Entries</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+        <section id="content">
+  <h2> Pagination with Rails </h2>
+  <section class="text">
+    <h3>Pagination</h3>
+
+<p>Pagination is the division of what could be one single page into multiple pages. Although a lot of the time a single page format is advantageous over having multiple pages, when dealing with things like search results or a list of blog posts, it makes more sense from a usability point of view to split them up into discrete pages, as long as you're not displaying a ridiculously low amount of content per page. 10-20 items per page seems to be a decent sweetspot between ultra-long single pages and pagination-with-5-items-gone-crazy-pages.</p>
+
+<p>There <em>is</em> something called <strong>infinite scroll</strong>, which looks like a compromise between one-page sites and pagination, you can see it in action on the mobile site of Facebook and some other social media applications. It works by displaying a fixed number of items, like pagination does, but when you reach the bottom of the page the page suddenly <strong>extends</strong> and what was the bottom now becomes the top, with more items loaded below. I don't know the implementation details but it seems (to my amateur eyes) to be an application of <a href="https://en.wikipedia.org/wiki/Lazy_evaluation">lazy evaluation</a>, where the evaluation of an expression (something like <code>Post.all</code> for example) is delayed until the program actually needs it (expressions are usually evaluated immediately, as soon as the relevant lexical environments are entered). We'll take that up another day (perhaps in Lisp as I'm not sure that Ruby supports lazy evaluation).</p>
+
+<h3>SQL's offset</h3>
+
+<p>SQL has a clause called <code>offset</code>, which fetches database rows starting from the row number entered through the <code>offset</code> clause. For example, calling <code>Post.all</code> would give us all <code>Post</code> objects.</p>
+
+<pre><code>2.0.0-p648 :002 &gt; Post.all
+Post Load (1.6ms)  SELECT "posts".* FROM "posts" ORDER BY "posts"."updated_at" DESC
+=&gt; #&lt;ActiveRecord::Relation 
+[#&lt;Post id: 12, title: "l", url: "l", description: "", user_id: 1, created_at: "2016-03-18 13:31:15", updated_at: "2016-03-18 13:31:15", slug: "l"&gt;, 
+#&lt;Post id: 11, title: "k", url: "k", description: "", user_id: 1, created_at: "2016-03-18 13:31:10", updated_at: "2016-03-18 13:31:10", slug: "k"&gt;, 
+#&lt;Post id: 10, title: "j", url: "j", description: "", user_id: 1, created_at: "2016-03-18 13:31:07", updated_at: "2016-03-18 13:31:07", slug: "j"&gt;, 
+#&lt;Post id: 9, title: "i", url: "i", description: "", user_id: 1, created_at: "2016-03-18 13:31:02", updated_at: "2016-03-18 13:31:02", slug: "i"&gt;, 
+#&lt;Post id: 8, title: "h", url: "h", description: "", user_id: 1, created_at: "2016-03-18 13:30:58", updated_at: "2016-03-18 13:30:58", slug: "h"&gt;, 
+#&lt;Post id: 7, title: "g", url: "g", description: "", user_id: 1, created_at: "2016-03-18 13:30:54", updated_at: "2016-03-18 13:30:54", slug: "g"&gt;, 
+#&lt;Post id: 6, title: "f", url: "f", description: "", user_id: 1, created_at: "2016-03-18 13:30:49", updated_at: "2016-03-18 13:30:49", slug: "f"&gt;, 
+#&lt;Post id: 5, title: "e", url: "e", description: "", user_id: 1, created_at: "2016-03-18 13:30:45", updated_at: "2016-03-18 13:30:45", slug: "e"&gt;, 
+#&lt;Post id: 4, title: "d", url: "d", description: "", user_id: 1, created_at: "2016-03-18 13:30:40", updated_at: "2016-03-18 13:30:40", slug: "d"&gt;, 
+#&lt;Post id: 3, title: "c", url: "c", description: "", user_id: 1, created_at: "2016-03-18 13:30:35", updated_at: "2016-03-18 13:30:35", slug: "c"&gt;, ...]&gt; 
+
+2.0.0-p648 :003 &gt; Post.all.size
+(0.2ms)  SELECT COUNT(*) FROM "posts"
+=&gt; 12 
+</code></pre>
+
+<p>Now if you want all the <code>Post</code> objects except the first three, using <code>offset</code> you would do:</p>
+
+<pre><code>2.0.0-p648 :015 &gt; Post.all.offset(3)
+Post Load (0.4ms)  SELECT "posts".* FROM "posts" ORDER BY "posts"."updated_at" DESC LIMIT -1 OFFSET 3
+ =&gt; #&lt;ActiveRecord::Relation [#&lt;Post id: 9, title: "i", url: "i", description: "", user_id: 1, created_at: "2016-03-18 13:31:02", updated_at: "2016-03-18 13:31:02", slug: "i"&gt;, 
+ #&lt;Post id: 8, title: "h", url: "h", description: "", user_id: 1, created_at: "2016-03-18 13:30:58", updated_at: "2016-03-18 13:30:58", slug: "h"&gt;, 
+ #&lt;Post id: 7, title: "g", url: "g", description: "", user_id: 1, created_at: "2016-03-18 13:30:54", updated_at: "2016-03-18 13:30:54", slug: "g"&gt;, 
+ #&lt;Post id: 6, title: "f", url: "f", description: "", user_id: 1, created_at: "2016-03-18 13:30:49", updated_at: "2016-03-18 13:30:49", slug: "f"&gt;, 
+ #&lt;Post id: 5, title: "e", url: "e", description: "", user_id: 1, created_at: "2016-03-18 13:30:45", updated_at: "2016-03-18 13:30:45", slug: "e"&gt;, 
+ #&lt;Post id: 4, title: "d", url: "d", description: "", user_id: 1, created_at: "2016-03-18 13:30:40", updated_at: "2016-03-18 13:30:40", slug: "d"&gt;, 
+ #&lt;Post id: 3, title: "c", url: "c", description: "", user_id: 1, created_at: "2016-03-18 13:30:35", updated_at: "2016-03-18 13:30:35", slug: "c"&gt;, 
+ #&lt;Post id: 2, title: "b", url: "b", description: "", user_id: 1, created_at: "2016-03-18 13:30:31", updated_at: "2016-03-18 13:30:31", slug: "b"&gt;, 
+ #&lt;Post id: 1, title: "a", url: "a", description: "", user_id: 1, created_at: "2016-03-18 13:30:27", updated_at: "2016-03-18 13:30:27", slug: "a"&gt;]&gt; 
+
+2.0.0-p648 :007 &gt; Post.all.offset(3).size
+(0.3ms)  SELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM "posts" LIMIT -1 OFFSET 3) subquery_for_count
+=&gt; 9 
+</code></pre>
+
+<p>And as you can see, it ignored the first 3 entries.</p>
+
+<p>Obviously this is not the only way to do it, you could just hit the database with <code>Post.all</code> then filter from there. However as much as possible it's a good idea to let the database do the work of querying and returning results, since they're designed and optimized to do just that... I can't imagine you could beat the performance of something that was designed to return <em>billions</em> (PostgreSQL) of rows a second.</p>
+
+<h3>SQL's Limit</h3>
+
+<p>SQL has another clause called <code>limit</code> which, as the name implies, limits the rows returned to a certain number.</p>
+
+<pre><code>2.0.0-p648 :002 &gt; Post.all.limit(3)
+Post Load (2.1ms)  SELECT "posts".* FROM "posts" ORDER BY "posts"."updated_at" DESC LIMIT 3
+=&gt; #&lt;ActiveRecord::Relation [
+#&lt;Post id: 12, title: "l", url: "l", description: "", user_id: 1, created_at: "2016-03-18 13:31:15", updated_at: "2016-03-18 13:31:15", slug: "l"&gt;, 
+#&lt;Post id: 11, title: "k", url: "k", description: "", user_id: 1, created_at: "2016-03-18 13:31:10", updated_at: "2016-03-18 13:31:10", slug: "k"&gt;, 
+#&lt;Post id: 10, title: "j", url: "j", description: "", user_id: 1, created_at: "2016-03-18 13:31:07", updated_at: "2016-03-18 13:31:07", slug: "j"&gt;]&gt; 
+</code></pre>
+
+<h3>Putting it all together</h3>
+
+<p>So, with <code>clause</code> and <code>limit</code>, we now have the necessary building blocks to implement pagination. If we stop and think about it for a while, we would come to the conclusion that we could start with the limiting the objects presented to <code>\(n\)</code> objects per page. Let's say we choose 10 as an arbitrary number. We could then define something like this:</p>
+
+<p><em>posts_controller.rb</em></p>
+
+<p><figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">index</span>
+<span class="vi">@posts</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">all</span><span class="p">.</span><span class="nf">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">end</span></code></pre></figure></p>
+
+<p><em>index.html.erb</em></p>
+
+<p><figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="sx">% @posts.each </span><span class="k">do</span> <span class="o">|</span><span class="n">post</span><span class="o">|</span> <span class="sx">%&gt;
+    &lt;%= link_to post.title, post_path(post) %&gt;</span>
+  <span class="o">&lt;</span><span class="sx">% end </span><span class="o">%&gt;</span>
+<span class="o">&lt;</span><span class="sr">/div&gt;</span></code></pre></figure></p>
+
+<p>This is ok for the first page... but what about when we need to go to the second page? First we need to figure out the number of pages we would have, given the limit (number of items/page) and the offset (the current page we're in).</p>
+
+<p><em>posts_controller.rb</em></p>
+
+<p><figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">index</span>
+<span class="vi">@limit</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">offset</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="ss">:offset</span><span class="p">].</span><span class="nf">to_i</span> <span class="o">*</span> <span class="vi">@limit</span> <span class="o">||=</span><span class="mi">0</span> <span class="c1"># offset equals the page we're in, so if we're in the first page </span>
+                                           <span class="c1"># offset = 0 * limit, in this case 10, fetching only the first 10 items. </span>
+                                           <span class="c1"># Second page, offset = 1 * limit, fetching 10 items after the first 10, etc.</span>
+<span class="vi">@posts</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">all</span><span class="p">.</span><span class="nf">offset</span><span class="p">(</span><span class="n">offset</span><span class="p">).</span><span class="nf">limit</span><span class="p">(</span><span class="n">limit</span><span class="p">)</span>
+<span class="k">end</span></code></pre></figure></p>
+
+<p>So now everytime we call the index route, it will check what the <code>offset</code> value is in the session cookie, calculate the offset, and return the results based on the result. Now we need to setup number of pages displayed. This varies according to the number of entries, so if the entries are less than 10, only one page link is displayed, more than 10 but less than 20 means 2 pages, etc.</p>
+
+<p><em>index.html.erb</em></p>
+
+<p><figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">.</span><span class="nf">.</span><span class="p">.</span><span class="nf">.</span>
+<span class="p">.</span><span class="nf">.</span><span class="p">.</span><span class="nf">.</span>
+<span class="c1"># ceil is called because you want the number rounded up, e.g. 16/10 should equal 2 not 1.6</span>
+<span class="o">&lt;</span><span class="sx">%= (Post.all.size.to_f/@limit).ceil.times do |n| %&gt;
+&lt;%=</span> <span class="n">link_to</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">).</span><span class="nf">to_s</span><span class="p">,</span> <span class="n">posts_path</span><span class="p">(</span><span class="ss">offset: </span><span class="n">n</span><span class="p">)</span> <span class="o">%&gt;</span>
+<span class="o">&lt;</span><span class="sx">% end </span><span class="o">%&gt;</span></code></pre></figure></p>
+
+<p>Let's try running through this: on the first page, as we established above, there is no offset value in the session cookie. That means that the <code>offset</code> variable = 0, and limit = 10; <code>@posts</code> then will equal the first 10 posts. If there are 16 posts in total, <code>\((16/limit).ceil\) = 2</code>, so two links will be generated at the bottom of the page that will look somewhat like this:</p>
+
+<p><figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"posts?offset=0"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"posts?offset=1"</span><span class="nt">&gt;</span>2<span class="nt">&lt;/a&gt;</span></code></pre></figure></p>
+
+<p>So when the second link is called, the <code>offset</code> variable in the session (or <code>params[:offset]</code>) is 1, and the <code>index</code> method then calculates it's own value offset value which is:</p>
+
+<div>
+\[params[:offset] \cdot limit \rightarrow 1 \cdot 10 \rightarrow offset\ = 10 \]
+</div>
+
+
+<p>The expression that assigns a value to <code>@posts</code> can then be fully expanded to: <code>@posts = Post.all.offset(10).limit(10)</code>, which translates to <strong>"get 10 items AFTER the first 10"</strong>.</p>
+
+<h3>To Conclude</h3>
+
+<p>There are times when pagination is not desirable, mainly when dealing with linear real-time events such as Facebook's or Twitter's feed, and in this case the afore-mentioned infinite scroll is superior. In other cases though, such as when you are dealing with query results, pagination is so far the best way to display multiple items.</p>
+
+    <h6>06 Apr 2016</h6>
+  </section>
+</section>
+
+
+      </div>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <footer>
+            <p class="text-info">&#0169; Mozart Reina 2012 | All Rights Reserved. </p>
+            </footer>
+          </div>
+        </div>
+    </div>
+  </body>
+</html>
